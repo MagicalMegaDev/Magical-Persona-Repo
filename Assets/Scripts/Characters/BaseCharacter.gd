@@ -6,6 +6,7 @@ var movement_handler:MovementHandler
 func _enter_tree():
 	#Gather up Handlers and assign them
 	movement_handler = ApplyHandler(MovementHandler)
+	movement_handler.myCharacter = self
 
 
 func ApplyHandler(handler_type) -> Object:

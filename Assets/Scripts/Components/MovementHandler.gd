@@ -40,14 +40,20 @@ var last_input_direction = Vector2.ZERO
 var speed = 0.0
 var can_move:bool = true
 
+var myCharacter:BaseCharacter
+
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
 
+func _ready():
+	velocity_calculated.connect(myCharacter._on_velocity_calculated)
+	
 func _physics_process(delta):
 	direction = Vector2(horizontal_direction, vertical_direction).normalized()
 	if(direction != Vector2.ZERO):
 		last_input_direction = direction
 	momentum = calculateSpeed(delta)
 	if(can_move):
+		print(momentum)
 		velocity_calculated.emit(momentum)
 
 #_on_direction_calculated(hDir,vDir)
@@ -71,6 +77,6 @@ func calculateSpeed(delta):
 	else: 
 		if(abs(speed) > 0):
 			speed = move_toward(speed, 0, friction * delta)
-			return speed * last_input_direction
+			return speed * direction
 		else:
 			return Vector2.ZERO

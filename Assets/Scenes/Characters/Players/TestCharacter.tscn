@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=6 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
 [ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Health/PlayerHealthController.gd" id="2_u4s88"]
 [ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_owd12"]
+[ext_resource type="Script" uid="uid://c23rw2ef30wvb" path="res://Assets/Scripts/Components/Controllers/PlayerInputController.gd" id="5_utarg"]
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 script = ExtResource("1_tadin")
@@ -21,4 +22,12 @@ script = ExtResource("2_u4s88")
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
+base_max_speed = 300.0
+base_acceleration = 1500.0
+base_friction = 1500.0
 metadata/_custom_type_script = "uid://ddul17tjgk3eg"
+
+[node name="PlayerInputController" type="Node" parent="." node_paths=PackedStringArray("myCharacter")]
+script = ExtResource("5_utarg")
+myCharacter = NodePath("..")
+metadata/_custom_type_script = "uid://c23rw2ef30wvb"
