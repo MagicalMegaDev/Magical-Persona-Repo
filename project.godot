@@ -20,6 +20,11 @@ RoomManager="*res://Assets/Scripts/Globals/room_manager.gd"
 AudioManager="*res://Assets/Scripts/Globals/audio_manager.gd"
 SignalBus="*res://Assets/Scripts/Globals/signal_bus.gd"
 Constants="*res://Assets/Scripts/Globals/constants.gd"
+GameManager="*res://Assets/Scripts/Globals/game_manager.gd"
+
+[global_group]
+
+Players="All Playable Characters"
 
 [input]
 

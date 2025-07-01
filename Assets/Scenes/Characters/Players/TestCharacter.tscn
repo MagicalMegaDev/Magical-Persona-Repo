@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg85fe3yjuhyw"]
+
+[ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_yk5xg"]
+
+[node name="Node2D" type="CharacterBody2D" groups=["Players"]]
+script = ExtResource("1_yk5xg")
+metadata/_custom_type_script = "uid://nfa50gborhfe"
