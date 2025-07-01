@@ -11,5 +11,3 @@ metadata/_custom_type_script = "uid://nfa50gborhfe"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Health" type="Node" parent="."]
-
-[node name="Tuna" type="Skeleton2D" parent="."]
