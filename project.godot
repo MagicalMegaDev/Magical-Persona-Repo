@@ -1,0 +1,61 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Magical Persona"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+RoomManager="*res://Assets/Scripts/Globals/room_manager.gd"
+AudioManager="*res://Assets/Scripts/Globals/audio_manager.gd"
+SignalBus="*res://Assets/Scripts/Globals/signal_bus.gd"
+Constants="*res://Assets/Scripts/Globals/constants.gd"
+
+[input]
+
+move_up={
+"deadzone": 0.2,
+"events": []
+}
+move_down={
+"deadzone": 0.2,
+"events": []
+}
+move_left={
+"deadzone": 0.2,
+"events": []
+}
+move_right={
+"deadzone": 0.2,
+"events": []
+}
+shoot_up={
+"deadzone": 0.2,
+"events": []
+}
+shoot_down={
+"deadzone": 0.2,
+"events": []
+}
+shoot_left={
+"deadzone": 0.2,
+"events": []
+}
+shoot_right={
+"deadzone": 0.2,
+"events": []
+}
+interact={
+"deadzone": 0.2,
+"events": []
+}
