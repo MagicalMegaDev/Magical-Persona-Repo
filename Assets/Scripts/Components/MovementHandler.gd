@@ -48,7 +48,14 @@ func _ready():
 	velocity_calculated.connect(myCharacter._on_velocity_calculated)
 	
 func _physics_process(delta):
-	direction = Vector2(horizontal_direction, vertical_direction).normalized()
+	var raw_direction = Vector2(horizontal_direction, vertical_direction)
+	
+	# Use a slightly higher threshold than Godot's deadzone to prevent drift
+	if(raw_direction.length() > 0.3):
+		direction = raw_direction.normalized()
+		last_input_direction = direction
+	else:
+		direction = Vector2.ZERO
 	if(direction != Vector2.ZERO):
 		last_input_direction = direction
 	momentum = calculateSpeed(delta)
@@ -77,6 +84,6 @@ func calculateSpeed(delta):
 	else: 
 		if(abs(speed) > 0):
 			speed = move_toward(speed, 0, friction * delta)
-			return speed * direction
+			return speed * last_input_direction
 		else:
 			return Vector2.ZERO
