@@ -10,6 +10,7 @@ func _enter_tree():
 func ApplyHandler(className:String) -> Object:
 	var found:Object = null
 	for child in GameManager.get_all_children(self):
+		print(child.name + child.get_class())
 		if child.is_class(className):
 			if(found):
 				print("Multiple" + className +" found at: " + self.name)
