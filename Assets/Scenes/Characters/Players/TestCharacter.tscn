@@ -19,8 +19,6 @@ vframes = 4
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
 
-[node name="MovementController" type="Node" parent="."]
+[node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
 metadata/_custom_type_script = "uid://bfqnqsnovo1mq"
-
-[connection signal="visibility_changed" from="CollisionShape2D" to="Health" method="_on_collision_shape_2d_visibility_changed"]

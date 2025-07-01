@@ -1,4 +1,4 @@
-class_name MovementController extends Node
+class_name MovementHandler extends Node
 
 #region enums
 #Direction Enums
@@ -49,6 +49,14 @@ func _physics_process(delta):
 	momentum = calculateSpeed(delta)
 	if(can_move):
 		velocity_calculated.emit(momentum)
+
+#_on_direction_calculated(hDir,vDir)
+#hDir = Horizontal Direction passed in
+#vDir = Vertical Direction passed in
+#This is a signal reciever to take in input from any controller to assign direction, however that controller wants to handle it.
+func _on_direction_calculated(hDir,vDir):
+	horizontal_direction = hDir
+	vertical_direction = vDir
 
 #calculateSpeed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.

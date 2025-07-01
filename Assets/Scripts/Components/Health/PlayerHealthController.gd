@@ -12,7 +12,3 @@ signal max_health_changed() #For the UI
 func GainMaxHealth(value):
 	max_health = min(max_health + value, max_health_cap)
 	max_health_changed.emit()
-
-
-func _on_collision_shape_2d_visibility_changed():
-	pass # Replace with function body.
