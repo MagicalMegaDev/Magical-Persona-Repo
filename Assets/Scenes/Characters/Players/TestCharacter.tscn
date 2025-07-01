@@ -19,5 +19,5 @@ vframes = 4
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
 
-[node name="Tuna" type="Node" parent="."]
+[node name="Tuna" type="PanelContainer" parent="."]
 script = ExtResource("3_lp5ns")
