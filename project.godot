@@ -25,6 +25,7 @@ GameManager="*res://Assets/Scripts/Globals/game_manager.gd"
 [global_group]
 
 Players="All Playable Characters"
+Enemies="All Enemies"
 
 [input]
 
