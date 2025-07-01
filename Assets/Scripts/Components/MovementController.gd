@@ -43,7 +43,9 @@ var can_move:bool = true
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
 
 func _physics_process(delta):
-	direction = Vector2(horizontal_direction, vertical_direction)
+	direction = Vector2(horizontal_direction, vertical_direction).normalized()
+	if(direction != Vector2.ZERO):
+		last_input_direction = direction
 	momentum = calculateSpeed(delta)
 	if(can_move):
 		velocity_calculated.emit(momentum)
@@ -56,11 +58,11 @@ func calculateSpeed(delta):
 	var friction = GameManager.add_mods(base_friction, friction_mods)
 	
 	if(direction != Vector2.ZERO):
-		speed = move_toward(speed, max_speed, acceleration)
+		speed = move_toward(speed, max_speed, acceleration * delta)
 		return speed * direction
 	else: 
 		if(abs(speed) > 0):
-			speed = move_toward(speed, 0, friction)
+			speed = move_toward(speed, 0, friction * delta)
 			return speed * last_input_direction
 		else:
 			return Vector2.ZERO
