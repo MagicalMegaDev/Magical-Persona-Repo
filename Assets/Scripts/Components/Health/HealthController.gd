@@ -1,7 +1,7 @@
 #This is the base component for ANYTHING with health
 class_name HealthController extends Node
 
-var max_health:float
+@export var max_health:float
 var current_health:float
 
 signal damaged
@@ -9,6 +9,7 @@ signal healed
 signal died
 
 func _ready():
+	current_health = max_health
 	#hook up the signals
 	damaged.connect(_on_health_changed)
 	healed.connect(_on_health_changed)

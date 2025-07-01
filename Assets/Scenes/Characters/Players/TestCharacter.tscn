@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=5 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
+[ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
 [ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Health/PlayerHealthController.gd" id="2_u4s88"]
 [ext_resource type="Script" uid="uid://bltextykjbdee" path="res://Assets/Scripts/FishyScript.gd" id="3_lp5ns"]
 
@@ -9,6 +10,9 @@ script = ExtResource("1_tadin")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_owd12")
+hframes = 5
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
