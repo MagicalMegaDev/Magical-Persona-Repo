@@ -2,8 +2,8 @@
 class_name PlayerInputController extends Node
 
 @export var myCharacter:BaseCharacter
-var horizontal_direction:float
-var vertical_direction:float
+
+var shooting_queue = []
 
 signal direction_calculated(hDir:float, vDir:float)
 signal shoot(direction:Vector2)
@@ -17,7 +17,9 @@ func _ready():
 func _process(delta):
 	if(Input.is_action_pressed("shoot_down")):
 		shoot.emit(Vector2.DOWN)
+
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	print(direction)
+	direction.x = direction.x if abs(direction.x) >= 0.2 else 0
+	direction.y = direction.y if abs(direction.y) >= 0.2 else 0
 	direction_calculated.emit(direction)
