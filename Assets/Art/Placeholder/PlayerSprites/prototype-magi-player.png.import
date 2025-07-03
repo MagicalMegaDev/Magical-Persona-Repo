@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chggbsvpjxfp6"
-path="res://.godot/imported/prototype-magi-player.png-f1a594b4bb5b774f336408aee6d481a7.ctex"
+path="res://.godot/imported/prototype-magi-player.png-52ef465bbe72ee3007c6e81cfaea3c87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/PlayerSprites/prototype-magi-player.png"
-dest_files=["res://.godot/imported/prototype-magi-player.png-f1a594b4bb5b774f336408aee6d481a7.ctex"]
+source_file="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png"
+dest_files=["res://.godot/imported/prototype-magi-player.png-52ef465bbe72ee3007c6e81cfaea3c87.ctex"]
 
 [params]
 
