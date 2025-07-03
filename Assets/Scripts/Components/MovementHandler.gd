@@ -60,7 +60,6 @@ func _physics_process(delta):
 		last_input_direction = direction
 	momentum = calculateSpeed(delta)
 	if(can_move):
-		print(momentum)
 		velocity_calculated.emit(momentum)
 
 #_on_direction_calculated(hDir,vDir)

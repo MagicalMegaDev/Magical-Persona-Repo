@@ -4,5 +4,4 @@ class_name PlayerController extends BaseCharacter
 #Nothing is here yet.
 
 func _ready():
-	super()
 	self.add_to_group("Players")

@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://c77b5g33e4bb4"]
+[gd_scene load_steps=5 format=3 uid="uid://c77b5g33e4bb4"]
+
+[ext_resource type="Script" uid="uid://bwpvfrbdivssx" path="res://Assets/Scripts/Components/Projectiles/BaseBullet.gd" id="1_kiwiv"]
+[ext_resource type="Texture2D" uid="uid://4m54u3g5ewjl" path="res://Assets/Art/Placeholder/playerbullet.png" id="1_mgv1u"]
+[ext_resource type="Script" uid="uid://dsfewmgvi7xo2" path="res://Assets/Scripts/Components/Projectiles/ProjectileMovementHandler.gd" id="3_a6iwo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgv1u"]
+radius = 283.06
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(0.05, 0.05)
+script = ExtResource("1_kiwiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mgv1u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mgv1u")
+
+[node name="ProjectileMovementHandler" type="Node" parent="."]
+script = ExtResource("3_a6iwo")
+metadata/_custom_type_script = "uid://dsfewmgvi7xo2"
