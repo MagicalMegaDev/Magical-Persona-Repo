@@ -13,10 +13,12 @@ var speed_mods = {}
 #region effects
 #endregion
 
-#movement behavior goes here.
-
+@export var movement_behavior:BulletMovementBehavior
 
 var status_effects = {} #Dictionary of potential status effects to inflict
+
+func _ready():
+	movement_behavior.my_bullet = self
 
 func _process(delta):
 	speed = GameManager.add_mods(base_speed, speed_mods)

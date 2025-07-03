@@ -6,12 +6,12 @@ var gun:Gun
 
 func _enter_tree():
 	#Gather up Handlers and assign them
-	movement_handler = ApplyHandler(MovementHandler)
-	gun = ApplyHandler(Gun)
+	movement_handler = apply_handler(MovementHandler)
+	gun = apply_handler(Gun)
 	movement_handler.myCharacter = self
 
 
-func ApplyHandler(handler_type) -> Object:
+func apply_handler(handler_type) -> Object:
 	var found: Object = null
 	for child in GameManager.get_all_children(self):
 		if is_instance_of(child, handler_type):

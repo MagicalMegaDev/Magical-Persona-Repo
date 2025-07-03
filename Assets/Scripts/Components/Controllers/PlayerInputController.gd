@@ -66,9 +66,14 @@ func check_js_shoot_input():
 	shooting_queue.clear()
 	var vector = Input.get_vector("shoot_left", "shoot_right","shoot_up","shoot_down")
 	if abs(vector.x) > abs(vector.y):
-		shooting_queue.push_front("shoot_right") if vector.x > 0 else shooting_queue.push_front("shoot_left")
-	else:
-		shooting_queue.push_front("shoot_down") if vector.y > 0 else shooting_queue.push_front("shoot_up")
+		if vector.x >0:
+			shooting_queue.push_front("shoot_right")
+		else: 
+			shooting_queue.push_front("shoot_left")
+	elif abs(vector.y) > abs(vector.x):
+		if vector.y > 0:
+			shooting_queue.push_front("shoot_down") 
+		else: shooting_queue.push_front("shoot_up")
 
 func check_shoot():
 	if shooting_queue.is_empty():

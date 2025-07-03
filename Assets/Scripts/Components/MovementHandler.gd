@@ -58,9 +58,8 @@ func _physics_process(delta):
 		direction = Vector2.ZERO
 	if(direction != Vector2.ZERO):
 		last_input_direction = direction
-	momentum = calculateSpeed(delta)
 	if(can_move):
-		velocity_calculated.emit(momentum)
+		velocity_calculated.emit(calculate_speed(delta))
 
 #_on_direction_calculated(hDir,vDir)
 #hDir = Horizontal Direction passed in
@@ -69,9 +68,9 @@ func _physics_process(delta):
 func _on_direction_calculated(new_direction:Vector2):
 	raw_direction = new_direction
 
-#calculateSpeed(delta)
+#calculate_speed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.
-func calculateSpeed(delta):
+func calculate_speed(delta):
 	var max_speed = GameManager.add_mods(base_max_speed, max_speed_mods)
 	var acceleration = GameManager.add_mods(base_acceleration, acceleration_mods)
 	var friction = GameManager.add_mods(base_friction, friction_mods)
@@ -80,7 +79,7 @@ func calculateSpeed(delta):
 		speed = move_toward(speed, max_speed, acceleration * delta)
 		return speed * direction
 	else: 
-		if(abs(speed) > 0):
+		if(speed > 0):
 			speed = move_toward(speed, 0, friction * delta)
 			return speed * last_input_direction
 		else:
