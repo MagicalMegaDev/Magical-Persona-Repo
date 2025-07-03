@@ -2,7 +2,7 @@ class_name BaseBullet extends Area2D
 
 var direction = Vector2.ZERO
 #region stats
-@export var base_speed:int = 200
+@export var base_speed:int = 700
 var speed:int = 0
 #endregion
 
@@ -26,3 +26,7 @@ func on_hit():
 
 func on_despawn():
 	pass
+
+
+func _on_body_entered(body):
+	queue_free()
