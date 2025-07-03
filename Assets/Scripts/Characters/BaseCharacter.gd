@@ -2,10 +2,12 @@ class_name BaseCharacter extends CharacterBody2D
 
 #Collection of Potential Handlers Goes here
 var movement_handler:MovementHandler
+var gun:Gun
 
 func _enter_tree():
 	#Gather up Handlers and assign them
 	movement_handler = ApplyHandler(MovementHandler)
+	gun = ApplyHandler(Gun)
 	movement_handler.myCharacter = self
 
 

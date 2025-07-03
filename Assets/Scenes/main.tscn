@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5ts3aeqkc2xr"]
+[gd_scene load_steps=2 format=3 uid="uid://c5ts3aeqkc2xr"]
 
 [ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_l26l0"]
-[ext_resource type="PackedScene" uid="uid://c77b5g33e4bb4" path="res://Assets/Scenes/Projectiles/PlayerBullet.tscn" id="2_qplxx"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(554, 332)
 
 [node name="Player" parent="." instance=ExtResource("1_l26l0")]
-
-[node name="Bullet" parent="." instance=ExtResource("2_qplxx")]
-position = Vector2(0, -110)
