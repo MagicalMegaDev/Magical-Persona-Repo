@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ZigZagShot" load_steps=2 format=3 uid="uid://bbtaystjoxpsi"]
+
+[ext_resource type="Script" uid="uid://dj0ek1n7x6o7c" path="res://Assets/Scripts/Components/Projectiles/PathingBehaviors/ZigZag.gd" id="1_y6wxd"]
+
+[resource]
+script = ExtResource("1_y6wxd")
+interval = 0.25
+perpendicular_distance = 150.0
+metadata/_custom_type_script = "uid://dj0ek1n7x6o7c"

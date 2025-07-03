@@ -18,6 +18,7 @@ var speed_mods = {}
 var status_effects = {} #Dictionary of potential status effects to inflict
 
 func _ready():
+	movement_behavior = movement_behavior.duplicate()
 	movement_behavior.my_bullet = self
 
 func _process(delta):
