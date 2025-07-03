@@ -18,6 +18,6 @@ func _process(delta):
 	if(Input.is_action_pressed("shoot_down")):
 		shoot.emit(Vector2.DOWN)
 func _physics_process(delta):
-	horizontal_direction = Input.get_axis("move_left","move_right")
-	vertical_direction = Input.get_axis("move_up","move_down")
-	direction_calculated.emit(horizontal_direction,vertical_direction)
+	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
+	print(direction)
+	direction_calculated.emit(direction)

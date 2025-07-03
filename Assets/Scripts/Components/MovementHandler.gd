@@ -33,10 +33,9 @@ var base_speed_scale = 1.0
 var base_acceleration_scale = 1.0
 var base_friction_scale = 1.0
 
-var horizontal_direction = HorizontalDirection.STILL
-var vertical_direction = VerticalDirection.STILL
-var direction = Vector2.ZERO
-var last_input_direction = Vector2.ZERO
+var raw_direction := Vector2.ZERO
+var direction := Vector2.ZERO
+var last_input_direction := Vector2.ZERO
 var speed = 0.0
 var can_move:bool = true
 
@@ -46,10 +45,11 @@ signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the c
 
 func _ready():
 	velocity_calculated.connect(myCharacter._on_velocity_calculated)
-	
+
+func _process(delta):
+	pass
+
 func _physics_process(delta):
-	var raw_direction = Vector2(horizontal_direction, vertical_direction)
-	
 	# Use a slightly higher threshold than Godot's deadzone to prevent drift
 	if(raw_direction.length() > 0.3):
 		direction = raw_direction.normalized()
@@ -66,9 +66,8 @@ func _physics_process(delta):
 #hDir = Horizontal Direction passed in
 #vDir = Vertical Direction passed in
 #This is a signal reciever to take in input from any controller to assign direction, however that controller wants to handle it.
-func _on_direction_calculated(hDir,vDir):
-	horizontal_direction = hDir
-	vertical_direction = vDir
+func _on_direction_calculated(new_direction:Vector2):
+	raw_direction = new_direction
 
 #calculateSpeed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.

@@ -20,6 +20,6 @@ func _on_shoot(direction):
 		assert(new_bullet, "%s 's gun is trying to spawn non-bullets!" % get_parent().name)
 		new_bullet.speed_mods["Gun Shot Speed"] = shot_speed
 		new_bullet.direction = direction
-		add_child(new_bullet)
+		get_tree().current_scene.add_child(new_bullet)
 		new_bullet.global_position = global_position
 		shot_timer.start()
