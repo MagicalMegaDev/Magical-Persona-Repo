@@ -11,6 +11,7 @@ radius = 283.06
 [node name="Bullet" type="Area2D"]
 scale = Vector2(0.05, 0.05)
 collision_layer = 16
+collision_mask = 11
 script = ExtResource("1_kiwiv")
 movement_behavior = ExtResource("2_a6iwo")
 

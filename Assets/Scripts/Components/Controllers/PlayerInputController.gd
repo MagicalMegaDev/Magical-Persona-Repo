@@ -6,7 +6,7 @@ class_name PlayerInputController extends Node
 var shooting_queue = []
 var last_input_device:String = "keyboard"
 
-signal direction_calculated(hDir:float, vDir:float)
+signal direction_calculated(direction:Vector2)
 signal shoot(direction:Vector2)
 
 func _ready():

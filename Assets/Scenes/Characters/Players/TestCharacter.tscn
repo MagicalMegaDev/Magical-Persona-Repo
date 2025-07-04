@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
-[ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Health/PlayerHealthController.gd" id="2_u4s88"]
+[ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Health/PlayerHealthHandler.gd" id="2_u4s88"]
 [ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_owd12"]
 [ext_resource type="Script" uid="uid://c23rw2ef30wvb" path="res://Assets/Scripts/Components/Controllers/PlayerInputController.gd" id="5_utarg"]
 [ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/gun.tscn" id="6_pkkgq"]
@@ -24,6 +24,9 @@ vframes = 4
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_utarg")
 
+[node name="Gun" parent="." instance=ExtResource("6_pkkgq")]
+my_bullet = ExtResource("7_6jl5b")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
 
@@ -38,6 +41,3 @@ metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 script = ExtResource("5_utarg")
 myCharacter = NodePath("..")
 metadata/_custom_type_script = "uid://c23rw2ef30wvb"
-
-[node name="Gun" parent="." instance=ExtResource("6_pkkgq")]
-my_bullet = ExtResource("7_6jl5b")

@@ -2,13 +2,18 @@ class_name BaseCharacter extends CharacterBody2D
 
 #Collection of Potential Handlers Goes here
 var movement_handler:MovementHandler
+var health_handler:HealthHandler
 var gun:Gun
 
 func _enter_tree():
 	#Gather up Handlers and assign them
 	movement_handler = apply_handler(MovementHandler)
+	health_handler = apply_handler(HealthHandler)
 	gun = apply_handler(Gun)
-	movement_handler.myCharacter = self
+	if(movement_handler):
+		movement_handler.myCharacter = self
+	if(health_handler):
+		health_handler.died.connect(_on_death)
 
 
 func apply_handler(handler_type) -> Object:
@@ -28,3 +33,15 @@ func apply_handler(handler_type) -> Object:
 func _on_velocity_calculated(momentum):
 	velocity = momentum
 	move_and_slide()
+
+#_on_take_damage(amount)
+#amount: The amount of incoming damage
+#Generic signal reciever to handle behavior upon being hit.
+func _on_take_damage(amount):
+	if(health_handler):
+		health_handler.take_damage(amount)
+
+#_on_death
+#A signal recieved for died, holds all logic and behavior for character death.
+func _on_death():
+	queue_free()

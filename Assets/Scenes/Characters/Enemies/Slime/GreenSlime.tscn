@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnhgxom0ah0wi"]
+
+[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_46jdb"]
+[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Health/EnemyHealthHandler.gd" id="2_fhjy0"]
+[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="3_4moko"]
+[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_a0qja"]
+[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="5_fhjy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
+size = Vector2(64, 32)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("movement_ai")]
+collision_layer = 8
+collision_mask = 23
+script = ExtResource("1_46jdb")
+movement_ai = NodePath("RandomMovementAI")
+metadata/_custom_type_script = "uid://x2mfrinou0ev"
+
+[node name="HealthController" type="Node" parent="."]
+script = ExtResource("2_fhjy0")
+max_health = 5.0
+metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_4moko")
+hframes = 6
+vframes = 4
+frame = 1
+region_enabled = true
+region_rect = Rect2(0, 0, 384, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_5w1ox")
+
+[node name="MovementHandler" type="Node" parent="."]
+script = ExtResource("4_a0qja")
+base_max_speed = 100.0
+base_acceleration = 200.0
+base_friction = 200.0
+metadata/_custom_type_script = "uid://ddul17tjgk3eg"
+
+[node name="RandomMovementAI" type="Node" parent="."]
+script = ExtResource("5_fhjy0")
+direction_change_frequency = 2.0
+metadata/_custom_type_script = "uid://c4r57oepjkm3b"
