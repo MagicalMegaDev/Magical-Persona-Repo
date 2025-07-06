@@ -11,6 +11,7 @@ func _ready():
 
 func _store(enemy:BaseEnemy):
 	print("died")
+	enemy.get_node("AnimationTree/AnimationPlayer").stop()
 	enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	enemy.visible = false
 	if enemy in alive_enemies:

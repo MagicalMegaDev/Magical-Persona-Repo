@@ -19,7 +19,7 @@ func _ready():
 #Takes in a damage_value, and subtracts it from the current_health
 
 func take_damage(damage_value:float):
-	current_health -= damage_value
+	current_health = max( current_health - damage_value, 0)
 	damaged.emit()
 
 #heal_damage(heal_value)
