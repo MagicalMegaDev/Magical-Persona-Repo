@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=13 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
@@ -7,11 +7,53 @@
 [ext_resource type="Script" uid="uid://c23rw2ef30wvb" path="res://Assets/Scripts/Components/Controllers/PlayerInputController.gd" id="5_utarg"]
 [ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/gun.tscn" id="6_pkkgq"]
 [ext_resource type="PackedScene" uid="uid://c77b5g33e4bb4" path="res://Assets/Scenes/Projectiles/PlayerBullet.tscn" id="7_6jl5b"]
+[ext_resource type="Texture2D" uid="uid://dug46exl8xix6" path="res://Assets/Art/Placeholder/prototype-magi-hit (2).png" id="8_vraok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utarg"]
-size = Vector2(64, 63)
+size = Vector2(16, 40)
+
+[sub_resource type="Animation" id="Animation_fkrlc"]
+resource_name = "PlayerGem"
+length = 0.3
+loop_mode = 2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_imd6w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbmju"]
+_data = {
+&"PlayerGem": SubResource("Animation_fkrlc"),
+&"RESET": SubResource("Animation_imd6w")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
+collision_layer = 4
+collision_mask = 19
 script = ExtResource("1_tadin")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
 
@@ -21,7 +63,7 @@ hframes = 5
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_utarg")
 
 [node name="Gun" parent="." instance=ExtResource("6_pkkgq")]
@@ -41,3 +83,13 @@ metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 script = ExtResource("5_utarg")
 myCharacter = NodePath("..")
 metadata/_custom_type_script = "uid://c23rw2ef30wvb"
+
+[node name="PlayerHurtBox" type="Sprite2D" parent="."]
+texture = ExtResource("8_vraok")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHurtBox"]
+libraries = {
+&"": SubResource("AnimationLibrary_sbmju")
+}
+autoplay = "PlayerGem"

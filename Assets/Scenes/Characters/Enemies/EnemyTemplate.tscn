@@ -1,15 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdii5unjsuy1l"]
+[gd_scene load_steps=8 format=3 uid="uid://bdii5unjsuy1l"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_a6hwp"]
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Health/EnemyHealthHandler.gd" id="2_5w1ox"]
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="2_onc88"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="4_onc88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onc88"]
+size = Vector2(64, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5w1ox"]
+radius = 45.3982
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 23
+collision_mask = 19
 script = ExtResource("1_a6hwp")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
@@ -26,6 +33,31 @@ frame = 1
 region_enabled = true
 region_rect = Rect2(0, 0, 384, 256)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_onc88")
+
+[node name="EnemyDetection" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_5w1ox")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+script = ExtResource("4_onc88")
+
+[connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]

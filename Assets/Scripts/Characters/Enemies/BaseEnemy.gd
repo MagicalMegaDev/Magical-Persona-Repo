@@ -4,6 +4,8 @@ class_name BaseEnemy extends BaseCharacter
 
 @export var movement_ai:EnemyMovementAI
 
+signal died(BaseEnemy)
+
 func _enter_tree():
 	super()
 	if(movement_ai):
@@ -11,3 +13,6 @@ func _enter_tree():
 
 func _ready():
 	self.add_to_group("Enemies")
+
+func _on_death():
+	died.emit(self)

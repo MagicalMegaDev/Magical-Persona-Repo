@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2xnhrhem0c2r"]
+
+[ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_uper2"]
+[ext_resource type="PackedScene" uid="uid://bgpwc7kk1fntj" path="res://Assets/Scenes/Characters/Enemies/Slime/NoMoveGreenSlime.tscn" id="2_r0bfr"]
+
+[node name="TestingRoom" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_uper2")]
+position = Vector2(272, 95)
+
+[node name="Enemy" parent="." instance=ExtResource("2_r0bfr")]
+position = Vector2(530, 150)
+scale = Vector2(5, 5)

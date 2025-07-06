@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://c5ts3aeqkc2xr"]
+[gd_scene load_steps=7 format=4 uid="uid://c5ts3aeqkc2xr"]
 
 [ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_l26l0"]
 [ext_resource type="Texture2D" uid="uid://by5f8oi7tueht" path="res://Assets/Art/Placeholder/prototype-magi-environment.png" id="2_qplxx"]
-[ext_resource type="PackedScene" uid="uid://cnhgxom0ah0wi" path="res://Assets/Scenes/Characters/Enemies/Slime/GreenSlime.tscn" id="3_elf4b"]
+[ext_resource type="PackedScene" uid="uid://dvbeogq7gdawa" path="res://Assets/Scenes/Characters/Enemies/Slime/GreenSlime.tscn" id="3_elf4b"]
+[ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="4_guoxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_elf4b"]
 texture = ExtResource("2_qplxx")
@@ -214,9 +215,18 @@ tile_map_data = PackedByteArray("AAD+//7/AAABAAEAAAD///7/AAABAAEAAAAAAP7/AAABAAE
 tile_set = SubResource("TileSet_guoxd")
 
 [node name="Player" parent="." instance=ExtResource("1_l26l0")]
-collision_layer = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("3_elf4b")]
 position = Vector2(-3, -125.5)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_elf4b")]
+position = Vector2(218, -89)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_elf4b")]
+position = Vector2(-211, -80)
+
+[node name="DebugEnemyPool" type="Node" parent="."]
+script = ExtResource("4_guoxd")
+metadata/_custom_type_script = "uid://cj6appwlvrvxk"
