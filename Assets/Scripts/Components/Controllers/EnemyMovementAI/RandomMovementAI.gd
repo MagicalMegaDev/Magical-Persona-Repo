@@ -12,7 +12,7 @@ func _ready():
 	direction_change_timer.one_shot = false
 	direction_change_timer.timeout.connect(get_direction)
 	add_child(direction_change_timer)
-	await get_direction()
+	get_direction()
 	direction_change_timer.start()
 
 func _process(delta):

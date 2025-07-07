@@ -4,13 +4,12 @@ var alive_enemies = {}
 var dead_enemies = {}
 
 func _ready():
-	for child in GameManager.get_all_children(get_tree().root):
-		if child is BaseEnemy:
-			alive_enemies[child] = child.global_position
-			child.died.connect(_store)
+	
+	for child in get_tree().get_nodes_in_group("Enemies"):
+		alive_enemies[child] = child.global_position
+		child.died.connect(_store)
 
 func _store(enemy:BaseEnemy):
-	print("died")
 	enemy.get_node("AnimationTree/AnimationPlayer").stop()
 	enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	enemy.visible = false
@@ -24,6 +23,7 @@ func _respawn():
 	for e in alive_enemies:
 		assert(e is BaseEnemy, "Pool is trying to store %s, not an enemy!" % e.name)
 		_store(e)
+
 	for e in dead_enemies:
 		e.global_position = dead_enemies[e]
 		e.health_handler.heal_damage(e.health_handler.max_health)

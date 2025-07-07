@@ -15,14 +15,14 @@ func get_all_children(node, arr:=[]):
 
 func add_mods(input:float, input_mods:Dictionary) -> float:
 	if(!input):
-		print("Something went wrong")
+		print("Something went wrong with add_mods")
 		return 0
 	if(input_mods.is_empty()):
 		return input
 	else:
 		for key in input_mods:
 			var value = input_mods[key]
-			if!(value is float or value is int): #If a non-number slipped it's way in there, remove and print a debug
+			if !(value is float or value is int): #If a non-number slipped it's way in there, remove and print a debug
 				print(key, " with value: ", value, " is not a number! Removing from ", input_mods, " in ", get_parent().name, " movement controller!")
 				input_mods.erase(key)
 			else:
