@@ -3,6 +3,11 @@ class_name PlayerInputController extends Node
 
 @export var myCharacter:BaseCharacter
 
+#region DEBUG
+const DEBUG_SPEED := 2
+const CONTROLLER_DEADZONE := 2
+#endregion
+
 var shooting_queue = []
 var last_input_device:String = "keyboard"
 
@@ -27,16 +32,18 @@ func _process(delta):
 	elif(last_input_device == "joystick"):
 		check_js_shoot_input()
 	check_shoot()
+	#DEBUG
 	if(Input.is_action_just_pressed("speed")):
 		if(myCharacter.movement_handler.max_speed_mods.has("Debug")):
 			myCharacter.movement_handler.max_speed_mods.erase("Debug")
 		else:
-			myCharacter.movement_handler.max_speed_mods["Debug"] = 2
+			myCharacter.movement_handler.max_speed_mods["Debug"] = DEBUG_SPEED
+	#ENDDEBUG
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	direction.x = direction.x if abs(direction.x) >= 0.2 else 0
-	direction.y = direction.y if abs(direction.y) >= 0.2 else 0
+	direction.x = direction.x if abs(direction.x) >= CONTROLLER_DEADZONE else 0
+	direction.y = direction.y if abs(direction.y) >= CONTROLLER_DEADZONE else 0
 	direction_calculated.emit(direction)
 
 func check_kb_shoot_input():

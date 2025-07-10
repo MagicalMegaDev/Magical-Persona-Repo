@@ -2,6 +2,7 @@ class_name RandomMovementAI extends EnemyMovementAI
 
 var direction := Vector2.ZERO
 var direction_change_timer:Timer
+#Values are Placeholders
 @export var direction_change_frequency_min:float = 0.5
 @export var direction_change_frequency_max:float = 1.5
 

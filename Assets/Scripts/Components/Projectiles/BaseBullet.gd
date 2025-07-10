@@ -2,6 +2,7 @@ class_name BaseBullet extends Area2D
 
 var direction = Vector2.ZERO
 #region stats
+#All default values are placeholders
 @export var base_speed:int = 700
 var speed:int = 0
 @export var base_damage:float = 1

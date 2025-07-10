@@ -1,5 +1,9 @@
 class_name MovementHandler extends Node
 
+#region constants
+const CONTROLLER_DEADZONE = 0.3
+#endregion
+
 #region enums
 #Direction Enums
 enum HorizontalDirection{
@@ -17,6 +21,7 @@ enum VerticalDirection{
 
 #Baselines
 @export_group("Movement Variables")
+#All Default Values are placeholders
 @export var base_max_speed = 200.0
 @export var base_acceleration = 50.0
 @export var base_friction = 50.0
@@ -51,7 +56,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Use a slightly higher threshold than Godot's deadzone to prevent drift
-	if(raw_direction.length() > 0.3):
+	if(raw_direction.length() > CONTROLLER_DEADZONE):
 		direction = raw_direction.normalized()
 		last_input_direction = direction
 	else:

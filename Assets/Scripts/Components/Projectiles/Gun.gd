@@ -5,6 +5,7 @@ class_name Gun extends Node2D
 var shot_timer:Timer
 
 #region stats
+#All default values are placeholders
 @export var shot_speed:float = 1 #How fast the bullets out of this gun move
 @export var damage:float = 2 #How much damage this gun does
 @export_group("Fire Rrate")

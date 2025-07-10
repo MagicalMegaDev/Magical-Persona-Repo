@@ -10,7 +10,7 @@ func _ready():
 	for child in get_children():
 		if child is State:
 			add_state(child)
-	current_state = states[0]
+	current_state = states.keys()[0]
 
 func _process(delta):
 	if current_state:
