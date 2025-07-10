@@ -2,12 +2,14 @@ class_name State
 extends Node
 
 var state_machine:StateMachine
+signal state_entered
+signal state_exited
 
 func enter(args:= {}):
-	pass
+	state_entered.emit()
 
 func exit():
-	pass
+	state_exited.emit()
 
 func handle_input(event):
 	pass

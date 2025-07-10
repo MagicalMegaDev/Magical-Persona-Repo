@@ -3,11 +3,14 @@ extends Node
 
 var states := {}
 var current_state:State
+var my_owner:Node
 
 func _ready():
+	my_owner = get_parent()
 	for child in get_children():
 		if child is State:
 			add_state(child)
+	current_state = states[0]
 
 func _process(delta):
 	if current_state:

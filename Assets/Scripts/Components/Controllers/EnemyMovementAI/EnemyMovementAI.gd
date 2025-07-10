@@ -4,12 +4,19 @@ var my_character:BaseCharacter
 
 signal direction_calculated(direction:Vector2)
 
-func _ready():
-	assert(my_character.movement_handler, "%s has pathing behavoir but no movement handler!" % my_character.name)
-	direction_calculated.connect(my_character.movement_handler._on_direction_calculated)
-
+#set_direction
+#internal function to set the direction to be passed along in get_direction
+func set_direction():
+	pass
 #get_direction
 #Generic function, inherited pathing behaviors will use this to determine a direction and send a signal.
 func get_direction() -> Vector2:
 	print("%s has generic pathing AI attached" %  my_character.name)
 	return Vector2.ZERO
+
+#pause and resume functions to be called when the parent state is entered and exited.
+func pause():
+	pass
+	
+func resume():
+	pass
