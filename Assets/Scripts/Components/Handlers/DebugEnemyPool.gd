@@ -4,12 +4,12 @@ var alive_enemies = {}
 var dead_enemies = {}
 
 func _ready():
-	
 	for child in get_tree().get_nodes_in_group("Enemies"):
 		alive_enemies[child] = child.global_position
 		child.died.connect(_store)
 
 func _store(enemy:BaseEnemy):
+	print("storing")
 	enemy.get_node("AnimationTree/AnimationPlayer").stop()
 	enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	enemy.visible = false

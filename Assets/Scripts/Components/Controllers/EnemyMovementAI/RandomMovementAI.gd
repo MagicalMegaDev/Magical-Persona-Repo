@@ -31,10 +31,13 @@ func set_direction():
 	direction_change_timer.wait_time = randf_range(direction_change_frequency_min, direction_change_frequency_max)
 
 func get_direction() -> Vector2:
-	return direction
+	if(my_character.is_on_ceiling() or my_character.is_on_wall() or my_character.is_on_floor()):
+		set_direction()
+		direction_change_timer.stop()
 	if(direction_change_timer.is_stopped()):
-		print("Starting Timer")
 		direction_change_timer.start()
+	return direction
+
 	
 #reverse_direction()
 #Move in the opposite of the current direction

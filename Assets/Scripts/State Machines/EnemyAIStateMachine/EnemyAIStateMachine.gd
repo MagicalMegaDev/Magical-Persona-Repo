@@ -14,6 +14,7 @@ func _ready():
 		if child is EnemyMovementState:
 			movement_states[child.name] = child
 			child.state_machine = self
+			child.movement_ai.my_character = my_owner
 		elif child is EnemyAttackState:
 			attack_states[child.name] = child
 			child.state_machine = self

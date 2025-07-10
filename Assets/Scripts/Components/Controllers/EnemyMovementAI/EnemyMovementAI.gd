@@ -8,6 +8,7 @@ signal direction_calculated(direction:Vector2)
 #internal function to set the direction to be passed along in get_direction
 func set_direction():
 	pass
+
 #get_direction
 #Generic function, inherited pathing behaviors will use this to determine a direction and send a signal.
 func get_direction() -> Vector2:
