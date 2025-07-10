@@ -13,20 +13,17 @@ func _ready():
 	add_child(direction_change_timer)
 
 func pause():
-	print("Pause")
 	direction = Vector2.ZERO
 	direction_change_timer.stop()
 	direction_change_timer.wait_time = randf_range(direction_change_frequency_min, direction_change_frequency_max)
 
 func resume():
-	print("Resume")
 	set_direction()
 	direction_change_timer.start()
 	
 #set_direction()
 #Generate a random direction and emit it to be moved
 func set_direction():
-	print("Setting")
 	direction = Vector2.from_angle(randf() * 2.0 * PI)
 	direction_change_timer.wait_time = randf_range(direction_change_frequency_min, direction_change_frequency_max)
 

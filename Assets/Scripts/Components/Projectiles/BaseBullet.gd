@@ -17,7 +17,7 @@ var damage_mods = {}
 #endregion
 
 @export var movement_behavior:BulletMovementBehavior
-
+var hit_groups: Array[String] = []
 var status_effects = {} #Dictionary of potential status effects to inflict
 
 func _ready():
@@ -25,6 +25,7 @@ func _ready():
 	movement_behavior.my_bullet = self
 	speed = GameManager.add_mods(base_speed, speed_mods)
 	damage = GameManager.add_mods(base_damage, damage_mods)
+
 
 func _process(delta):
 	pass
@@ -37,6 +38,9 @@ func on_despawn():
 
 
 func _on_body_entered(body):
-	if(body is BaseCharacter):
-		body._on_take_damage(damage)
-	queue_free()
+	for group in hit_groups:
+		if(body.is_in_group(group)):
+			if(group != "Environment"):
+				body._on_take_damage(damage)
+			queue_free()
+			return

@@ -68,6 +68,7 @@ shape = SubResource("RectangleShape2D_utarg")
 
 [node name="Gun" parent="." instance=ExtResource("6_pkkgq")]
 my_bullet = ExtResource("7_6jl5b")
+hit_groups = Array[String](["Enemies"])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")

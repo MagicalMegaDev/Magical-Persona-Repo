@@ -1,6 +1,7 @@
 class_name Gun extends Node2D
 
 @export var my_bullet:PackedScene
+@export var hit_groups:Array[String] = []
 var shot_timer:Timer
 
 #region stats
@@ -11,9 +12,27 @@ var shot_timer:Timer
 @export var fire_rate:float = 2.5 #How many bullets a second to fire
 #endregion
 
+#region effects
+@export_group("Effects")
+var _spectral:bool = false
+@export var spectral:bool :
+	get:
+		return _spectral
+	set(value):
+		_spectral = value
+		if(spectral):
+			remove_hit_group("Environment")
+		else:
+			add_hit_group("Environment")
+#endregion
+
 func _ready():
 	shot_timer = $shot_cooldown
 	shot_timer.wait_time = 1/fire_rate
+	if(spectral):
+		remove_hit_group("Environment")
+	else:
+		add_hit_group("Environment")
 
 func _on_shoot(direction):
 	if(shot_timer.is_stopped()):
@@ -22,6 +41,17 @@ func _on_shoot(direction):
 		new_bullet.speed_mods["Gun Shot Speed"] = shot_speed
 		new_bullet.damage_mods["Gun Damage"] = damage
 		new_bullet.direction = direction
+		new_bullet.hit_groups = hit_groups
 		get_tree().current_scene.add_child(new_bullet)
 		new_bullet.global_position = global_position
 		shot_timer.start()
+
+func add_hit_group(group:String):
+	print("Gun: Adding")
+	if !(hit_groups.has(group)):
+		hit_groups.append(group)
+	
+func remove_hit_group(group:String):
+	print("Gun: Removing")
+	if(hit_groups.has(group)):
+		hit_groups.erase(group)

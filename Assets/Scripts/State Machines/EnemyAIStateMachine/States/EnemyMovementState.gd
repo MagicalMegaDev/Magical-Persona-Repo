@@ -4,8 +4,9 @@ signal send_direction(direction:Vector2)
 @export var movement_ai:EnemyMovementAI
 
 func _ready():
-	state_entered.connect(movement_ai.resume)
-	state_exited.connect(movement_ai.pause)
+	if(movement_ai):
+		state_entered.connect(movement_ai.resume)
+		state_exited.connect(movement_ai.pause)
 
 	
 func enter(args:= {}):
