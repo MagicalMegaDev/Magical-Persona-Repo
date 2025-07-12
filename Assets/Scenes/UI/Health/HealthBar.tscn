@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://0kd4wsph5oc0"]
+
+[ext_resource type="PackedScene" uid="uid://bgnk2obf86ouk" path="res://Assets/Scenes/UI/Health/HeartContainer.tscn" id="1_ygihf"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hearts" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+
+[node name="Heart" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart2" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart3" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart4" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart5" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart6" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart7" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart8" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart9" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+
+[node name="Heart10" parent="Hearts" instance=ExtResource("1_ygihf")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2

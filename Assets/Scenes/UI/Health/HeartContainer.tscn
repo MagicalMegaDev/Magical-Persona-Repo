@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgnk2obf86ouk"]
+
+[ext_resource type="Texture2D" uid="uid://dlyairht4hjbs" path="res://Assets/Art/Placeholder/health.png" id="1_i8dbw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8dbw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhc8c"]
+atlas = ExtResource("1_i8dbw")
+region = Rect2(0, 0, 18, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5bra"]
+atlas = ExtResource("1_i8dbw")
+region = Rect2(18, 0, 18, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmk1e"]
+atlas = ExtResource("1_i8dbw")
+region = Rect2(36, 0, 18, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nfsc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhc8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5bra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmk1e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Heart" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -8.5
+offset_right = 9.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_i8dbw")
+stretch_mode = 3
+
+[node name="HeartContainer" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6nfsc")
+frame = 2

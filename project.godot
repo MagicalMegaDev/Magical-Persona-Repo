@@ -34,7 +34,6 @@ window/size/borderless=true
 
 Players="All Playable Characters"
 Enemies="All Enemies"
-Environment=""
 
 [input]
 
