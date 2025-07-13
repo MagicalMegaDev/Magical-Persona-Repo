@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=14 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
@@ -51,9 +51,12 @@ _data = {
 &"RESET": SubResource("Animation_imd6w")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vraok"]
+radius = 9.06606
+
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
-collision_layer = 4
-collision_mask = 19
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_tadin")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
 
@@ -62,7 +65,7 @@ texture = ExtResource("2_owd12")
 hframes = 5
 vframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_utarg")
 
@@ -95,3 +98,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_sbmju")
 }
 autoplay = "PlayerGem"
+
+[node name="HurtBox" type="Area2D" parent="PlayerHurtBox" groups=["Players"]]
+collision_layer = 32
+collision_mask = 3332
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox/HurtBox"]
+position = Vector2(0, 14)
+scale = Vector2(0.882411, 0.863409)
+shape = SubResource("CircleShape2D_vraok")

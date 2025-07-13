@@ -5,8 +5,9 @@ var dead_enemies = {}
 
 func _ready():
 	for child in get_tree().get_nodes_in_group("Enemies"):
-		alive_enemies[child] = child.global_position
-		child.died.connect(_store)
+		if(child is BaseCharacter):
+			alive_enemies[child] = child.global_position
+			child.died.connect(_store)
 
 func _store(enemy:BaseEnemy):
 	enemy.get_node("AnimationTree/AnimationPlayer").stop()
