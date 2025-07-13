@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgnk2obf86ouk"]
+[gd_scene load_steps=8 format=3 uid="uid://bgnk2obf86ouk"]
 
 [ext_resource type="Texture2D" uid="uid://dlyairht4hjbs" path="res://Assets/Art/Placeholder/health.png" id="1_i8dbw"]
+[ext_resource type="Script" uid="uid://c2wp6igncl7m3" path="res://Assets/Scripts/UI/HeartContainer.gd" id="1_rhc8c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8dbw"]
 
@@ -47,6 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_i8dbw")
 stretch_mode = 3
+script = ExtResource("1_rhc8c")
 
 [node name="HeartContainer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6nfsc")

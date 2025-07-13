@@ -1,14 +1,13 @@
-class_name HealthBar extends Control
+class_name HealthBar extends GridContainer
 
 const HEART_VALUE := 2 #The amount a single heart is worth. Hearts have two states: Full and Half, so they are worth two hitpoints.
 var max_containers = 10 #The max number of heart containers the player can have. Each Container is representitive of two health.
 
-@onready var hearts_container := $Hearts
 var hearts: Array[Node] = []
 
 func _ready():
 	print("HealthBar.gd: ready")
-	hearts = hearts_container.get_children()
+	hearts = get_children()
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 
 #_on_player_health_changed

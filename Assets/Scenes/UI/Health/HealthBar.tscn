@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://0kd4wsph5oc0"]
+[gd_scene load_steps=3 format=3 uid="uid://0kd4wsph5oc0"]
 
+[ext_resource type="Script" uid="uid://dxacbg40mo13s" path="res://Assets/Scripts/UI/HealthBar.gd" id="1_2v3mi"]
 [ext_resource type="PackedScene" uid="uid://bgnk2obf86ouk" path="res://Assets/Scenes/UI/Health/HeartContainer.tscn" id="1_ygihf"]
 
 [node name="HealthBar" type="GridContainer"]
@@ -7,6 +8,7 @@ custom_minimum_size = Vector2(18, 18)
 offset_right = 40.0
 offset_bottom = 40.0
 columns = 5
+script = ExtResource("1_2v3mi")
 
 [node name="Heart" parent="." instance=ExtResource("1_ygihf")]
 custom_minimum_size = Vector2(14, 14)

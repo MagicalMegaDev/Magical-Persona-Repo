@@ -1,4 +1,4 @@
-class_name HeartContainer extends AnimatedSprite2D
+class_name HeartContainer extends TextureRect
 
 const HEART_MIN = 0 #The minimum value a heart container can be, I can't forsee this being anything other than zero, but
 const HEART_MAX = 2 #The Maximum value of a heart. By default a heart goes empty, half, full, but I may want to implement quarter hearts in the future.
