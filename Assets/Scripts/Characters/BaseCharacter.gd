@@ -38,9 +38,8 @@ func _on_velocity_calculated(momentum):
 #amount: The amount of incoming damage
 #Generic signal reciever to handle behavior upon being hit.
 func _on_take_damage(amount):
-	if(health_handler):
-		health_handler.take_damage(amount)
-
+	pass
+	
 #_on_death
 #A signal recieved for died, holds all logic and behavior for character death.
 func _on_death():

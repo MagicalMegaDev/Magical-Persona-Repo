@@ -131,20 +131,18 @@ metadata/_custom_type_script = "uid://dvaa51eysnpop"
 script = ExtResource("5_l060k")
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
-[node name="ContactDamageHandler" type="Node" parent="." node_paths=PackedStringArray("HitBox")]
+[node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("HitBox")]
 script = ExtResource("9_0yyb5")
 HitBox = NodePath("HitBox")
-metadata/_custom_type_script = "uid://ct1bxoorfuiu0"
 
 [node name="HitBox" type="Area2D" parent="ContactDamageHandler"]
 collision_layer = 256
 collision_mask = 96
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
-modulate = Color(1, 0, 0, 1)
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
+debug_color = Color(0.905882, 0.447059, 1, 0.623529)
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
 [connection signal="contacted" from="HurtBox" to="." method="_on_take_damage"]
-[connection signal="area_entered" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="Test"]

@@ -27,8 +27,8 @@ GameManager="*res://Assets/Scripts/Globals/game_manager.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=640
-window/size/resizable=false
-window/size/borderless=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [global_group]
 
@@ -106,9 +106,8 @@ speed={
 2d_physics/layer_7="EnemyHurtBox"
 2d_physics/layer_8="PlayerMeleeHitbox"
 2d_physics/layer_9="EnemyMeleeHitbox"
-2d_physics/layer_10="EnemyDetectionBox"
-2d_physics/layer_11="Bullets"
-2d_physics/layer_12="Explosions"
+2d_physics/layer_10="Bullets"
+2d_physics/layer_11="Explosions"
 
 [rendering]
 

@@ -112,4 +112,3 @@ shape = SubResource("CircleShape2D_vraok")
 debug_color = Color(0.887083, 0.309855, 0.306048, 0.92549)
 
 [connection signal="contacted" from="PlayerHurtBox/HurtBox" to="." method="_on_take_damage"]
-[connection signal="contacted" from="PlayerHurtBox/HurtBox" to="Health" method="take_damage"]

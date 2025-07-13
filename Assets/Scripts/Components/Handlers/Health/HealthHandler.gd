@@ -19,14 +19,14 @@ func _ready():
 #damage_value: A float that contains the amount of damage to take.
 #Takes in a damage_value, and subtracts it from the current_health
 
-func take_damage(damage_value:float):
+func take_damage(damage_value:int):
 	current_health = max( current_health - damage_value, 0)
 	damaged.emit()
 
 #heal_damage(heal_value)
 #heal_value: A float that contains the amount of health to heal.
 #Takes in a heal_value, and adds it to current_health if it is below max_health
-func heal_damage(heal_value:float):
+func heal_damage(heal_value:int):
 	if(current_health<max_health):
 		current_health = min(current_health + heal_value, max_health) #Makes sure the character doesn't go over max health
 		healed.emit()
