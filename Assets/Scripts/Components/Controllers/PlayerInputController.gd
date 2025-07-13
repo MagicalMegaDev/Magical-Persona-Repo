@@ -78,7 +78,7 @@ func check_js_shoot_input():
 
 func check_shoot():
 	if shooting_queue.is_empty():
-		pass
+		shoot.emit(Vector2.ZERO)
 	else:
 		var shot_direction
 		match shooting_queue[0]:

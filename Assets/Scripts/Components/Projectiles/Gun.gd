@@ -36,6 +36,8 @@ func _ready():
 		add_hit_group("Environment")
 
 func _on_shoot(direction):
+	if(direction == Vector2.ZERO):
+		return
 	if(shot_timer.is_stopped()):
 		var new_bullet := my_bullet.instantiate() as BaseBullet
 		assert(new_bullet, "%s 's gun is trying to spawn non-bullets!" % get_parent().name)
