@@ -6,6 +6,7 @@ var current_health:float
 
 signal damaged
 signal healed
+signal health_changed(current_health, max_health) #signal for health bar updates
 signal died
 
 func _ready():
@@ -35,3 +36,4 @@ func heal_damage(heal_value:float):
 func _on_health_changed():
 	if(current_health <= 0):
 		died.emit()
+	health_changed.emit(current_health, max_health)

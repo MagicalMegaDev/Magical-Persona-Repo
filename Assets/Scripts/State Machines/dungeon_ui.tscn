@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6hu57wwpfiw"]
 
 [ext_resource type="PackedScene" uid="uid://0kd4wsph5oc0" path="res://Assets/Scenes/UI/Health/HealthBar.tscn" id="1_h5v7n"]
-[ext_resource type="Script" uid="uid://dxacbg40mo13s" path="res://Assets/Scenes/UI/Health/health_bar.gd" id="2_o4qkn"]
+[ext_resource type="Script" uid="uid://dxacbg40mo13s" path="res://Assets/Scripts/UI/HealthBar.gd" id="2_o4qkn"]
 
 [node name="DungeonUI" type="Control"]
 layout_mode = 3
