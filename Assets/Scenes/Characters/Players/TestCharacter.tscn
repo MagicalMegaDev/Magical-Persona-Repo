@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=15 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/gun.tscn" id="6_pkkgq"]
 [ext_resource type="PackedScene" uid="uid://c77b5g33e4bb4" path="res://Assets/Scenes/Projectiles/PlayerBullet.tscn" id="7_6jl5b"]
 [ext_resource type="Texture2D" uid="uid://dug46exl8xix6" path="res://Assets/Art/Placeholder/prototype-magi-hit (2).png" id="8_vraok"]
+[ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="9_fkrlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utarg"]
 size = Vector2(16, 40)
@@ -102,6 +103,7 @@ autoplay = "PlayerGem"
 [node name="HurtBox" type="Area2D" parent="PlayerHurtBox" groups=["Players"]]
 collision_layer = 32
 collision_mask = 3332
+script = ExtResource("9_fkrlc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox/HurtBox"]
 position = Vector2(0, 14)
