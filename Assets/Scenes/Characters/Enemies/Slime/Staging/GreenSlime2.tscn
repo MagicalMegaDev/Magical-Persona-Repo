@@ -87,7 +87,7 @@ collision_layer = 64
 collision_mask = 22
 script = ExtResource("4_tsukm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
@@ -96,7 +96,7 @@ shape = SubResource("RectangleShape2D_onc88")
 collision_layer = 512
 collision_mask = 27
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+[node name="DetectionShape" type="CollisionShape2D" parent="EnemyDetection"]
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_5w1ox")
 
@@ -140,10 +140,11 @@ metadata/_custom_type_script = "uid://ct1bxoorfuiu0"
 collision_layer = 256
 collision_mask = 96
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
+[node name="HitBoxShape" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
 [connection signal="contacted" from="HurtBox" to="." method="_on_take_damage"]
+[connection signal="area_entered" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="Test"]

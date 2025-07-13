@@ -20,11 +20,11 @@ func _process(delta):
 	pass
 
 func _on_area_entered(area):
-	print("Contact?")
+	print("ContactDamageHandler: Contact?")
 	if(area is HurtBox):
 		for group in hit_groups:
 			if(area.is_in_group(group)):
-				print("Contact!")
+				print("ContactDamageHandler: Contact!")
 				area._on_hit(damage)
 	
 #_on_friendly_fire_toggle
@@ -34,3 +34,7 @@ func _on_friendly_fire_toggle(value:bool):
 		hit_groups.append("Enemies")
 	elif(friendly_fire == false and hit_groups.has("Enemies")):
 		hit_groups.erase("Enemies")
+
+
+func Test(area):
+	print("ContactDamageHandler: Well this is awkward")
