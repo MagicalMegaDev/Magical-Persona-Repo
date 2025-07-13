@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dtqmwnh60jaon" path="res://Assets/Scenes/UI/DungeonUI.tscn" id="1_rvsrt"]
 [ext_resource type="Texture2D" uid="uid://by5f8oi7tueht" path="res://Assets/Art/Placeholder/prototype-magi-environment.png" id="2_qplxx"]
 [ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="4_guoxd"]
-[ext_resource type="PackedScene" uid="uid://bnrc4kf3cl8sm" path="res://Assets/Scenes/Characters/Enemies/Slime/Staging/GreenSlime2.tscn" id="5_rvsrt"]
+[ext_resource type="PackedScene" uid="uid://bnrc4kf3cl8sm" path="res://Assets/Scenes/Characters/Enemies/Slime/GreenSlime.tscn" id="5_rvsrt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_elf4b"]
 texture = ExtResource("2_qplxx")

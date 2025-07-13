@@ -1,12 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvbeogq7gdawa"]
+[gd_scene load_steps=18 format=3 uid="uid://bnrc4kf3cl8sm"]
 
-[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_hbem5"]
-[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_crgl6"]
-[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="3_qgrii"]
-[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_a0qja"]
-[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="5_fhjy0"]
-[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_4moko"]
-
+[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_gihwq"]
+[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_otdtg"]
+[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="3_4uj5w"]
+[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_me4px"]
+[ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="4_tsukm"]
+[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="5_l060k"]
+[ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="6_n6qca"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_w5g4f"]
+[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
+[ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -16,6 +20,21 @@ size = Vector2(64, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5w1ox"]
 radius = 45.3982
+
+[sub_resource type="Animation" id="Animation_4moko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_fhjy0"]
 resource_name = "hurt"
@@ -34,41 +53,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.395329, 0.349177, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_4moko"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4moko"]
 _data = {
 &"RESET": SubResource("Animation_4moko"),
 &"hurt": SubResource("Animation_fhjy0")
 }
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("movement_ai")]
-collision_layer = 8
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 16
 collision_mask = 19
-script = ExtResource("1_hbem5")
-movement_ai = NodePath("RandomMovementAI")
+script = ExtResource("1_gihwq")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="HealthController" type="Node" parent="."]
-script = ExtResource("2_crgl6")
+script = ExtResource("2_otdtg")
 max_health = 5.0
 metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_qgrii")
+texture = ExtResource("3_4uj5w")
 hframes = 6
 vframes = 4
 frame = 1
@@ -80,33 +83,30 @@ position = Vector2(0, 16)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
 
-[node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 26
+[node name="HurtBox" type="Area2D" parent="." groups=["Enemies"]]
+collision_layer = 64
+collision_mask = 22
+script = ExtResource("4_tsukm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 
 [node name="EnemyDetection" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 64
+collision_layer = 512
+collision_mask = 27
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+[node name="DetectionShape" type="CollisionShape2D" parent="EnemyDetection"]
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_5w1ox")
 
 [node name="MovementHandler" type="Node" parent="."]
-script = ExtResource("4_a0qja")
+script = ExtResource("4_me4px")
 base_max_speed = 250.0
 base_acceleration = 200.0
 base_friction = 200.0
 metadata/_custom_type_script = "uid://ddul17tjgk3eg"
-
-[node name="RandomMovementAI" type="Node" parent="."]
-script = ExtResource("5_fhjy0")
-metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
@@ -116,7 +116,33 @@ anim_player = NodePath("AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_4moko")
 }
-script = ExtResource("6_4moko")
+script = ExtResource("6_w5g4f")
+
+[node name="EnemyAIStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_movement_state")]
+script = ExtResource("6_n6qca")
+starting_movement_state = NodePath("Roaming")
+metadata/_custom_type_script = "uid://dabmad52n3uq7"
+
+[node name="Roaming" type="Node" parent="EnemyAIStateMachine" node_paths=PackedStringArray("movement_ai")]
+script = ExtResource("7_0yyb5")
+movement_ai = NodePath("RandomMovementAI")
+metadata/_custom_type_script = "uid://dvaa51eysnpop"
+
+[node name="RandomMovementAI" type="Node" parent="EnemyAIStateMachine/Roaming"]
+script = ExtResource("5_l060k")
+metadata/_custom_type_script = "uid://c4r57oepjkm3b"
+
+[node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("HitBox")]
+script = ExtResource("9_0yyb5")
+HitBox = NodePath("HitBox")
+
+[node name="HitBox" parent="ContactDamageHandler" instance=ExtResource("11_vn55q")]
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_onc88")
+debug_color = Color(0.905882, 0.447059, 1, 0.623529)
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
-[connection signal="area_entered" from="EnemyDetection" to="RandomMovementAI" method="_on_enemy_nearby"]
+[connection signal="contacted" from="HurtBox" to="HealthController" method="take_damage"]
+[connection signal="collections_in_area" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="_on_check_hit"]

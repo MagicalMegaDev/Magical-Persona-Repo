@@ -1,15 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnrc4kf3cl8sm"]
+[gd_scene load_steps=18 format=3 uid="uid://b4c76guy30s73"]
 
-[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_gihwq"]
-[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_otdtg"]
-[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="3_4uj5w"]
-[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_me4px"]
-[ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="4_tsukm"]
-[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="5_l060k"]
-[ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="6_n6qca"]
-[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_w5g4f"]
-[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
-[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
+[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_ib1x8"]
+[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_xjsf5"]
+[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototype-magi-enemy.png" id="3_tneeu"]
+[ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="4_go7xs"]
+[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="5_3g4m1"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_5dfys"]
+[ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="7_rydyq"]
+[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="8_83s3b"]
+[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="9_g7svk"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="10_86s2d"]
+[ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_4fl8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -61,16 +62,16 @@ _data = {
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 19
-script = ExtResource("1_gihwq")
+script = ExtResource("1_ib1x8")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="HealthController" type="Node" parent="."]
-script = ExtResource("2_otdtg")
+script = ExtResource("2_xjsf5")
 max_health = 5.0
 metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_4uj5w")
+texture = ExtResource("3_tneeu")
 hframes = 6
 vframes = 4
 frame = 1
@@ -85,7 +86,7 @@ shape = SubResource("RectangleShape2D_5w1ox")
 [node name="HurtBox" type="Area2D" parent="." groups=["Enemies"]]
 collision_layer = 64
 collision_mask = 22
-script = ExtResource("4_tsukm")
+script = ExtResource("4_go7xs")
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)
@@ -101,7 +102,7 @@ position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_5w1ox")
 
 [node name="MovementHandler" type="Node" parent="."]
-script = ExtResource("4_me4px")
+script = ExtResource("5_3g4m1")
 base_max_speed = 250.0
 base_acceleration = 200.0
 base_friction = 200.0
@@ -115,29 +116,26 @@ anim_player = NodePath("AnimationPlayer")
 libraries = {
 &"": SubResource("AnimationLibrary_4moko")
 }
-script = ExtResource("6_w5g4f")
+script = ExtResource("6_5dfys")
 
-[node name="EnemyAIStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_movement_state")]
-script = ExtResource("6_n6qca")
-starting_movement_state = NodePath("Roaming")
+[node name="EnemyAIStateMachine" type="Node" parent="."]
+script = ExtResource("7_rydyq")
 metadata/_custom_type_script = "uid://dabmad52n3uq7"
 
 [node name="Roaming" type="Node" parent="EnemyAIStateMachine" node_paths=PackedStringArray("movement_ai")]
-script = ExtResource("7_0yyb5")
+script = ExtResource("8_83s3b")
 movement_ai = NodePath("RandomMovementAI")
 metadata/_custom_type_script = "uid://dvaa51eysnpop"
 
 [node name="RandomMovementAI" type="Node" parent="EnemyAIStateMachine/Roaming"]
-script = ExtResource("5_l060k")
+script = ExtResource("9_g7svk")
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
 [node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("HitBox")]
-script = ExtResource("9_0yyb5")
+script = ExtResource("10_86s2d")
 HitBox = NodePath("HitBox")
 
-[node name="HitBox" type="Area2D" parent="ContactDamageHandler"]
-collision_layer = 256
-collision_mask = 96
+[node name="HitBox" parent="ContactDamageHandler" instance=ExtResource("11_4fl8l")]
 
 [node name="HitBoxShape" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
 position = Vector2(0, 16)
@@ -145,4 +143,5 @@ shape = SubResource("RectangleShape2D_onc88")
 debug_color = Color(0.905882, 0.447059, 1, 0.623529)
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
-[connection signal="contacted" from="HurtBox" to="." method="_on_take_damage"]
+[connection signal="contacted" from="HurtBox" to="HealthController" method="take_damage"]
+[connection signal="collections_in_area" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="_on_check_hit"]
