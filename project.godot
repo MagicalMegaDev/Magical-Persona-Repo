@@ -30,6 +30,10 @@ window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor]
+
+movie_writer/movie_file="B:/gamedev/Screengrabs/Movie.avi"
+
 [global_group]
 
 Players="All Playable Characters"

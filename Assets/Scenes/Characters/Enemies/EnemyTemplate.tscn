@@ -22,7 +22,6 @@ metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="HealthController" type="Node" parent="."]
 script = ExtResource("2_5w1ox")
-max_health = 5.0
 metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

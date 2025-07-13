@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://c5smxe5ed3s7a"]
+
+[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="1_bhekp"]
+
+[resource]
+script = ExtResource("1_bhekp")
+max_health = 5.0
+base_max_speed = 200.0
+base_acceleration = 50.0
+base_friction = 50.0
+weight = 50.0
+damage = 1
+metadata/_custom_type_script = "uid://crvv5pv2spbfx"

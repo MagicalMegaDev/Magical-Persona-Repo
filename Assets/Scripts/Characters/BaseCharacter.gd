@@ -3,7 +3,12 @@ class_name BaseCharacter extends CharacterBody2D
 #Collection of Potential Handlers Goes here
 var movement_handler:MovementHandler
 var health_handler:HealthHandler
+var contact_damage_handler:ContactDamageHandler
 var gun:Gun
+
+@export var stats:CharacterStats
+
+signal stats_ready(stats : CharacterStats)
 
 func _enter_tree():
 	#Gather up Handlers and assign them
@@ -12,8 +17,13 @@ func _enter_tree():
 	gun = apply_handler(Gun)
 	if(movement_handler):
 		movement_handler.myCharacter = self
+		stats_ready.connect(movement_handler._receive_stats)
 	if(health_handler):
 		health_handler.died.connect(_on_death)
+		stats_ready.connect(health_handler._receive_stats)
+	if(contact_damage_handler):
+		stats_ready.connect(contact_damage_handler._receive_stats)
+	stats_ready.emit(stats)
 
 
 func apply_handler(handler_type) -> Object:

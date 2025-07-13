@@ -22,9 +22,9 @@ enum VerticalDirection{
 #Baselines
 @export_group("Movement Variables")
 #All Default Values are placeholders
-@export var base_max_speed = 200.0
-@export var base_acceleration = 50.0
-@export var base_friction = 50.0
+@export var base_max_speed := 200.0
+@export var base_acceleration := 50.0
+@export var base_friction := 50.0
 
 var momentum = Vector2(0.0,0.0)
 
@@ -47,6 +47,11 @@ var can_move:bool = true
 var myCharacter:BaseCharacter
 
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
+
+func _receive_stats(stats:CharacterStats):
+	base_max_speed = stats.base_max_speed
+	base_acceleration = stats.base_acceleration
+	base_friction = stats.base_friction
 
 func _ready():
 	velocity_calculated.connect(myCharacter._on_velocity_calculated)

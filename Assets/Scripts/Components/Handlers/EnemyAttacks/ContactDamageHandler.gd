@@ -10,6 +10,9 @@ var _friendly_fire:bool = false
 		_friendly_fire = value
 		_on_friendly_fire_toggle(value)
 
+func _receive_stats(stats:CharacterStats):
+	damage = stats.damage
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(HitBox, "%s has no HitBox attached to it's ContactDamageHandler!" % get_parent().name) #make sure the hurt box has been hooked up

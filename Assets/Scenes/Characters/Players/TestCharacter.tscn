@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=23 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
 [ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Handlers/Health/PlayerHealthHandler.gd" id="2_u4s88"]
+[ext_resource type="Script" uid="uid://8p1yt5cbqh4l" path="res://Assets/Scripts/Characters/Players/PlayerSprite.gd" id="3_ff7km"]
 [ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="4_owd12"]
 [ext_resource type="Script" uid="uid://c23rw2ef30wvb" path="res://Assets/Scripts/Components/Controllers/PlayerInputController.gd" id="5_utarg"]
 [ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/gun.tscn" id="6_pkkgq"]
@@ -12,9 +13,6 @@
 [ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="10_86ov6"]
 [ext_resource type="Script" uid="uid://dhwq46247k7ik" path="res://Assets/Scripts/State Machines/PlayerStateMachine/Controlled.gd" id="11_ff7km"]
 [ext_resource type="Script" uid="uid://egp1vup4mu4w" path="res://Assets/Scripts/State Machines/State.gd" id="12_obxmd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_utarg"]
-size = Vector2(16, 40)
 
 [sub_resource type="Animation" id="Animation_fkrlc"]
 resource_name = "PlayerGem"
@@ -58,6 +56,50 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_vraok"]
 radius = 9.06606
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utarg"]
+size = Vector2(16, 40)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_86ov6"]
+
+[sub_resource type="Animation" id="Animation_86ov6"]
+resource_name = "walk_down"
+length = 0.45
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ff7km"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_obxmd"]
+_data = {
+&"RESET": SubResource("Animation_ff7km"),
+&"walk_down": SubResource("Animation_86ov6")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 8
 collision_mask = 3
@@ -68,6 +110,28 @@ metadata/_custom_type_script = "uid://nfa50gborhfe"
 texture = ExtResource("2_owd12")
 hframes = 5
 vframes = 4
+script = ExtResource("3_ff7km")
+
+[node name="PlayerHurtBox" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("8_vraok")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/PlayerHurtBox"]
+libraries = {
+&"": SubResource("AnimationLibrary_sbmju")
+}
+autoplay = "PlayerGem"
+
+[node name="HurtBox" type="Area2D" parent="Sprite/PlayerHurtBox" groups=["Players"]]
+collision_layer = 32
+collision_mask = 3332
+script = ExtResource("9_fkrlc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/PlayerHurtBox/HurtBox"]
+position = Vector2(0, 14)
+scale = Vector2(0.882411, 0.863409)
+shape = SubResource("CircleShape2D_vraok")
+debug_color = Color(0.887083, 0.309855, 0.306048, 0.92549)
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
@@ -93,27 +157,6 @@ script = ExtResource("5_utarg")
 myCharacter = NodePath("..")
 metadata/_custom_type_script = "uid://c23rw2ef30wvb"
 
-[node name="PlayerHurtBox" type="Sprite2D" parent="."]
-texture = ExtResource("8_vraok")
-hframes = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHurtBox"]
-libraries = {
-&"": SubResource("AnimationLibrary_sbmju")
-}
-autoplay = "PlayerGem"
-
-[node name="HurtBox" type="Area2D" parent="PlayerHurtBox" groups=["Players"]]
-collision_layer = 32
-collision_mask = 3332
-script = ExtResource("9_fkrlc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox/HurtBox"]
-position = Vector2(0, 14)
-scale = Vector2(0.882411, 0.863409)
-shape = SubResource("CircleShape2D_vraok")
-debug_color = Color(0.887083, 0.309855, 0.306048, 0.92549)
-
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("10_86ov6")
 metadata/_custom_type_script = "uid://b0pbi685gj7kg"
@@ -126,9 +169,21 @@ metadata/_custom_type_script = "uid://egp1vup4mu4w"
 script = ExtResource("12_obxmd")
 metadata/_custom_type_script = "uid://egp1vup4mu4w"
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_86ov6")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+libraries = {
+&"": SubResource("AnimationLibrary_obxmd")
+}
+
+[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="." method="_on_take_damage"]
+[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="Health" method="take_damage"]
+[connection signal="damaged" from="Health" to="Sprite" method="_on_start_blink"]
+[connection signal="i_frames_finished" from="Health" to="Sprite" method="_on_stop_blink"]
 [connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]
 [connection signal="shoot" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_shooting_input"]
-[connection signal="contacted" from="PlayerHurtBox/HurtBox" to="." method="_on_take_damage"]
-[connection signal="contacted" from="PlayerHurtBox/HurtBox" to="Health" method="take_damage"]
 [connection signal="movement_direction_set" from="PlayerStateMachine/Controlled" to="MovementHandler" method="_on_direction_calculated"]
 [connection signal="shooting_direction_set" from="PlayerStateMachine/Controlled" to="Gun" method="_on_shoot"]

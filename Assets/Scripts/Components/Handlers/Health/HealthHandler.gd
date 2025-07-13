@@ -1,20 +1,23 @@
 #This is the base component for ANYTHING with health
 class_name HealthHandler extends Node
 
-@export var max_health:float
-var current_health:float
+var max_health := 1
+var current_health := 1
 
 signal damaged
 signal healed
 signal health_changed(current_health, max_health) #signal for health bar updates
 signal died
 
+func _receive_stats(stats:CharacterStats):
+	max_health = stats.max_health
+
 func _ready():
 	current_health = max_health
 	#hook up the signals
 	damaged.connect(_on_health_changed)
 	healed.connect(_on_health_changed)
-	
+
 #take_damage(damage_value)
 #damage_value: A float that contains the amount of damage to take.
 #Takes in a damage_value, and subtracts it from the current_health
