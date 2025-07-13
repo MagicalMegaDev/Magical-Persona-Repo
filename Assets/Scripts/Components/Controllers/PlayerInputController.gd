@@ -14,12 +14,6 @@ var last_input_device:String = "keyboard"
 signal direction_calculated(direction:Vector2)
 signal shoot(direction:Vector2)
 
-func _ready():
-	if(myCharacter.movement_handler):
-		direction_calculated.connect(myCharacter.movement_handler._on_direction_calculated)
-	if(myCharacter.gun):
-		shoot.connect(myCharacter.gun._on_shoot)
-
 func _input(event):
 	if event is InputEventKey:
 		last_input_device = "keyboard"

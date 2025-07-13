@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=18 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c77b5g33e4bb4" path="res://Assets/Scenes/Projectiles/PlayerBullet.tscn" id="7_6jl5b"]
 [ext_resource type="Texture2D" uid="uid://dug46exl8xix6" path="res://Assets/Art/Placeholder/prototype-magi-hit (2).png" id="8_vraok"]
 [ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="9_fkrlc"]
+[ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="10_86ov6"]
+[ext_resource type="Script" uid="uid://dhwq46247k7ik" path="res://Assets/Scripts/State Machines/PlayerStateMachine/Controlled.gd" id="11_ff7km"]
+[ext_resource type="Script" uid="uid://egp1vup4mu4w" path="res://Assets/Scripts/State Machines/State.gd" id="12_obxmd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utarg"]
 size = Vector2(16, 40)
@@ -111,5 +114,21 @@ scale = Vector2(0.882411, 0.863409)
 shape = SubResource("CircleShape2D_vraok")
 debug_color = Color(0.887083, 0.309855, 0.306048, 0.92549)
 
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("10_86ov6")
+metadata/_custom_type_script = "uid://b0pbi685gj7kg"
+
+[node name="Controlled" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("11_ff7km")
+metadata/_custom_type_script = "uid://egp1vup4mu4w"
+
+[node name="Damaged" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("12_obxmd")
+metadata/_custom_type_script = "uid://egp1vup4mu4w"
+
+[connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]
+[connection signal="shoot" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_shooting_input"]
 [connection signal="contacted" from="PlayerHurtBox/HurtBox" to="." method="_on_take_damage"]
 [connection signal="contacted" from="PlayerHurtBox/HurtBox" to="Health" method="take_damage"]
+[connection signal="movement_direction_set" from="PlayerStateMachine/Controlled" to="MovementHandler" method="_on_direction_calculated"]
+[connection signal="shooting_direction_set" from="PlayerStateMachine/Controlled" to="Gun" method="_on_shoot"]
