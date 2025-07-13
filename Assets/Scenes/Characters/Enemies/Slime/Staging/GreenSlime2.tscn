@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnrc4kf3cl8sm"]
+[gd_scene load_steps=16 format=3 uid="uid://bnrc4kf3cl8sm"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_gihwq"]
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_otdtg"]
@@ -8,11 +8,9 @@
 [ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="6_n6qca"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_w5g4f"]
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
-size = Vector2(64, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onc88"]
 size = Vector2(64, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5w1ox"]
@@ -56,6 +54,9 @@ _data = {
 &"hurt": SubResource("Animation_fhjy0")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onc88"]
+size = Vector2(64, 32)
+
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 19
@@ -79,15 +80,6 @@ region_rect = Rect2(0, 0, 384, 256)
 position = Vector2(0, 16)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
-
-[node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 26
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(0, 16)
-shape = SubResource("RectangleShape2D_onc88")
 
 [node name="EnemyDetection" type="Area2D" parent="."]
 collision_layer = 64
@@ -127,5 +119,19 @@ metadata/_custom_type_script = "uid://dvaa51eysnpop"
 [node name="RandomMovementAI" type="Node" parent="EnemyAIStateMachine/Roaming"]
 script = ExtResource("5_l060k")
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
+
+[node name="ContactDamageHandler" type="Node" parent="." node_paths=PackedStringArray("HurtBox")]
+script = ExtResource("9_0yyb5")
+HurtBox = NodePath("HurtBox")
+metadata/_custom_type_script = "uid://ct1bxoorfuiu0"
+
+[node name="HurtBox" type="Area2D" parent="ContactDamageHandler"]
+collision_layer = 32
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamageHandler/HurtBox"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_onc88")
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]

@@ -48,11 +48,9 @@ func _on_shoot(direction):
 		shot_timer.start()
 
 func add_hit_group(group:String):
-	print("Gun: Adding")
 	if !(hit_groups.has(group)):
 		hit_groups.append(group)
 	
 func remove_hit_group(group:String):
-	print("Gun: Removing")
 	if(hit_groups.has(group)):
 		hit_groups.erase(group)

@@ -6,7 +6,6 @@ var max_containers = 10 #The max number of heart containers the player can have.
 var hearts: Array[Node] = []
 
 func _ready():
-	print("HealthBar.gd: ready")
 	hearts = get_children()
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 
