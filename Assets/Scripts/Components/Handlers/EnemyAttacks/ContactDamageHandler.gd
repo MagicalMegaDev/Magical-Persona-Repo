@@ -18,12 +18,12 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_check_hit(bodies, areas):
+func _on_check_hit(bodies, areas, position):
 	for area in areas:
 		if area is HurtBox:
 			for group in hit_groups:
 				if(area.is_in_group(group)):
-					area._on_hit(damage)
+					area._on_hit(damage, position)
 	
 #_on_friendly_fire_toggle
 #Simple function to add and remove Enemies from the hit group, saves retyping code in _ready()

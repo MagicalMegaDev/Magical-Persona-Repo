@@ -54,6 +54,6 @@ func _on_area_entered(area):
 				if(area.has_method("_on_take_damage")):
 					area._on_take_damage(damage)
 				elif(area.has_method("_on_hit")):
-					area._on_hit(damage)
+					area._on_hit(damage, global_position)
 			queue_free()
 			return

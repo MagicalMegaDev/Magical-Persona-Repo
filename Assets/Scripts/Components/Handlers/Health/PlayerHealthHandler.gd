@@ -29,9 +29,9 @@ func GainMaxHealth(value):
 	max_health = min(max_health + value, max_health_cap)
 	health_changed.emit(current_health, max_health)
 
-func take_damage(damage_value:int):
+func take_damage(damage_value:int, attacker_position:Vector2):
 	if(!i_frames):
-		super(damage_value)
+		super(damage_value, attacker_position)
 		i_frames = true
 		i_frames_timer.start()
 		

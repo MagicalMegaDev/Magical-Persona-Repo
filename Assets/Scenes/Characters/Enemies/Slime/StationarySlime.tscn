@@ -65,11 +65,6 @@ collision_mask = 19
 script = ExtResource("1_ib1x8")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
-[node name="HealthController" type="Node" parent="."]
-script = ExtResource("2_xjsf5")
-max_health = 5.0
-metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_tneeu")
 hframes = 6
@@ -101,13 +96,6 @@ collision_mask = 27
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_5w1ox")
 
-[node name="MovementHandler" type="Node" parent="."]
-script = ExtResource("5_3g4m1")
-base_max_speed = 250.0
-base_acceleration = 200.0
-base_friction = 200.0
-metadata/_custom_type_script = "uid://ddul17tjgk3eg"
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
 anim_player = NodePath("AnimationPlayer")
@@ -117,6 +105,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_4moko")
 }
 script = ExtResource("6_5dfys")
+
+[node name="HealthController" type="Node" parent="."]
+script = ExtResource("2_xjsf5")
+max_health = 5.0
+metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
+
+[node name="MovementHandler" type="Node" parent="."]
+script = ExtResource("5_3g4m1")
+base_max_speed = 250.0
+base_acceleration = 200.0
+base_friction = 200.0
+metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 
 [node name="EnemyAIStateMachine" type="Node" parent="."]
 script = ExtResource("7_rydyq")
@@ -142,6 +142,6 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 debug_color = Color(0.905882, 0.447059, 1, 0.623529)
 
-[connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
 [connection signal="contacted" from="HurtBox" to="HealthController" method="take_damage"]
+[connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
 [connection signal="collections_in_area" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="_on_check_hit"]

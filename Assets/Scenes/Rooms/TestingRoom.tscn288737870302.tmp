@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2xnhrhem0c2r"]
+
+[ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_uper2"]
+[ext_resource type="PackedScene" uid="uid://b4c76guy30s73" path="res://Assets/Scenes/Characters/Enemies/Slime/StationarySlime.tscn" id="2_uper2"]
+[ext_resource type="PackedScene" uid="uid://dtqmwnh60jaon" path="res://Assets/Scenes/UI/DungeonUI.tscn" id="3_r0bfr"]
+
+[node name="TestingRoom" type="Node2D"]
+
+[node name="DungeonUi" parent="." instance=ExtResource("3_r0bfr")]
+
+[node name="Player" parent="." instance=ExtResource("1_uper2")]
+position = Vector2(500, 422)
+scale = Vector2(1.0042, 1.00341)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_uper2")]
+position = Vector2(500, 281)

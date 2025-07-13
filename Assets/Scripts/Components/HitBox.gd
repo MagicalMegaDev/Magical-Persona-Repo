@@ -3,11 +3,11 @@ class_name HitBox extends Area2D
 var bodies_inside:Array = []
 var areas_inside:Array = []
 
-signal collections_in_area(bodies:Array, areas:Array)
+signal collections_in_area(bodies:Array, areas:Array, position:Vector2)
 
 func _process(delta):
 	if(!bodies_inside.is_empty() or !areas_inside.is_empty()):
-		collections_in_area.emit(bodies_inside, areas_inside)
+		collections_in_area.emit(bodies_inside, areas_inside, global_position)
 		
 func _on_body_enter(body):
 	bodies_inside.append(body)
