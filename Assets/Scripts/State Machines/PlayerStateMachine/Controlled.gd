@@ -32,10 +32,8 @@ var input_mappings := {
 	
 }
 func update(delta):
-	if(movement_direction != Vector2.ZERO):
-		movement_direction_set.emit(movement_direction)
-	if(shooting_direction != Vector2.ZERO):
-		shooting_direction_set.emit(shooting_direction)
+	movement_direction_set.emit(movement_direction)
+	shooting_direction_set.emit(shooting_direction)
 	for input_name in input_mappings:
 		if(get(input_name)):
 			input_mappings[input_name].emit()
