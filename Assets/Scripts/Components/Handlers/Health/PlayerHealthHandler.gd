@@ -36,7 +36,6 @@ func change_max_health(value):
 
 func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 	if(!i_frames):
-		print("Player Health Handler: Taking Damage")
 		super(stats, attacker_position)
 		i_frames = true
 		i_frames_timer.start()

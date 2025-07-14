@@ -1,6 +1,6 @@
 extends Node
 
-const BASE_KNOCKBACK_STRENGTH := 200.0 #the baseline of all knockback
+const BASE_KNOCKBACK_STRENGTH := 100.0 #the baseline of all knockback
 
 
 #get_all_children(node, arr:=[]):

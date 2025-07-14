@@ -14,6 +14,6 @@ y_sort_enabled = true
 position = Vector2(500, 422)
 scale = Vector2(1.0042, 1.00341)
 
-[node name="Enemy" parent="." instance=ExtResource("3_xh5he")]
-position = Vector2(499, 259)
+[node name="GreenSlime" parent="." instance=ExtResource("3_xh5he")]
+position = Vector2(492, 264)
 stats = ExtResource("4_xh5he")

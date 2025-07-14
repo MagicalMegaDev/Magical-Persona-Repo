@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ProjectileAttackStats" load_steps=2 format=3 uid="uid://c4ivjx2431fr7"]
+
+[ext_resource type="Script" uid="uid://bo0dverkonuys" path="res://Assets/Resources/ProjectileAttackStats.gd" id="1_4rajt"]
+
+[resource]
+script = ExtResource("1_4rajt")
+speed = 500
+spectral = false
+damage = 1
+knockback = false
+force = 50
+metadata/_custom_type_script = "uid://bo0dverkonuys"

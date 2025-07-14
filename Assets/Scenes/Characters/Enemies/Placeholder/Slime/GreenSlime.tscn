@@ -61,7 +61,7 @@ _data = {
 &"hurt": SubResource("Animation_fhjy0")
 }
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="GreenSlime" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 19
 script = ExtResource("1_gihwq")
@@ -81,10 +81,11 @@ position = Vector2(0, 16)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
 
-[node name="HurtBox" type="Area2D" parent="." groups=["Enemies"]]
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("my_owner") groups=["Enemies"]]
 collision_layer = 64
 collision_mask = 22
 script = ExtResource("4_tsukm")
+my_owner = NodePath("..")
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)

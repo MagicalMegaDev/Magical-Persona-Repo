@@ -125,10 +125,11 @@ libraries = {
 }
 autoplay = "PlayerGem"
 
-[node name="HurtBox" type="Area2D" parent="Sprite/PlayerHurtBox" groups=["Players"]]
+[node name="HurtBox" type="Area2D" parent="Sprite/PlayerHurtBox" node_paths=PackedStringArray("my_owner") groups=["Players"]]
 collision_layer = 32
 collision_mask = 3332
 script = ExtResource("9_fkrlc")
+my_owner = NodePath("../../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/PlayerHurtBox/HurtBox"]
 position = Vector2(0, 14)
@@ -192,6 +193,5 @@ libraries = {
 [connection signal="i_frames_started" from="Health" to="KnockbackController" method="_on_knockback_disabled"]
 [connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]
 [connection signal="shoot" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_shooting_input"]
-[connection signal="apply_knockback" from="KnockbackController" to="MovementHandler" method="_on_knockback"]
 [connection signal="movement_direction_set" from="PlayerStateMachine/Controlled" to="MovementHandler" method="_on_direction_calculated"]
 [connection signal="shooting_direction_set" from="PlayerStateMachine/Controlled" to="Gun" method="_on_shoot"]
