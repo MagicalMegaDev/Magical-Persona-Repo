@@ -15,6 +15,7 @@ func calculate_knockback(stats:AttackStats, attacker_posistion:Vector2):
 		var direction = (global_position - attacker_posistion).normalized()
 		var knockback = direction * GameManager.BASE_KNOCKBACK_STRENGTH * ratio
 		apply_knockback.emit(knockback)
+		_on_knockback_disabled()
 	
 func _on_knockback_enabled():
 	can_knockback = true
