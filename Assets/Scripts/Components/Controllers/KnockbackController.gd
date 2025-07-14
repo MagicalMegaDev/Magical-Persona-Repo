@@ -9,11 +9,12 @@ func _receive_stats(stats:CharacterStats):
 	weight = stats.weight 
 	
 func calculate_knockback(stats:AttackStats, attacker_posistion:Vector2):
-	var ratio = stats.force/weight
-	var delta = get_physics_process_delta_time()
-	var direction = (global_position - attacker_posistion).normalized()
-	var knockback = direction * GameManager.BASE_KNOCKBACK_STRENGTH * ratio
-	apply_knockback.emit(knockback)
+	if(can_knockback):
+		var ratio = stats.force/weight
+		var delta = get_physics_process_delta_time()
+		var direction = (global_position - attacker_posistion).normalized()
+		var knockback = direction * GameManager.BASE_KNOCKBACK_STRENGTH * ratio
+		apply_knockback.emit(knockback)
 	
 func _on_knockback_enabled():
 	can_knockback = true

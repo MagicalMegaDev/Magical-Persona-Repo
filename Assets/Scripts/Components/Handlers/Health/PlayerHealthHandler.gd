@@ -9,7 +9,7 @@ signal i_frames_finished
 #region i-frames set up
 var i_frames:bool = false #i-frames after getting hit.
 var i_frames_timer:Timer
-var i_frames_timer_length := 0.5 #seconds of i-frames
+@export var i_frames_timer_length := 0.5 #seconds of i-frames
 
 #endregion
 

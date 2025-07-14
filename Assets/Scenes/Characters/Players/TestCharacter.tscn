@@ -147,6 +147,7 @@ hit_groups = Array[String](["Enemies"])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
+i_frames_timer_length = 2.0
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
