@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bnrc4kf3cl8sm"]
+[gd_scene load_steps=21 format=3 uid="uid://bnrc4kf3cl8sm"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_gihwq"]
 [ext_resource type="Resource" uid="uid://c5smxe5ed3s7a" path="res://Assets/Resources/EnemyStats/Placeholder/GreenSlime.tres" id="2_d3lyo"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
 [ext_resource type="Resource" uid="uid://fwnwbqvtrpr0" path="res://Assets/Resources/AttackStats/Placeholder/SlimeContact.tres" id="12_iami7"]
+[ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="14_bepmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -146,6 +147,10 @@ HitBox = NodePath("HitBox")
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 debug_color = Color(0.905882, 0.447059, 1, 0.623529)
+
+[node name="KnockbackController" type="Node2D" parent="."]
+script = ExtResource("14_bepmt")
+metadata/_custom_type_script = "uid://d0qy2s10exi6r"
 
 [connection signal="contacted" from="HurtBox" to="HealthController" method="_on_take_damage"]
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]

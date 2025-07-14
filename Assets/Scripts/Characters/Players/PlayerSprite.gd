@@ -30,7 +30,8 @@ func _on_start_blink():
 	visible = false
 	blink_timer.start()
 	
-func _on_stop_blink():
-	blinking = false
-	visible = true
-	blink_timer.stop()
+func _on_stop_blink(i_frames_value:bool):
+	if(!i_frames_value):
+		blinking = false
+		visible = true
+		blink_timer.stop()

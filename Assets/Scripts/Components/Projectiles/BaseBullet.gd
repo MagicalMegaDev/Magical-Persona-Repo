@@ -27,6 +27,7 @@ func _ready():
 	updated_stats = ProjectileAttackStats.new()
 	assert(base_stats, "%s has no stats attached!" % name)
 	assert(movement_behavior, "%s has no movement behavior attached!" % name)
+	updated_stats = base_stats
 	updated_stats.damage = GameManager.add_mods(base_stats.damage, damage_mods)
 	updated_stats.speed = GameManager.add_mods(base_stats.speed, speed_mods)
 	movement_behavior = movement_behavior.duplicate()

@@ -48,6 +48,7 @@ var can_move:bool = true
 var myCharacter:BaseCharacter
 
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
+signal knockback_finished #Knockback has worn off
 
 func _receive_stats(stats:CharacterStats):
 	base_max_speed = stats.base_max_speed
@@ -73,7 +74,10 @@ func _physics_process(delta):
 	momentum += knockback_velocity
 	if(knockback_velocity.length() > 0):
 		var friction = GameManager.add_mods(base_friction, friction_mods)
+		print(knockback_velocity)
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, friction * delta)
+		if(knockback_velocity.length() < 0.5):
+			knockback_finished.emit()
 	if(can_move):
 		velocity_calculated.emit(momentum)
 

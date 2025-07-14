@@ -147,7 +147,6 @@ hit_groups = Array[String](["Enemies"])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
-i_frames_timer_length = 2.0
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
@@ -189,8 +188,9 @@ libraries = {
 [connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="Health" method="_on_take_damage"]
 [connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="KnockbackController" method="calculate_knockback"]
 [connection signal="damaged" from="Health" to="Sprite" method="_on_start_blink"]
-[connection signal="i_frames_finished" from="Health" to="Sprite" method="_on_stop_blink"]
-[connection signal="i_frames_finished" from="Health" to="KnockbackController" method="_on_knockback_enabled"]
+[connection signal="i_frames_toggled" from="Health" to="Sprite" method="_on_stop_blink"]
+[connection signal="i_frames_toggled" from="Health" to="KnockbackController" method="_i_frame_toggle"]
+[connection signal="knockback_finished" from="MovementHandler" to="KnockbackController" method="_on_knockback_enabled"]
 [connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]
 [connection signal="shoot" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_shooting_input"]
 [connection signal="movement_direction_set" from="PlayerStateMachine/Controlled" to="MovementHandler" method="_on_direction_calculated"]

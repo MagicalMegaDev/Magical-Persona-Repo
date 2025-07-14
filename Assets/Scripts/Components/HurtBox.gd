@@ -11,5 +11,6 @@ func _ready():
 			contacted.connect(my_owner.health_handler._on_take_damage)
 		if(my_owner.knockback_controller):
 			contacted.connect(my_owner.knockback_controller.calculate_knockback)
+
 func _on_hit(stats:AttackStats, position):
 	contacted.emit(stats, position)
