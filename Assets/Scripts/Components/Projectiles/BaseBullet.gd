@@ -24,7 +24,7 @@ var hit_groups: Array[String] = []
 var status_effects = {} #Dictionary of potential status effects to inflict
 
 func _ready():
-	updated_stats = ProjectileAttackStats.new()
+	updated_stats = base_stats.duplicate()
 	assert(base_stats, "%s has no stats attached!" % name)
 	assert(movement_behavior, "%s has no movement behavior attached!" % name)
 	updated_stats = base_stats
