@@ -3,6 +3,7 @@ class_name PlayerHealthHandler extends HealthHandler
 
 var max_health_cap:int = 20 #The maximum amount of pip a player can have, 10 total hearts.
 
+signal i_frames_started
 signal i_frames_finished
 
 #region i-frames set up
@@ -39,6 +40,7 @@ func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 		super(stats, attacker_position)
 		i_frames = true
 		i_frames_timer.start()
+		i_frames_started.emit()
 		
 func _on_i_frames_finish():
 	i_frames = false

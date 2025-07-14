@@ -26,6 +26,7 @@ func _enter_tree():
 		health_handler.died.connect(_on_death)
 		stats_ready.connect(health_handler._receive_stats)
 	if(knockback_controller):
+		stats_ready.connect(knockback_controller._receive_stats)
 		assert(movement_handler, "%s has a knockback handler but no movement handler!" % name)
 		knockback_controller.apply_knockback.connect(movement_handler._on_knockback)
 	stats_ready.emit(stats)
