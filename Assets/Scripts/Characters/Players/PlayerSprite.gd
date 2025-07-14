@@ -5,7 +5,7 @@ extends Sprite2D
 #region blinking effect
 var blinking := false #is the player currently blinking
 var blink_timer:Timer
-var blink_frequency := 0.1 #How long between blinks
+var blink_frequency := 0.05 #How long between blinks
 
 func _ready():
 	#region blink_timer init
@@ -19,8 +19,8 @@ func _ready():
 
 #for instant blink
 #func _process(delta):
-	#if blinking:
-		#blink
+#	if blinking:
+#		blink()
 
 func blink():
 	visible = !visible

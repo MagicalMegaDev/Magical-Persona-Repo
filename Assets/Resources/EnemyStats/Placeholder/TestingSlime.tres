@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_nexw1")
-max_health = 5.0
+max_health = 5
 base_max_speed = 0.0
 base_acceleration = 50.0
 base_friction = 50.0

@@ -22,7 +22,8 @@ func _ready():
 #damage_value: A float that contains the amount of damage to take.
 #Takes in a damage_value, and subtracts it from the current_health
 
-func take_damage(damage_value:int, attacker_position:Vector2):
+func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
+	var damage_value = stats.damage
 	current_health = max( current_health - damage_value, 0)
 	damaged.emit()
 

@@ -1,5 +1,8 @@
 extends Node
 
+const BASE_KNOCKBACK_STRENGTH := 200.0 #the baseline of all knockback
+
+
 #get_all_children(node, arr:=[]):
 #Creates an array of every child in a node, looking for sub children
 func get_all_children(node, arr:=[]):
@@ -14,7 +17,7 @@ func get_all_children(node, arr:=[]):
 #This function is to keep track of all modifiers to different stats, and apply them seperately.
 
 func add_mods(input:float, input_mods:Dictionary) -> float:
-	if(!input):
+	if(input == null):
 		print("Something went wrong with add_mods")
 		return 0
 	if(input_mods.is_empty()):

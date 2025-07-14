@@ -68,8 +68,9 @@ func _physics_process(delta):
 		direction = Vector2.ZERO
 	if(direction != Vector2.ZERO):
 		last_input_direction = direction
+	momentum = calculate_speed(delta)
 	if(can_move):
-		velocity_calculated.emit(calculate_speed(delta))
+		velocity_calculated.emit(momentum)
 
 #_on_direction_calculated(hDir,vDir)
 #hDir = Horizontal Direction passed in
@@ -94,3 +95,7 @@ func calculate_speed(delta):
 			return speed * last_input_direction
 		else:
 			return Vector2.ZERO
+
+func _on_knockback(impulse:Vector2):
+	print("Knocking Back")
+	speed += impulse

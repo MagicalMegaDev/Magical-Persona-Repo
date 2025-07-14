@@ -12,6 +12,8 @@ var i_frames_timer_length := 0.5 #seconds of i-frames
 
 #endregion
 
+func _receive_stats(stats:CharacterStats):
+	change_max_health(stats.max_health)
 func _ready():
 	super()
 	health_changed.connect(SignalBus._on_player_health_changed)
@@ -27,13 +29,14 @@ func _ready():
 #value: The amount of pips to gain
 #Adds pip containers to the player
 
-func GainMaxHealth(value):
-	max_health = min(max_health + value, max_health_cap)
+func change_max_health(value):
+	max_health = min(value, max_health_cap)
 	health_changed.emit(current_health, max_health)
 
-func take_damage(damage_value:int, attacker_position:Vector2):
+func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 	if(!i_frames):
-		super(damage_value, attacker_position)
+		print("Player Health Handler: Taking Damage")
+		super(stats, attacker_position)
 		i_frames = true
 		i_frames_timer.start()
 		

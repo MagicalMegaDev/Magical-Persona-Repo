@@ -1,11 +1,17 @@
-class_name KnockbackController extends Node
+class_name KnockbackController extends Node2D
+
+var weight := 50
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal apply_knockback(knockback : Vector2)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _receive_stats(stats:CharacterStats):
+	weight = stats.weight 
+	
+func calculate_knockback(stats:AttackStats, direction:Vector2):
+	var ratio = stats.force/weight
+	var delta = get_physics_process_delta_time()
+	var knockback = direction * stats.force * delta
+	apply_knockback.emit(knockback)
+	
+	

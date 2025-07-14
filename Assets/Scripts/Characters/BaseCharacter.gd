@@ -4,6 +4,7 @@ class_name BaseCharacter extends CharacterBody2D
 var movement_handler:MovementHandler
 var health_handler:HealthHandler
 var contact_damage_handler:ContactDamageHandler
+var knockback_controller:KnockbackController
 var gun:Gun
 
 @export var stats:CharacterStats
@@ -14,15 +15,19 @@ func _enter_tree():
 	#Gather up Handlers and assign them
 	movement_handler = apply_handler(MovementHandler)
 	health_handler = apply_handler(HealthHandler)
+	contact_damage_handler = apply_handler(ContactDamageHandler)
+	knockback_controller = apply_handler(KnockbackController) 
 	gun = apply_handler(Gun)
+	assert(stats, "%s has no stats attached!" % name)
 	if(movement_handler):
 		movement_handler.myCharacter = self
 		stats_ready.connect(movement_handler._receive_stats)
 	if(health_handler):
 		health_handler.died.connect(_on_death)
 		stats_ready.connect(health_handler._receive_stats)
-	if(contact_damage_handler):
-		stats_ready.connect(contact_damage_handler._receive_stats)
+	if(knockback_controller):
+		assert(movement_handler, "%s has a knockback handler but no movement handler!" % name)
+		knockback_controller.apply_knockback.connect(movement_handler._on_knockback)
 	stats_ready.emit(stats)
 
 

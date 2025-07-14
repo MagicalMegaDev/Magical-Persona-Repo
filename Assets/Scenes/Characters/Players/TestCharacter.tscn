@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=25 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
+[ext_resource type="Resource" uid="uid://bbu8rfd5i3617" path="res://Assets/Resources/player_stats.tres" id="2_obxmd"]
 [ext_resource type="Texture2D" uid="uid://chggbsvpjxfp6" path="res://Assets/Art/Placeholder/PlayerSprites/prototype-magi-player.png" id="2_owd12"]
 [ext_resource type="Script" uid="uid://bagontfqpyfvh" path="res://Assets/Scripts/Components/Handlers/Health/PlayerHealthHandler.gd" id="2_u4s88"]
 [ext_resource type="Script" uid="uid://8p1yt5cbqh4l" path="res://Assets/Scripts/Characters/Players/PlayerSprite.gd" id="3_ff7km"]
@@ -12,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="9_fkrlc"]
 [ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="10_86ov6"]
 [ext_resource type="Script" uid="uid://dhwq46247k7ik" path="res://Assets/Scripts/State Machines/PlayerStateMachine/Controlled.gd" id="11_ff7km"]
+[ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="12_3iqnk"]
 [ext_resource type="Script" uid="uid://egp1vup4mu4w" path="res://Assets/Scripts/State Machines/State.gd" id="12_obxmd"]
 
 [sub_resource type="Animation" id="Animation_fkrlc"]
@@ -61,6 +63,21 @@ size = Vector2(16, 40)
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_86ov6"]
 
+[sub_resource type="Animation" id="Animation_ff7km"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_86ov6"]
 resource_name = "walk_down"
 length = 0.45
@@ -79,21 +96,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_ff7km"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_obxmd"]
 _data = {
 &"RESET": SubResource("Animation_ff7km"),
@@ -104,6 +106,7 @@ _data = {
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tadin")
+stats = ExtResource("2_obxmd")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -143,7 +146,6 @@ hit_groups = Array[String](["Enemies"])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
-max_health = 8.0
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
@@ -156,6 +158,9 @@ metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 script = ExtResource("5_utarg")
 myCharacter = NodePath("..")
 metadata/_custom_type_script = "uid://c23rw2ef30wvb"
+
+[node name="KnockbackController" type="Node2D" parent="."]
+script = ExtResource("12_3iqnk")
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("10_86ov6")
@@ -179,8 +184,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_obxmd")
 }
 
-[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="." method="_on_take_damage"]
-[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="Health" method="take_damage"]
+[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="Health" method="_on_take_damage"]
 [connection signal="damaged" from="Health" to="Sprite" method="_on_start_blink"]
 [connection signal="i_frames_finished" from="Health" to="Sprite" method="_on_stop_blink"]
 [connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]

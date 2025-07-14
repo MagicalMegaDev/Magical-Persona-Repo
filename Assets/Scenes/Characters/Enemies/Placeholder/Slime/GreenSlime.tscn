@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bnrc4kf3cl8sm"]
+[gd_scene load_steps=20 format=3 uid="uid://bnrc4kf3cl8sm"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_gihwq"]
 [ext_resource type="Resource" uid="uid://c5smxe5ed3s7a" path="res://Assets/Resources/EnemyStats/Placeholder/GreenSlime.tres" id="2_d3lyo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
 [ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
+[ext_resource type="Resource" uid="uid://fwnwbqvtrpr0" path="res://Assets/Resources/AttackStats/Placeholder/SlimeContact.tres" id="12_iami7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -135,6 +136,7 @@ metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
 [node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("HitBox")]
 script = ExtResource("9_0yyb5")
+attack_stats = ExtResource("12_iami7")
 HitBox = NodePath("HitBox")
 
 [node name="HitBox" parent="ContactDamageHandler" instance=ExtResource("11_vn55q")]
@@ -144,6 +146,6 @@ position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 debug_color = Color(0.905882, 0.447059, 1, 0.623529)
 
-[connection signal="contacted" from="HurtBox" to="HealthController" method="take_damage"]
+[connection signal="contacted" from="HurtBox" to="HealthController" method="_on_take_damage"]
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
 [connection signal="collections_in_area" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="_on_check_hit"]

@@ -1,6 +1,6 @@
 class_name ContactDamageHandler extends Node2D
 
-@export var damage:int = 1 #Placeholder Value but most enemies will be 1.
+@export var attack_stats:AttackStats
 @export var HitBox:Area2D 
 @export var hit_groups:Array[String] = ["Players"]
 var _friendly_fire:bool = false
@@ -10,11 +10,9 @@ var _friendly_fire:bool = false
 		_friendly_fire = value
 		_on_friendly_fire_toggle(value)
 
-func _receive_stats(stats:CharacterStats):
-	damage = stats.damage
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	assert(attack_stats, "%s has no AttackStats attached to it's ContactDamageHandler!" % get_parent().name)
 	assert(HitBox, "%s has no HitBox attached to it's ContactDamageHandler!" % get_parent().name) #make sure the hurt box has been hooked up
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +24,7 @@ func _on_check_hit(bodies, areas, position):
 		if area is HurtBox:
 			for group in hit_groups:
 				if(area.is_in_group(group)):
-					area._on_hit(damage, position)
+					area._on_hit(attack_stats, position)
 	
 #_on_friendly_fire_toggle
 #Simple function to add and remove Enemies from the hit group, saves retyping code in _ready()

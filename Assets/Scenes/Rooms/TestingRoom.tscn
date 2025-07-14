@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bhtsbovcmbpnu" path="res://Assets/Resources/EnemyStats/Placeholder/TestingSlime.tres" id="4_xh5he"]
 
 [node name="TestingRoom" type="Node2D"]
+y_sort_enabled = true
 
 [node name="DungeonUi" parent="." instance=ExtResource("3_r0bfr")]
 
