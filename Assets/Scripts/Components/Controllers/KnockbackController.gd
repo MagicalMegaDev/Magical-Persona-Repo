@@ -21,6 +21,7 @@ func _ready():
 func _process(delta):
 	if(queue_knockback and !i_frames):
 		can_knockback = true
+		queue_knockback = false
 
 func _receive_stats(stats:CharacterStats):
 	weight = stats.weight 

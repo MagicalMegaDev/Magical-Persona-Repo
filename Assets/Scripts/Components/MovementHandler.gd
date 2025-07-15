@@ -43,6 +43,7 @@ var direction := Vector2.ZERO
 var last_input_direction := Vector2.ZERO
 var speed = 0.0
 var knockback_velocity := Vector2.ZERO
+var knockback_friction := GameManager.BASE_KNOCKBACK_STRENGTH/3
 var can_move:bool = true
 
 var myCharacter:BaseCharacter
@@ -73,9 +74,8 @@ func _physics_process(delta):
 	momentum = calculate_speed(delta)
 	momentum += knockback_velocity
 	if(knockback_velocity.length() > 0):
-		var friction = GameManager.add_mods(base_friction, friction_mods)
 		print(knockback_velocity)
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, friction * delta)
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction)
 		if(knockback_velocity.length() < 0.5):
 			knockback_finished.emit()
 	if(can_move):

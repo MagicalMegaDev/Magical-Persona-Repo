@@ -8,5 +8,5 @@ speed = 500
 spectral = false
 damage = 1
 knockback = true
-force = 100
+force = 50
 metadata/_custom_type_script = "uid://bo0dverkonuys"

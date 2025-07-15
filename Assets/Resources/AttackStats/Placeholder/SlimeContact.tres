@@ -6,5 +6,5 @@
 script = ExtResource("1_e0ttc")
 damage = 1
 knockback = true
-force = 100
+force = 50
 metadata/_custom_type_script = "uid://bbigxh0wxl8cw"
