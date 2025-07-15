@@ -46,7 +46,7 @@ func _on_body_entered(body):
 	for group in hit_groups:
 		if(body.is_in_group(group)):
 			if(group != "Environment"):
-				body._on_take_damage(damage)
+				body._on_take_damage(updated_stats)
 			queue_free()
 			return
 
@@ -56,7 +56,7 @@ func _on_area_entered(area):
 		if(area.is_in_group(group)):
 			if(group != "Environment"):
 				if(area.has_method("_on_take_damage")):
-					area._on_take_damage(damage)
+					area._on_take_damage(updated_stats)
 				elif(area.has_method("_on_hit")):
 					area._on_hit(updated_stats, global_position)
 			queue_free()

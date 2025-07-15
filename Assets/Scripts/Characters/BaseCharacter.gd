@@ -51,10 +51,10 @@ func _on_velocity_calculated(momentum):
 	velocity = momentum
 	move_and_slide()
 
-#_on_take_damage(amount)
+#_on_take_damage(stats: AttackStats)
 #amount: The amount of incoming damage
 #Generic signal reciever to handle behavior upon being hit.
-func _on_take_damage(amount):
+func _on_take_damage(stats: AttackStats):
 	pass
 	
 #_on_death

@@ -185,8 +185,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_obxmd")
 }
 
-[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="Health" method="_on_take_damage"]
-[connection signal="contacted" from="Sprite/PlayerHurtBox/HurtBox" to="KnockbackController" method="calculate_knockback"]
 [connection signal="damaged" from="Health" to="Sprite" method="_on_start_blink"]
 [connection signal="i_frames_toggled" from="Health" to="Sprite" method="_on_stop_blink"]
 [connection signal="i_frames_toggled" from="Health" to="KnockbackController" method="_i_frame_toggle"]
