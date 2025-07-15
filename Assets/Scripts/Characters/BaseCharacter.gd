@@ -29,6 +29,7 @@ func _enter_tree():
 		stats_ready.connect(knockback_controller._receive_stats)
 		assert(movement_handler, "%s has a knockback handler but no movement handler!" % name)
 		knockback_controller.apply_knockback.connect(movement_handler._on_knockback)
+		movement_handler.knockback_finished.connect(knockback_controller._on_knockback_enabled)
 	stats_ready.emit(stats)
 
 

@@ -190,7 +190,6 @@ libraries = {
 [connection signal="damaged" from="Health" to="Sprite" method="_on_start_blink"]
 [connection signal="i_frames_toggled" from="Health" to="Sprite" method="_on_stop_blink"]
 [connection signal="i_frames_toggled" from="Health" to="KnockbackController" method="_i_frame_toggle"]
-[connection signal="knockback_finished" from="MovementHandler" to="KnockbackController" method="_on_knockback_enabled"]
 [connection signal="direction_calculated" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_movement_input"]
 [connection signal="shoot" from="PlayerInputController" to="PlayerStateMachine/Controlled" method="_on_shooting_input"]
 [connection signal="movement_direction_set" from="PlayerStateMachine/Controlled" to="MovementHandler" method="_on_direction_calculated"]
