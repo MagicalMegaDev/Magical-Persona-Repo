@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8k74dahv2gc4"]
+[gd_scene load_steps=4 format=3 uid="uid://b8k74dahv2gc4"]
 
+[ext_resource type="Script" uid="uid://3hpjktijmboh" path="res://Assets/Scripts/Globals/DebugMenu.gd" id="1_oha1c"]
 [ext_resource type="PackedScene" uid="uid://lfeoshlnqov7" path="res://Assets/Scenes/UI/Debug/DebugVariable.tscn" id="1_uf6i0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oha1c"]
@@ -21,14 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+script = ExtResource("1_oha1c")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -37,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -293.0
-offset_top = -293.0
-offset_right = 293.0
-offset_bottom = 293.0
+offset_left = -475.643
+offset_top = -290.0
+offset_right = 475.643
+offset_bottom = 285.0
 grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0

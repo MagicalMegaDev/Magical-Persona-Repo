@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://lfeoshlnqov7"]
 
-[ext_resource type="Script" uid="uid://d28qy01eps6dm" path="res://Assets/Scenes/UI/Debug/DebugVariable.gd" id="1_2jwwq"]
+[ext_resource type="Script" uid="uid://d28qy01eps6dm" path="res://Assets/Scripts/UI/Debug/DebugVariable.gd" id="1_2jwwq"]
 
 [node name="DebugVariable" type="HBoxContainer"]
 script = ExtResource("1_2jwwq")
