@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://lfeoshlnqov7"]
+
+[ext_resource type="Script" uid="uid://d28qy01eps6dm" path="res://Assets/Scenes/UI/Debug/DebugVariable.gd" id="1_2jwwq"]
+
+[node name="DebugVariable" type="HBoxContainer"]
+script = ExtResource("1_2jwwq")
+
+[node name="Variable Name" type="Label" parent="."]
+layout_mode = 2
+text = "Variable Name"
+
+[node name="Variable Value" type="LineEdit" parent="."]
+layout_mode = 2

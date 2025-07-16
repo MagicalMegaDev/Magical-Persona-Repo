@@ -41,6 +41,7 @@ func _i_frame_toggle(value:bool):
 
 func _on_knockback_enabled():
 	if(!i_frames):
+		knockback_timer.stop()
 		can_knockback = true
 	else:
 		queue_knockback = true
