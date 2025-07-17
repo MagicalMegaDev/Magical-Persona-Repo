@@ -4,11 +4,15 @@ var alive_enemies = {}
 var dead_enemies = {}
 var challenge := false
 
+signal room_reset
+
 func _ready():
 	for child in get_tree().get_nodes_in_group("Enemies"):
 		if(child is BaseCharacter):
 			alive_enemies[child] = child.global_position
 			child.died.connect(_store)
+	#DEBUG
+	room_reset.connect(SignalBus._on_room_reset)
 
 func _store(enemy:BaseEnemy):
 	enemy.get_node("AnimationTree/AnimationPlayer").stop()
@@ -32,6 +36,8 @@ func _respawn():
 		e.visible = true
 		alive_enemies[e] = dead_enemies[e]
 	dead_enemies.clear()
+	if(challenge):
+		room_reset.emit()
 
 #DEBUG
 func _challenge_mode_on():

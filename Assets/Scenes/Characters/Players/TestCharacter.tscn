@@ -150,9 +150,6 @@ script = ExtResource("2_u4s88")
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_owd12")
-base_max_speed = 300.0
-base_acceleration = 2500.0
-base_friction = 2500.0
 metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 
 [node name="PlayerInputController" type="Node" parent="." node_paths=PackedStringArray("myCharacter")]

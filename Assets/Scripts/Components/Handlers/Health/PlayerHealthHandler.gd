@@ -14,6 +14,8 @@ var i_frames_timer:Timer
 
 func _receive_stats(stats:CharacterStats):
 	change_max_health(stats.max_health)
+	SignalBus.reset_room.connect(_on_room_reset)
+	
 func _ready():
 	super()
 	health_changed.connect(SignalBus._on_player_health_changed)
@@ -43,3 +45,8 @@ func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 func _on_i_frames_finish():
 	i_frames = false
 	i_frames_toggled.emit(false)
+
+#DEBUG
+const RESET_HEAL_AMOUNT = 2
+func _on_room_reset():
+	heal_damage(RESET_HEAL_AMOUNT)
