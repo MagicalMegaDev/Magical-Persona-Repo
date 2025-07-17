@@ -5,6 +5,7 @@ class_name BaseEnemy extends BaseCharacter
 signal died(BaseEnemy)
 
 func _ready():
+	super()
 	self.add_to_group("Enemies")
 
 func _on_death():

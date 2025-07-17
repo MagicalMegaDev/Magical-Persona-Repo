@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3hpjktijmboh" path="res://Assets/Scripts/Globals/DebugMenu.gd" id="1_j4k8n"]
 
 [node name="TestDebugMenu" type="Control" node_paths=PackedStringArray("tab_container")]
+process_mode = 3
 z_index = 10
 layout_mode = 3
 anchors_preset = 15

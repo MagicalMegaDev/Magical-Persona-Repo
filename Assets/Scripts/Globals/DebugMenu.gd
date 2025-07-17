@@ -9,6 +9,8 @@ func _ready():
 func _process(delta):
 	if(Input.is_action_just_pressed("debug_menu")):
 		visible = !visible
+		get_tree().paused = visible
+
 
 func _create_panel(panel_name:String):
 	var panel := PanelContainer.new()

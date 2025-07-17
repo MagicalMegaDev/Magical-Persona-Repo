@@ -66,4 +66,4 @@ func _on_death():
 	queue_free()
 	
 func _debug():
-	TestDebugMenu._add_inspector(stats, "Player")
+	TestDebugMenu._add_inspector(stats, name)

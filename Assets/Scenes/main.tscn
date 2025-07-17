@@ -52,13 +52,13 @@ position = Vector2(512, 322)
 script = ExtResource("4_guoxd")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
 
-[node name="Enemy" parent="." instance=ExtResource("5_rvsrt")]
+[node name="Slime" parent="." instance=ExtResource("5_rvsrt")]
 position = Vector2(512, 184)
 
-[node name="Enemy2" parent="." instance=ExtResource("5_rvsrt")]
+[node name="Slime2" parent="." instance=ExtResource("5_rvsrt")]
 position = Vector2(242, 246)
 
-[node name="Enemy3" parent="." instance=ExtResource("5_rvsrt")]
+[node name="Slime3" parent="." instance=ExtResource("5_rvsrt")]
 position = Vector2(778, 253)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["Environment"]]
