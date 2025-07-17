@@ -20,8 +20,8 @@ func _enter_tree():
 	gun = apply_handler(Gun)
 	assert(stats, "%s has no stats attached!" % name)
 	if(movement_handler):
-		movement_handler.myCharacter = self
-		stats_ready.connect(movement_handler._receive_stats)
+		movement_handler.my_character = self
+		movement_handler.my_stats = stats
 	if(health_handler):
 		health_handler.died.connect(_on_death)
 		stats_ready.connect(health_handler._receive_stats)
@@ -32,6 +32,9 @@ func _enter_tree():
 		movement_handler.knockback_finished.connect(knockback_controller._on_knockback_enabled)
 	stats_ready.emit(stats)
 
+func _ready():
+	#DEBUG
+	_debug()
 
 func apply_handler(handler_type) -> Object:
 	var found: Object = null
@@ -61,3 +64,6 @@ func _on_take_damage(stats: AttackStats):
 #A signal recieved for died, holds all logic and behavior for character death.
 func _on_death():
 	queue_free()
+	
+func _debug():
+	DebugMenu._add_inspector(stats, "Player")

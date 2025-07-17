@@ -46,7 +46,8 @@ var knockback_velocity := Vector2.ZERO
 var knockback_friction := GameManager.BASE_KNOCKBACK_STRENGTH/3
 var can_move:bool = true
 
-var myCharacter:BaseCharacter
+var my_character:BaseCharacter
+var my_stats:CharacterStats
 
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
 signal knockback_finished #Knockback has worn off
@@ -57,7 +58,7 @@ func _receive_stats(stats:CharacterStats):
 	base_friction = stats.base_friction
 
 func _ready():
-	velocity_calculated.connect(myCharacter._on_velocity_calculated)
+	velocity_calculated.connect(my_character._on_velocity_calculated)
 
 func _process(delta):
 	pass
