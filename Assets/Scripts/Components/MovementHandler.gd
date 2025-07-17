@@ -63,10 +63,8 @@ func _physics_process(delta):
 	momentum = calculate_speed(delta)
 	momentum += knockback_velocity
 	if(knockback_velocity.length() > 0):
-		print(knockback_velocity)
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction)
 		if(knockback_velocity.length() < 0.5):
-			print("Emitting Knockback Finished for: " + get_parent().name)
 			knockback_finished.emit()
 	if(can_move):
 		velocity_calculated.emit(momentum)

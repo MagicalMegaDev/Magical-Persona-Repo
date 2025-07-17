@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtqmwnh60jaon"]
+[gd_scene load_steps=3 format=3 uid="uid://dtqmwnh60jaon"]
 
 [ext_resource type="PackedScene" uid="uid://0kd4wsph5oc0" path="res://Assets/Scenes/UI/Health/HealthBar.tscn" id="1_s5jnw"]
+[ext_resource type="Script" uid="uid://dh6umcp746h7v" path="res://Assets/Scenes/UI/kill_count.gd" id="2_mq2ql"]
 
 [node name="DungeonUi" type="CanvasLayer"]
 
@@ -9,3 +10,17 @@ offset_left = 25.0
 offset_top = 30.0
 offset_right = 65.0
 offset_bottom = 70.0
+
+[node name="Kill Count" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_mq2ql")

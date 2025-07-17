@@ -2,6 +2,7 @@ extends Node
 
 const BASE_KNOCKBACK_STRENGTH := 100.0 #the baseline of all knockback
 
+signal enemy_killed
 
 #get_all_children(node, arr:=[]):
 #Creates an array of every child in a node, looking for sub children
@@ -31,3 +32,7 @@ func add_mods(input:float, input_mods:Dictionary) -> float:
 			else:
 				input *= value
 		return input
+
+func _on_any_enemy_death(enemy:BaseEnemy):
+	print("Died")
+	enemy_killed.emit()

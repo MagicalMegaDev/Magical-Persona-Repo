@@ -1,6 +1,8 @@
 extends Control
 
 var categories := {}
+var inspected_objects := {}
+
 @export var tab_container:TabContainer
 
 func _ready():
@@ -39,6 +41,9 @@ func _create_panel(panel_name:String):
 	categories[panel.name] = panel
 
 func _add_inspector(inspector:Object, category:String):
+	var id := inspector.get_instance_id()
+	if(inspected_objects.has(id)):
+		return
 	var new_inspector = Inspector.new()
 	new_inspector.set_object(inspector)
 
@@ -49,3 +54,4 @@ func _add_inspector(inspector:Object, category:String):
 	new_inspector.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	new_inspector.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	grid.add_child(new_inspector)
+	inspected_objects[id] = new_inspector

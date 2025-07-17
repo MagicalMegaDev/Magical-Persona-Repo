@@ -1,3 +1,5 @@
+#TODO: ADD GUN STATS RESOURCE
+
 class_name Gun extends Node2D
 
 @export var my_bullet:PackedScene
@@ -28,6 +30,7 @@ var _spectral:bool = false
 #endregion
 
 func _ready():
+	_debug()
 	shot_timer = $shot_cooldown
 	shot_timer.wait_time = 1/fire_rate
 	if(spectral):
@@ -56,3 +59,10 @@ func add_hit_group(group:String):
 func remove_hit_group(group:String):
 	if(hit_groups.has(group)):
 		hit_groups.erase(group)
+
+func _debug():
+	TestDebugMenu._add_inspector(self, "Player Attack")
+	var bullet = my_bullet.instantiate() as BaseBullet
+	TestDebugMenu._add_inspector(bullet.base_stats, "Player Attack")
+	bullet.queue_free()
+	#SEND GUN STATS HERE ONCE MADE.
