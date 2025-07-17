@@ -19,13 +19,6 @@ enum VerticalDirection{
 }
 #endregion
 
-#Baselines
-@export_group("Movement Variables")
-#All Default Values are placeholders
-@export var base_max_speed := 200.0
-@export var base_acceleration := 50.0
-@export var base_friction := 50.0
-
 var momentum = Vector2(0.0,0.0)
 
 #mods
@@ -51,11 +44,6 @@ var my_stats:CharacterStats
 
 signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
 signal knockback_finished #Knockback has worn off
-
-func _receive_stats(stats:CharacterStats):
-	base_max_speed = stats.base_max_speed
-	base_acceleration = stats.base_acceleration
-	base_friction = stats.base_friction
 
 func _ready():
 	velocity_calculated.connect(my_character._on_velocity_calculated)
@@ -93,9 +81,9 @@ func _on_direction_calculated(new_direction:Vector2):
 #calculate_speed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.
 func calculate_speed(delta):
-	var max_speed = GameManager.add_mods(base_max_speed, max_speed_mods)
-	var acceleration = GameManager.add_mods(base_acceleration, acceleration_mods)
-	var friction = GameManager.add_mods(base_friction, friction_mods)
+	var max_speed = GameManager.add_mods(my_stats.base_max_speed, max_speed_mods)
+	var acceleration = GameManager.add_mods(my_stats.base_acceleration, acceleration_mods)
+	var friction = GameManager.add_mods(my_stats.base_friction, friction_mods)
 	
 	if(direction != Vector2.ZERO):
 		speed = move_toward(speed, max_speed, acceleration * delta)
