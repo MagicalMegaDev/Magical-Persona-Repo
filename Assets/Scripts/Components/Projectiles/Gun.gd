@@ -61,8 +61,8 @@ func remove_hit_group(group:String):
 		hit_groups.erase(group)
 
 func _debug():
-	TestDebugMenu._add_inspector(self, "Player Attack")
+	TestDebugMenu._add_inspector(self, "Player")
 	var bullet = my_bullet.instantiate() as BaseBullet
-	TestDebugMenu._add_inspector(bullet.base_stats, "Player Attack")
+	TestDebugMenu._add_inspector(bullet.base_stats, "Player")
 	bullet.queue_free()
 	#SEND GUN STATS HERE ONCE MADE.

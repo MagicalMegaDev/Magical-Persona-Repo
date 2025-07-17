@@ -21,3 +21,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 0
+
+[node name="General" type="PanelContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/General"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/General/ScrollContainer"]
+layout_mode = 2
+
+[node name="Challenge Mode" type="Label" parent="TabContainer/General/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Toggle" type="CheckButton" parent="TabContainer/General/ScrollContainer/GridContainer/Challenge Mode"]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 44.0
+offset_bottom = 51.0
+text = "Challenge Mode"
+
+[connection signal="toggled" from="TabContainer/General/ScrollContainer/GridContainer/Challenge Mode/Toggle" to="." method="_on_challenge_toggled"]

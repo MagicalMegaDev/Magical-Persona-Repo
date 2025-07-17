@@ -5,6 +5,9 @@ var inspected_objects := {}
 
 @export var tab_container:TabContainer
 
+signal challenge_enabled
+signal challenge_disabled
+
 func _ready():
 	visible = false
 	
@@ -55,3 +58,11 @@ func _add_inspector(inspector:Object, category:String):
 	new_inspector.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	grid.add_child(new_inspector)
 	inspected_objects[id] = new_inspector
+
+
+func _on_challenge_toggled(toggled_on):
+	if(toggled_on):
+		challenge_enabled.emit()
+	else:
+		challenge_disabled.emit()
+		
