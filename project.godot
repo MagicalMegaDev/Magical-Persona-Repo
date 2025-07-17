@@ -22,7 +22,8 @@ AudioManager="*res://Assets/Scripts/Globals/audio_manager.gd"
 SignalBus="*res://Assets/Scripts/Globals/signal_bus.gd"
 Constants="*res://Assets/Scripts/Globals/constants.gd"
 GameManager="*res://Assets/Scripts/Globals/game_manager.gd"
-DebugMenu="*res://Assets/Scripts/Globals/DebugMenu.gd"
+DebugMenu="res://Assets/Scripts/Globals/DebugMenu.gd"
+TestDebugMenu="*res://Assets/Scenes/UI/Debug/test_debug_menu.tscn"
 
 [display]
 
