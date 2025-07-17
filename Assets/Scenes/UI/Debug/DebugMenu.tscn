@@ -2,20 +2,14 @@
 
 [ext_resource type="Script" uid="uid://3hpjktijmboh" path="res://Assets/Scripts/Globals/DebugMenu.gd" id="1_j4k8n"]
 
-[node name="TestDebugMenu" type="Control" node_paths=PackedStringArray("tab_container")]
+[node name="TestDebugMenu" type="CanvasLayer" node_paths=PackedStringArray("menu", "tab_container")]
 process_mode = 3
-z_index = 10
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layer = 2
 script = ExtResource("1_j4k8n")
+menu = NodePath("")
 tab_container = NodePath("TabContainer")
 
 [node name="TabContainer" type="TabContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

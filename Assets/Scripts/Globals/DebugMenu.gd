@@ -1,20 +1,21 @@
-extends Control
+extends CanvasLayer
 
 var categories := {}
 var inspected_objects := {}
 
+@export var menu:Control
 @export var tab_container:TabContainer
 
 signal challenge_enabled
 signal challenge_disabled
 
 func _ready():
-	visible = false
+	tab_container.visible = false
 	
 func _process(delta):
 	if(Input.is_action_just_pressed("debug_menu")):
-		visible = !visible
-		get_tree().paused = visible
+		tab_container.visible = !tab_container.visible
+		get_tree().paused = tab_container.visible
 
 
 func _create_panel(panel_name:String):

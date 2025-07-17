@@ -2,6 +2,7 @@ class_name DebugEnemyPool extends Node
 
 var alive_enemies = {}
 var dead_enemies = {}
+var challenge := false
 
 func _ready():
 	for child in get_tree().get_nodes_in_group("Enemies"):
@@ -31,3 +32,10 @@ func _respawn():
 		e.visible = true
 		alive_enemies[e] = dead_enemies[e]
 	dead_enemies.clear()
+
+#DEBUG
+func _challenge_mode_on():
+	challenge = true
+	
+func _challenge_mod_off():
+	challenge = false
