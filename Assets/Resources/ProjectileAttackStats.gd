@@ -1,4 +1,8 @@
-class_name ProjectileAttackStats extends AttackStats
+# ProjectileAttackStats.gd
+# Data definition for projectile-based attacks. Extends AttackStats to include 
+# additional projectile-specific properties.
 
-@export var speed := 200 #Projectile Speed
-@export var spectral := false #Can this Projectile pass through the enviornment
+class_name ProjectileAttackStats
+extends AttackStats
+
+@export var speed := 200 #Movement Speed of the projectile.
