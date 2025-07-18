@@ -22,19 +22,19 @@ enum VerticalDirection{
 var momentum = Vector2(0.0,0.0)
 
 #mods
-var max_speed_mods = {}
-var acceleration_mods = {}
-var friction_mods = {}
+var max_speed_mods := {}
+var acceleration_mods := {}
+var friction_mods := {}
 
 #scales
-var base_speed_scale = 1.0
-var base_acceleration_scale = 1.0
-var base_friction_scale = 1.0
+var base_speed_scale := 1.0
+var base_acceleration_scale := 1.0
+var base_friction_scale := 1.0
 
 var raw_direction := Vector2.ZERO
 var direction := Vector2.ZERO
 var last_input_direction := Vector2.ZERO
-var speed = 0.0
+var speed := 0.0
 var knockback_velocity := Vector2.ZERO
 var knockback_friction := Constants.BASE_KNOCKBACK_STRENGTH/3
 var can_move:bool = true
@@ -79,9 +79,9 @@ func _on_direction_calculated(new_direction:Vector2):
 #calculate_speed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.
 func calculate_speed(delta):
-	var max_speed = GameManager.add_mods(my_stats.base_max_speed, max_speed_mods)
-	var acceleration = GameManager.add_mods(my_stats.base_acceleration, acceleration_mods)
-	var friction = GameManager.add_mods(my_stats.base_friction, friction_mods)
+	var max_speed = GameManager.apply_modifiers(my_stats.base_max_speed, max_speed_mods)
+	var acceleration = GameManager.apply_modifiers(my_stats.base_acceleration, acceleration_mods)
+	var friction = GameManager.apply_modifiers(my_stats.base_friction, friction_mods)
 	
 	if(direction != Vector2.ZERO):
 		speed = move_toward(speed, max_speed, acceleration * delta)

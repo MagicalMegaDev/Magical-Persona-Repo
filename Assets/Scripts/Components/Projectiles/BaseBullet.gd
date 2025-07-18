@@ -5,15 +5,15 @@ var direction = Vector2.ZERO
 #All default values are placeholders
 @export var base_stats:ProjectileAttackStats
 var updated_stats:ProjectileAttackStats
-var base_speed := 0
+var base_speed := 0.0
 var base_damage := 0.0
-var speed:int = 0
-var damage:float = 0
+var speed := 0.0
+var damage := 0.0
 #endregion
 
 #region Multipliers
-var speed_mods = {}
-var damage_mods = {}
+var speed_mods := {}
+var damage_mods := {}
 #endregion
 
 #region effects
@@ -27,8 +27,8 @@ func _ready():
 	assert(base_stats, "%s has no stats attached!" % name)
 	assert(movement_behavior, "%s has no movement behavior attached!" % name)
 	updated_stats = base_stats.duplicate()
-	updated_stats.damage = GameManager.add_mods(base_stats.damage, damage_mods)
-	updated_stats.speed = GameManager.add_mods(base_stats.speed, speed_mods)
+	updated_stats.damage = GameManager.apply_modifiers(base_stats.damage, damage_mods)
+	updated_stats.speed = GameManager.apply_modifiers(base_stats.speed, speed_mods)
 	movement_behavior = movement_behavior.duplicate()
 	movement_behavior.my_bullet = self
 
