@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=26 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Resource" uid="uid://bbu8rfd5i3617" path="res://Assets/Resources/player_stats.tres" id="2_obxmd"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/gun.tscn" id="6_pkkgq"]
 [ext_resource type="PackedScene" uid="uid://c77b5g33e4bb4" path="res://Assets/Scenes/Projectiles/PlayerBullet.tscn" id="7_6jl5b"]
 [ext_resource type="Texture2D" uid="uid://dug46exl8xix6" path="res://Assets/Art/Placeholder/prototype-magi-hit (2).png" id="8_vraok"]
+[ext_resource type="Resource" uid="uid://bf71tyfsjruxd" path="res://Assets/Resources/GunStats/PlayerGun.tres" id="9_8nl45"]
 [ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="9_fkrlc"]
 [ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="10_86ov6"]
 [ext_resource type="Script" uid="uid://dhwq46247k7ik" path="res://Assets/Scripts/State Machines/PlayerStateMachine/Controlled.gd" id="11_ff7km"]
@@ -143,7 +144,8 @@ shape = SubResource("RectangleShape2D_utarg")
 
 [node name="Gun" parent="." instance=ExtResource("6_pkkgq")]
 my_bullet = ExtResource("7_6jl5b")
-hit_groups = Array[String](["Enemies"])
+hit_groups = Array[String](["Enemies", "Environment"])
+stats = ExtResource("9_8nl45")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
