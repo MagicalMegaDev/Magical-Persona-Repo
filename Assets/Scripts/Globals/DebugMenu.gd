@@ -1,27 +1,36 @@
 extends CanvasLayer
 
+# Stores Debug Inspectors by category tab.
 var categories := {}
+
+# Tracks Inspectors already in scene
 var inspected_objects := {}
 
-@export var menu:Control
+# Tab Container that holds individual debug panels
 @export var tab_container:TabContainer
 
+#Signals to emit when Challenge Mode is switched on and off
 signal challenge_enabled
 signal challenge_disabled
 
 func _ready():
+	#Ensure the tab container is assigned and hide it
+	assert(tab_container, "Debug Menu has no Tab Container assigned!")
 	tab_container.visible = false
 	
-func _process(delta):
-	if(Input.is_action_just_pressed("debug_menu")):
+func _unhandled_input(event: InputEvent) -> void:
+	#Toggle the debug menu when button is pressed
+	if(event.is_action_just_pressed("debug_menu")):
+		toggle_menu
+
+#Helper function to toggle the menu and pause the game.
+func toggle_menu() -> void:
 		tab_container.visible = !tab_container.visible
 		get_tree().paused = tab_container.visible
-
 
 func _create_panel(panel_name:String):
 	var panel := PanelContainer.new()
 	panel.name = panel_name
-	assert(tab_container, "Debug Menu has No Tab Container assigned!")
 	tab_container.add_child(panel)
 	
 	var scroll := ScrollContainer.new()
