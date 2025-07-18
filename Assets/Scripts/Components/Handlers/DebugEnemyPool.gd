@@ -5,8 +5,6 @@ var dead_enemies = {}
 var default_positions = {}
 var challenge := false
 
-signal room_reset
-
 func _ready():
 	for child in get_tree().get_nodes_in_group("Enemies"):
 		if(child is BaseCharacter):
@@ -14,7 +12,6 @@ func _ready():
 			default_positions[child] = child.global_position
 			child.died.connect(_store)
 	#DEBUG
-	room_reset.connect(SignalBus._on_room_reset)
 	TestDebugMenu.challenge_enabled.connect(_challenge_mode_on)
 	TestDebugMenu.challenge_disabled.connect(_challenge_mode_off)
 
@@ -64,7 +61,7 @@ func _respawn():
 		alive_enemies[e] = dead_enemies[e]
 	dead_enemies.clear()
 	if(challenge):
-		room_reset.emit()
+		RoomManager.room_cleared.emit()
 
 #DEBUG
 func _challenge_mode_on():
