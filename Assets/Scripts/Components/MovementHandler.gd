@@ -79,9 +79,9 @@ func _on_direction_calculated(new_direction:Vector2):
 #calculate_speed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.
 func calculate_speed(delta):
-	var max_speed = GameManager.apply_modifiers(my_stats.base_max_speed, max_speed_mods)
-	var acceleration = GameManager.apply_modifiers(my_stats.base_acceleration, acceleration_mods)
-	var friction = GameManager.apply_modifiers(my_stats.base_friction, friction_mods)
+	var max_speed = GameManager.apply_modifiers(my_stats.base_max_speed, max_speed_mods, name)
+	var acceleration = GameManager.apply_modifiers(my_stats.base_acceleration, acceleration_mods, name)
+	var friction = GameManager.apply_modifiers(my_stats.base_friction, friction_mods, name)
 	
 	if(direction != Vector2.ZERO):
 		speed = move_toward(speed, max_speed, acceleration * delta)

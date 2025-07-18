@@ -27,8 +27,8 @@ func _ready():
 	assert(base_stats, "%s has no stats attached!" % name)
 	assert(movement_behavior, "%s has no movement behavior attached!" % name)
 	updated_stats = base_stats.duplicate()
-	updated_stats.damage = GameManager.apply_modifiers(base_stats.damage, damage_mods)
-	updated_stats.speed = GameManager.apply_modifiers(base_stats.speed, speed_mods)
+	updated_stats.damage = GameManager.apply_modifiers(base_stats.damage, damage_mods, name)
+	updated_stats.speed = GameManager.apply_modifiers(base_stats.speed, speed_mods, name)
 	movement_behavior = movement_behavior.duplicate()
 	movement_behavior.my_bullet = self
 
