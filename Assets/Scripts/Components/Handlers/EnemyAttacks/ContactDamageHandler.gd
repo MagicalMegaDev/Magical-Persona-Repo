@@ -1,7 +1,7 @@
 class_name ContactDamageHandler extends Node2D
 
 @export var attack_stats:AttackStats
-@export var HitBox:Area2D 
+@export var hit_box:HitBox 
 @export var hit_groups:Array[String] = ["Players"]
 var _friendly_fire:bool = false
 @export var friendly_fire:bool = false: #Variable to enable and disable contact damage to other enemies
@@ -13,7 +13,7 @@ var _friendly_fire:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(attack_stats, "%s has no AttackStats attached to it's ContactDamageHandler!" % get_parent().name)
-	assert(HitBox, "%s has no HitBox attached to it's ContactDamageHandler!" % get_parent().name) #make sure the hurt box has been hooked up
+	assert(hit_box, "%s has no HitBox attached to it's ContactDamageHandler!" % get_parent().name) #make sure the hurt box has been hooked up
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

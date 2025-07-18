@@ -133,10 +133,10 @@ metadata/_custom_type_script = "uid://dvaa51eysnpop"
 script = ExtResource("5_l060k")
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
-[node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("HitBox")]
+[node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("hit_box")]
 script = ExtResource("9_0yyb5")
 attack_stats = ExtResource("12_iami7")
-HitBox = NodePath("HitBox")
+hit_box = NodePath("HitBox")
 
 [node name="HitBox" parent="ContactDamageHandler" instance=ExtResource("11_vn55q")]
 
