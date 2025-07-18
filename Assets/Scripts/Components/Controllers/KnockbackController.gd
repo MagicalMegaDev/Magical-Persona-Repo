@@ -26,11 +26,11 @@ func _process(delta):
 func _receive_stats(stats:CharacterStats):
 	weight = stats.weight 
 	
-func calculate_knockback(stats:AttackStats, attacker_posistion:Vector2):
-	if(can_knockback and stats.knockback):
-		var ratio = stats.force/weight
+func calculate_knockback(stats:AttackStats, attacker_position:Vector2):
+	if(can_knockback and stats.knockback_enabled):
+		var ratio = stats.knockback_force/weight
 		var delta = get_physics_process_delta_time()
-		var direction = (global_position - attacker_posistion).normalized()
+		var direction = (global_position - attacker_position).normalized()
 		var knockback = direction * GameManager.BASE_KNOCKBACK_STRENGTH * ratio
 		apply_knockback.emit(knockback)
 		if(knockback_timer.is_stopped()):

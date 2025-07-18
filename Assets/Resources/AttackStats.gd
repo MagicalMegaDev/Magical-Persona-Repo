@@ -1,5 +1,9 @@
-class_name AttackStats extends Resource
+# AttackStats.gd
+# Describes base data shared by any attack
 
-@export var damage := 1
-@export var knockback := false #Does this attack cause knockback?
-@export var force := 50 #How much knockback force does this attack apply?
+class_name AttackStats 
+extends Resource
+
+@export var damage := 1 #Amount of health removed when the attack hits.
+@export var knockback_enabled := true #Whether this attack applies knockback
+@export var knockback_force := 50 #Knockback Strength applied to the target
