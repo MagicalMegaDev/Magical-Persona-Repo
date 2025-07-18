@@ -18,20 +18,21 @@ func _ready():
 	TestDebugMenu.challenge_enabled.connect(_challenge_mode_on)
 	TestDebugMenu.challenge_disabled.connect(_challenge_mode_off)
 
-func _store(enemy:BaseEnemy):
+func _store(enemy:BaseEnemy, trigger_respawn:bool = true):
 	enemy.get_node("AnimationTree/AnimationPlayer").stop()
 	enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	enemy.visible = false
 	if enemy in alive_enemies:
 		dead_enemies[enemy] = alive_enemies[enemy]
 		alive_enemies.erase(enemy)
-	if alive_enemies.is_empty():
+	if alive_enemies.is_empty() and trigger_respawn:
 		_respawn()
 		
 func _respawn():
-	for e in alive_enemies:
+	var enemies := alive_enemies.keys()
+	for e in enemies:
 		assert(e is BaseEnemy, "Pool is trying to store %s, not an enemy!" % e.name)
-		_store(e)
+		_store(e, false)
 
 	for e in dead_enemies:
 		var spawn_position = dead_enemies[e]

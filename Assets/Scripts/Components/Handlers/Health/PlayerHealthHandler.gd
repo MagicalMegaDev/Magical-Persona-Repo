@@ -47,6 +47,6 @@ func _on_i_frames_finish():
 	i_frames_toggled.emit(false)
 
 #DEBUG
-const RESET_HEAL_AMOUNT = 2
+const RESET_HEAL_AMOUNT = 1
 func _on_room_reset():
 	heal_damage(RESET_HEAL_AMOUNT)

@@ -52,6 +52,7 @@ position = Vector2(512, 322)
 position = Vector2(512, 322)
 
 [node name="DebugEnemyPool" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("4_guoxd")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
 
