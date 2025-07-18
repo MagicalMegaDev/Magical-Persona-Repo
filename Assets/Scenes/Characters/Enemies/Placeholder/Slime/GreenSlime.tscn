@@ -66,7 +66,7 @@ _data = {
 collision_layer = 16
 collision_mask = 19
 script = ExtResource("1_gihwq")
-stats = ExtResource("2_d3lyo")
+imported_stats = ExtResource("2_d3lyo")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -113,9 +113,6 @@ script = ExtResource("6_w5g4f")
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_me4px")
-base_max_speed = 250.0
-base_acceleration = 200.0
-base_friction = 200.0
 metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 
 [node name="HealthController" type="Node" parent="."]

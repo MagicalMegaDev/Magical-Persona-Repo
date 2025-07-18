@@ -11,3 +11,6 @@ func _ready():
 
 func _on_death():
 	died.emit(self)
+
+func _debug():
+	TestDebugMenu._add_inspector(imported_stats, "Slime")

@@ -106,7 +106,7 @@ _data = {
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_tadin")
-stats = ExtResource("2_obxmd")
+imported_stats = ExtResource("2_obxmd")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
 
 [node name="Sprite" type="Sprite2D" parent="."]

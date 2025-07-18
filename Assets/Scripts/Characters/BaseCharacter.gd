@@ -7,11 +7,13 @@ var contact_damage_handler:ContactDamageHandler
 var knockback_controller:KnockbackController
 var gun:Gun
 
-@export var stats:CharacterStats
+@export var imported_stats:CharacterStats
+var stats:CharacterStats
 
 signal stats_ready(stats : CharacterStats)
 
 func _enter_tree():
+	stats = imported_stats.duplicate()
 	#Gather up Handlers and assign them
 	movement_handler = apply_handler(MovementHandler)
 	health_handler = apply_handler(HealthHandler)
