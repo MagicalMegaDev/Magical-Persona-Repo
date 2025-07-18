@@ -4,52 +4,39 @@ class_name MovementHandler extends Node
 const CONTROLLER_DEADZONE = 0.3
 #endregion
 
-#region enums
-#Direction Enums
-enum HorizontalDirection{
-	LEFT = -1,
-	STILL = 0,
-	RIGHT = 1
-}
+#current velocity vector
+var momentum := Vector2(0.0,0.0)
 
-enum VerticalDirection{
-	UP = -1,
-	STILL = 0,
-	DOWN = 1
-}
-#endregion
-
-var momentum = Vector2(0.0,0.0)
-
-#mods
+#modifiers
 var max_speed_mods := {}
 var acceleration_mods := {}
 var friction_mods := {}
 
-#scales
+#scales, used for room and global effects that are meant to apply to everything it can.
 var base_speed_scale := 1.0
 var base_acceleration_scale := 1.0
 var base_friction_scale := 1.0
 
-var raw_direction := Vector2.ZERO
-var direction := Vector2.ZERO
-var last_input_direction := Vector2.ZERO
-var speed := 0.0
+var raw_direction := Vector2.ZERO #Input Direction before deadzone filtering
+var direction := Vector2.ZERO #normalized direction for movement with deadzone applied
+var last_input_direction := Vector2.ZERO #Last non-zero input direction
+var speed := 0.0 #Current speed magnitude
 var knockback_velocity := Vector2.ZERO
-var knockback_friction := Constants.BASE_KNOCKBACK_STRENGTH/3
-var can_move:bool = true
+var knockback_friction:float
+var can_move := true #Determines if movement is allowed
 
-var my_character:BaseCharacter
-var my_stats:CharacterStats
+var my_character:BaseCharacter #Owning Character
+var my_stats:CharacterStats #Character's stats component
 
-signal velocity_calculated(sentVelocity:Vector2) #Signal to be attached to the character controller _on_velocity_calculated for Move_and_Slide()
-signal knockback_finished #Knockback has worn off
+#Emitted every physics frame with the calculated movement velocity
+signal velocity_calculated(sentVelocity:Vector2)
+#Emitted when Knockback Velocity has decayed to nearly zero
+signal knockback_finished
 
 func _ready():
+	assert(my_character, "%s MovementHandler lacks a Character Reference!" % get_parent().name)
+	assert(my_stats, "%s MovementHandler lacks a stats reference!" % get_parent().name)
 	velocity_calculated.connect(my_character._on_velocity_calculated)
-
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	# Use a slightly higher threshold than Godot's deadzone to prevent drift
@@ -63,7 +50,8 @@ func _physics_process(delta):
 	momentum = calculate_speed(delta)
 	momentum += knockback_velocity
 	if(knockback_velocity.length() > 0):
-		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction)
+		knockback_friction = my_stats.base_friction/2
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
 		if(knockback_velocity.length() < 0.5):
 			knockback_finished.emit()
 	if(can_move):
@@ -83,6 +71,13 @@ func calculate_speed(delta):
 	var acceleration = GameManager.apply_modifiers(my_stats.base_acceleration, acceleration_mods, name)
 	var friction = GameManager.apply_modifiers(my_stats.base_friction, friction_mods, name)
 	
+	if(!can_move):
+		if(speed > 0):
+			speed = move_toward(speed, 0, friction * delta)
+			return speed * last_input_direction
+		else:
+			return Vector2.ZERO
+			
 	if(direction != Vector2.ZERO):
 		speed = move_toward(speed, max_speed, acceleration * delta)
 		return speed * direction
@@ -93,5 +88,6 @@ func calculate_speed(delta):
 		else:
 			return Vector2.ZERO
 
+#Signal reciever, adds an impulse to the knockback velocity.
 func _on_knockback(impulse:Vector2):
 	knockback_velocity += impulse
