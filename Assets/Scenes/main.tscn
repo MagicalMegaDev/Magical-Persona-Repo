@@ -63,6 +63,7 @@ metadata/_custom_type_script = "uid://cj6appwlvrvxk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DebugEnemyPool/EnemySpawnBounds"]
 position = Vector2(513.5, 321)
+scale = Vector2(0.95, 0.95)
 shape = SubResource("RectangleShape2D_rvsrt")
 
 [node name="Slime" parent="." instance=ExtResource("5_rvsrt")]

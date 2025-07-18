@@ -4,6 +4,7 @@ var alive_enemies = {}
 var dead_enemies = {}
 var default_positions = {}
 var challenge := false
+var spawn_bounds : Area2D
 
 func _ready():
 	for child in get_tree().get_nodes_in_group("Enemies"):
@@ -11,6 +12,10 @@ func _ready():
 			alive_enemies[child] = child.global_position
 			default_positions[child] = child.global_position
 			child.died.connect(_store)
+	if has_node("EnemySpawnBounds"):
+		spawn_bounds = $EnemySpawnBounds
+	else:
+		spawn_bounds = null
 	#DEBUG
 	TestDebugMenu.challenge_enabled.connect(_challenge_mode_on)
 	TestDebugMenu.challenge_disabled.connect(_challenge_mode_off)
@@ -24,7 +29,7 @@ func _store(enemy:BaseEnemy, trigger_respawn:bool = true):
 		alive_enemies.erase(enemy)
 	if alive_enemies.is_empty() and trigger_respawn:
 		_respawn()
-		
+
 func _respawn():
 	var enemies := alive_enemies.keys()
 	for e in enemies:
@@ -35,14 +40,7 @@ func _respawn():
 		var spawn_position = dead_enemies[e]
 		if challenge:
 			var player := get_tree().get_first_node_in_group("Players")
-			var rand_pos := Vector2.ZERO
-			var viewport_size = get_viewport().get_visible_rect().size
-			if player:
-				while true:
-					rand_pos = Vector2(randi_range(0,viewport_size.x), randi_range(0,viewport_size.y))
-					if(rand_pos.distance_to(player.global_position)>50):
-						break
-			else: print("Player is missing somehow?")
+			var rand_pos = generate_spawn_position(player)
 			e.global_position = rand_pos
 			if e.imported_stats and e.imported_stats.base_max_speed:
 				var base = e.imported_stats.base_max_speed
@@ -63,6 +61,28 @@ func _respawn():
 	if(challenge):
 		RoomManager.room_cleared.emit()
 
+func generate_spawn_position(player:Node) -> Vector2:
+	var rand_pos := Vector2.ZERO
+	if spawn_bounds and spawn_bounds.has_node("CollisionShape2D"):
+		var shape_node := spawn_bounds.get_node("CollisionShape2D") as CollisionShape2D
+		if shape_node and shape_node.shape is RectangleShape2D:
+			var size = shape_node.shape.size
+			var top_left = shape_node.global_position - size * 0.5
+			while true:
+				rand_pos = Vector2(randf_range(top_left.x, top_left.x + size.x), randf_range(top_left.y, top_left.y + size.y))
+				if not player or rand_pos.distance_to(player.global_position) > 50:
+					break
+		else:
+			print("EnemySpawnBounds: Something went wrong")
+			rand_pos = shape_node.global_position
+	else:
+		var viewport_size = get_viewport().get_visible_rect().size
+		while true:
+			rand_pos = Vector2(randi_range(0, viewport_size.x), randi_range(0, viewport_size.y))
+			if not player or rand_pos.distance_to(player.global_position) > 50:
+				break
+	return rand_pos
+	
 #DEBUG
 func _challenge_mode_on():
 	challenge = true
