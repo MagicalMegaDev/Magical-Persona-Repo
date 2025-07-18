@@ -1,7 +1,6 @@
 class_name MovementHandler extends Node
 
 #region constants
-const CONTROLLER_DEADZONE = 0.3
 #endregion
 
 #current velocity vector
@@ -40,7 +39,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Use a slightly higher threshold than Godot's deadzone to prevent drift
-	if(raw_direction.length() > CONTROLLER_DEADZONE):
+	if(raw_direction.length() > Constants.CONTROLLER_DEADZONE):
 		direction = raw_direction.normalized()
 		last_input_direction = direction
 	else:
@@ -66,7 +65,7 @@ func _on_direction_calculated(new_direction:Vector2):
 
 #calculate_speed(delta)
 #Applies all mods to all speed related variables, and then either accelerates or deaccelerates the character in the chosen direction based on input recieved.
-func calculate_speed(delta):
+func calculate_speed(delta:float):
 	var max_speed = GameManager.apply_modifiers(my_stats.base_max_speed, max_speed_mods, name)
 	var acceleration = GameManager.apply_modifiers(my_stats.base_acceleration, acceleration_mods, name)
 	var friction = GameManager.apply_modifiers(my_stats.base_friction, friction_mods, name)

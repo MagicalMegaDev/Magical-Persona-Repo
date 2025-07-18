@@ -1,25 +1,33 @@
 #This script is a signal bus for all player input.
-class_name PlayerInputController extends Node
+class_name PlayerInputController 
+extends Node
 
-@export var myCharacter:BaseCharacter
+@export var my_character:BaseCharacter
 
 #region DEBUG
 const DEBUG_SPEED := 2
-const CONTROLLER_DEADZONE := 0.2
+const SHOOT_ACTIONS := ["shoot_up", "shoot_down", "shoot_left", "shoot_right"] #Directions used for shooting input
 #endregion
 
 var shooting_queue = []
 var last_input_device:String = "keyboard"
 
+# Emitted every physics frame with the player's movement direction.
 signal direction_calculated(direction:Vector2)
+
+# Emitted when the player fires. Parameter is shot direction
 signal shoot(direction:Vector2)
 
+func _ready():
+	assert(my_character, "PlayerInputController has no character assigned!")
+
+# Detects which input device is currently being used.
 func _input(event):
 	if event is InputEventKey:
 		last_input_device = "keyboard"
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		last_input_device = "joystick"
-		
+
 func _process(delta):
 	if(last_input_device == "keyboard"):
 		check_kb_shoot_input()
@@ -27,41 +35,28 @@ func _process(delta):
 		check_js_shoot_input()
 	check_shoot()
 	#DEBUG
-	if(Input.is_action_just_pressed("speed")):
-		if(myCharacter.movement_handler.max_speed_mods.has("Debug")):
-			myCharacter.movement_handler.max_speed_mods.erase("Debug")
+	#Pressing the speed action adds or removes a movement speed modifier, representing the player when speed capped
+	if(Input.is_action_just_pressed("speed") and my_character.movement_handler):
+		if(my_character.movement_handler.max_speed_mods.has("Debug")):
+			my_character.movement_handler.max_speed_mods.erase("Debug")
 		else:
-			myCharacter.movement_handler.max_speed_mods["Debug"] = DEBUG_SPEED
+			my_character.movement_handler.max_speed_mods["Debug"] = DEBUG_SPEED
 	#ENDDEBUG
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
-	direction.x = direction.x if abs(direction.x) >= CONTROLLER_DEADZONE else 0
-	direction.y = direction.y if abs(direction.y) >= CONTROLLER_DEADZONE else 0
+	direction.x = direction.x if abs(direction.x) >= Constants.CONTROLLER_DEADZONE else 0
+	direction.y = direction.y if abs(direction.y) >= Constants.CONTROLLER_DEADZONE else 0
 	direction_calculated.emit(direction)
 
+#Updates the shooting queue based on keyboard inputs
 func check_kb_shoot_input():
-	if(Input.is_action_just_pressed("shoot_up")):
-		shooting_queue.erase("shoot_up")
-		shooting_queue.push_front("shoot_up")
-	if(Input.is_action_just_pressed("shoot_down")):
-		shooting_queue.erase("shoot_down")
-		shooting_queue.push_front("shoot_down")
-	if(Input.is_action_just_pressed("shoot_left")):
-		shooting_queue.erase("shoot_left")
-		shooting_queue.push_front("shoot_left")
-	if(Input.is_action_just_pressed("shoot_right")):
-		shooting_queue.erase("shoot_right")
-		shooting_queue.push_front("shoot_right")
-	
-	if(!Input.is_action_pressed("shoot_up")):
-		shooting_queue.erase("shoot_up")
-	if(!Input.is_action_pressed("shoot_down")):
-		shooting_queue.erase("shoot_down")
-	if(!Input.is_action_pressed("shoot_left")):
-		shooting_queue.erase("shoot_left")
-	if(!Input.is_action_pressed("shoot_right")):
-		shooting_queue.erase("shoot_right")
+	for action in SHOOT_ACTIONS:
+		if(Input.is_action_just_pressed(action)):
+			shooting_queue.erase(action)
+			shooting_queue.push_front(action)
+		elif !Input.is_action_pressed(action):
+			shooting_queue.erase(action)
 
 func check_js_shoot_input():
 	shooting_queue.clear()

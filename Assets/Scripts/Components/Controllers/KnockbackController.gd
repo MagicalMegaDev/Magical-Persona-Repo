@@ -34,7 +34,6 @@ func calculate_knockback(stats:AttackStats, attacker_position:Vector2):
 	#Apply knockback if permitted and the incoming attack supports it.
 	if(knockback_allowed and stats.knockback_enabled):
 		var ratio = stats.knockback_force/weight
-		var delta = get_physics_process_delta_time()
 		var direction = (global_position - attacker_position).normalized()
 		var knockback = direction * Constants.BASE_KNOCKBACK_STRENGTH * ratio
 		apply_knockback.emit(knockback)
