@@ -14,7 +14,6 @@ func _process(delta):
 	pass
 
 func _on_enemy_death():
-	print("Death!")
 	kill_count += 1
 	text = str(kill_count)
 
