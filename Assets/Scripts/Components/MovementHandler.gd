@@ -36,7 +36,7 @@ var direction := Vector2.ZERO
 var last_input_direction := Vector2.ZERO
 var speed = 0.0
 var knockback_velocity := Vector2.ZERO
-var knockback_friction := GameManager.BASE_KNOCKBACK_STRENGTH/3
+var knockback_friction := Constants.BASE_KNOCKBACK_STRENGTH/3
 var can_move:bool = true
 
 var my_character:BaseCharacter

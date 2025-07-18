@@ -1,6 +1,6 @@
 extends Node
 
-const BASE_KNOCKBACK_STRENGTH := 100.0 #the baseline of all knockback
+
 
 signal enemy_killed
 

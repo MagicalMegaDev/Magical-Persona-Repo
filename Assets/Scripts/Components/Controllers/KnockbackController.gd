@@ -31,7 +31,7 @@ func calculate_knockback(stats:AttackStats, attacker_position:Vector2):
 		var ratio = stats.knockback_force/weight
 		var delta = get_physics_process_delta_time()
 		var direction = (global_position - attacker_position).normalized()
-		var knockback = direction * GameManager.BASE_KNOCKBACK_STRENGTH * ratio
+		var knockback = direction * Constants.BASE_KNOCKBACK_STRENGTH * ratio
 		apply_knockback.emit(knockback)
 		if(knockback_timer.is_stopped()):
 			knockback_timer.start()
