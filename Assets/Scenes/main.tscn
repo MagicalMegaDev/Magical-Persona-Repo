@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://c5ts3aeqkc2xr"]
+[gd_scene load_steps=9 format=4 uid="uid://c5ts3aeqkc2xr"]
 
 [ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_l26l0"]
 [ext_resource type="PackedScene" uid="uid://dtqmwnh60jaon" path="res://Assets/Scenes/UI/DungeonUI.tscn" id="1_rvsrt"]
 [ext_resource type="Texture2D" uid="uid://by5f8oi7tueht" path="res://Assets/Art/Placeholder/prototype-magi-environment.png" id="2_qplxx"]
 [ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="4_guoxd"]
 [ext_resource type="PackedScene" uid="uid://bnrc4kf3cl8sm" path="res://Assets/Scenes/Characters/Enemies/Placeholder/Slime/GreenSlime.tscn" id="5_rvsrt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvsrt"]
+size = Vector2(901, 510)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_elf4b"]
 texture = ExtResource("2_qplxx")
@@ -55,6 +58,12 @@ position = Vector2(512, 322)
 process_mode = 3
 script = ExtResource("4_guoxd")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
+
+[node name="EnemySpawnBounds" type="Area2D" parent="DebugEnemyPool"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DebugEnemyPool/EnemySpawnBounds"]
+position = Vector2(513.5, 321)
+shape = SubResource("RectangleShape2D_rvsrt")
 
 [node name="Slime" parent="." instance=ExtResource("5_rvsrt")]
 position = Vector2(512, 184)
