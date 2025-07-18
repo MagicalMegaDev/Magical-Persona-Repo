@@ -1,24 +1,12 @@
-class_name HitBox extends Area2D
+#Component for Hitboxes
+#Emits 'collections_in_area' every frame while any body or area overlaps
 
-var bodies_inside:Array = []
-var areas_inside:Array = []
+class_name HitBox 
+extends Area2D
 
 signal collections_in_area(bodies:Array, areas:Array, position:Vector2)
 
 func _process(delta):
-	if(!bodies_inside.is_empty() or !areas_inside.is_empty()):
-		collections_in_area.emit(bodies_inside, areas_inside, global_position)
-		
-func _on_body_enter(body):
-	bodies_inside.append(body)
-
-func _on_area_enter(area):
-	areas_inside.append(area)
-
-func _on_body_exit(body):
-	if(bodies_inside.has(body)):
-		bodies_inside.erase(body)
-		
-func _on_area_exit(area):
-	if(areas_inside.has(area)):
-		areas_inside.erase(area)
+	#emit all overlapping bodies or areas
+	if(get_overlapping_bodies() or get_overlapping_areas()):
+		collections_in_area.emit(get_overlapping_bodies(), get_overlapping_areas(), global_position)
