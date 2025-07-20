@@ -46,7 +46,7 @@ func get_direction() -> Vector2:
 
 	for i in my_character.get_slide_collision_count():
 		var collider = my_character.get_slide_collision(i).get_collider()
-		if collider.is_in_group("Environment"):
+		if collider.is_in_group("Environment") || collider.is_in_group("Enemies"):
 			set_direction()
 			direction_change_timer.stop()
 			break
