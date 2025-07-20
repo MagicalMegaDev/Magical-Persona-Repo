@@ -106,6 +106,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Players"]]
 collision_layer = 8
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_tadin")
 imported_stats = ExtResource("2_obxmd")
 metadata/_custom_type_script = "uid://nfa50gborhfe"
@@ -154,9 +155,9 @@ script = ExtResource("2_u4s88")
 script = ExtResource("4_owd12")
 metadata/_custom_type_script = "uid://ddul17tjgk3eg"
 
-[node name="PlayerInputController" type="Node" parent="." node_paths=PackedStringArray("myCharacter")]
+[node name="PlayerInputController" type="Node" parent="." node_paths=PackedStringArray("my_character")]
 script = ExtResource("5_utarg")
-myCharacter = NodePath("..")
+my_character = NodePath("..")
 metadata/_custom_type_script = "uid://c23rw2ef30wvb"
 
 [node name="KnockbackController" type="Node2D" parent="."]

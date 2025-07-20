@@ -44,9 +44,12 @@ func get_direction() -> Vector2:
 		push_warning("RandomMovementAI: my_character is null")
 		return Vector2.ZERO
 
-	if(my_character.is_on_ceiling() or my_character.is_on_wall() or my_character.is_on_floor()):
-		set_direction()
-		direction_change_timer.stop()
+	for i in my_character.get_slide_collision_count():
+		var collider = my_character.get_slide_collision(i).get_collider()
+		if collider.is_in_group("Environment"):
+			set_direction()
+			direction_change_timer.stop()
+			break
 		
 	if(direction_change_timer.is_stopped()):
 		direction_change_timer.start()

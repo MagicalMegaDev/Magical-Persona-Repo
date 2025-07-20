@@ -65,6 +65,7 @@ _data = {
 [node name="GreenSlime" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 19
+motion_mode = 1
 script = ExtResource("1_gihwq")
 imported_stats = ExtResource("2_d3lyo")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
