@@ -58,6 +58,7 @@ func check_kb_shoot_input():
 		elif !Input.is_action_pressed(action):
 			shooting_queue.erase(action)
 
+#Updates the shooting queue based on joystick input
 func check_js_shoot_input():
 	shooting_queue.clear()
 	var vector = Input.get_vector("shoot_left", "shoot_right","shoot_up","shoot_down")
@@ -71,6 +72,7 @@ func check_js_shoot_input():
 			shooting_queue.push_front("shoot_down") 
 		else: shooting_queue.push_front("shoot_up")
 
+#Emits the shoot signal using the queued direction.
 func check_shoot():
 	if shooting_queue.is_empty():
 		shoot.emit(Vector2.ZERO)
