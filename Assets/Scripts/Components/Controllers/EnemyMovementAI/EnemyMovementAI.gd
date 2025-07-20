@@ -1,21 +1,24 @@
-class_name EnemyMovementAI extends Node
+#Base class for enemy movement AI. Subclasses will implement specific pathing logic.
+#Provides a standard interface for retrieving movement directions
+class_name EnemyMovementAI 
+extends Node
 
+#The character that owns this AI Component
 var my_character:BaseCharacter
 
-signal direction_calculated(direction:Vector2)
-
-#set_direction
-#internal function to set the direction to be passed along in get_direction
+#Sets the movement direction for this frame
 func set_direction():
 	pass
 
-#get_direction
-#Generic function, inherited pathing behaviors will use this to determine a direction and send a signal.
+#Returns the desired movement direction for the character.
 func get_direction() -> Vector2:
-	print("%s has generic pathing AI attached" %  my_character.name)
+	if my_character:
+		print("%s has generic pathing AI attached!" % my_character.name)
+	else:
+		push_warning("get_direction() somewhere but my_character is null")
 	return Vector2.ZERO
 
-#pause and resume functions to be called when the parent state is entered and exited.
+#Pause and Resume functions to be called when the parent state is entered and exited.
 func pause():
 	pass
 	
