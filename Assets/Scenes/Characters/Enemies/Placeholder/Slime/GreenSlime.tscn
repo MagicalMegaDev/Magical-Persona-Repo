@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="4_tsukm"]
 [ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="5_l060k"]
 [ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="6_n6qca"]
-[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/AnimationController.gd" id="6_w5g4f"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="6_w5g4f"]
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
 [ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
