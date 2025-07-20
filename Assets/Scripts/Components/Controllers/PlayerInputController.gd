@@ -9,7 +9,7 @@ const DEBUG_SPEED := 2
 const SHOOT_ACTIONS := ["shoot_up", "shoot_down", "shoot_left", "shoot_right"] #Directions used for shooting input
 #endregion
 
-var shooting_queue = []
+var shooting_queue:Array[String] = []
 var last_input_device:String = "keyboard"
 
 # Emitted every physics frame with the player's movement direction.
@@ -63,7 +63,7 @@ func check_js_shoot_input():
 	shooting_queue.clear()
 	var vector = Input.get_vector("shoot_left", "shoot_right","shoot_up","shoot_down")
 	if abs(vector.x) > abs(vector.y):
-		if vector.x >0:
+		if vector.x > 0:
 			shooting_queue.push_front("shoot_right")
 		else: 
 			shooting_queue.push_front("shoot_left")
