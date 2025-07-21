@@ -31,11 +31,16 @@ func _ready():
 	add_child(i_frames_timer)
 	
 # Updates the maximum health value, clamped by the health cap.
+# Change_max_health is a flat change, adjust_max_health changes by a set amount
 # Value: Amount to change max_health by
 func change_max_health(value:int):
-	max_health = min(max_health + value, MAX_HEALTH_CAP)
+	max_health = min(value, MAX_HEALTH_CAP)
 	health_changed.emit(current_health, max_health)
 
+func adjust_max_health(value:int):
+	max_health = min(value + max_health, MAX_HEALTH_CAP)
+	health_changed.emit(current_health, max_health)
+	
 # Takes in an attack and applies damage if the player can be hurt.
 func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 	if(!i_frames):
