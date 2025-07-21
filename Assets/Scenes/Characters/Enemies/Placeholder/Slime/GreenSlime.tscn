@@ -151,4 +151,3 @@ script = ExtResource("14_bepmt")
 metadata/_custom_type_script = "uid://d0qy2s10exi6r"
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
-[connection signal="collections_in_area" from="ContactDamageHandler/HitBox" to="ContactDamageHandler" method="_on_check_hit"]
