@@ -1,17 +1,26 @@
 class_name StateMachine
 extends Node
 
-var states := {}
-var current_state:State
+var states := {} #All states belonging to this machine
+var current_state:State #The currently active state
 var my_owner:Node
 
+@export var starting_state:State
 
 func _ready():
 	my_owner = get_parent()
 	for child in get_children():
 		if child is State:
 			add_state(child)
-	current_state = states.values()[0]
+	if(states.has(starting_state.name)):
+		current_state = starting_state
+	else: 
+		if(states.size() != 0):
+			current_state = states.values()[0]
+			print(get_parent().name + " state machine had no starting state set!")
+		else:
+			print(get_parent().name + " state machine has no states!")
+	
 
 func _process(delta):
 	if current_state:

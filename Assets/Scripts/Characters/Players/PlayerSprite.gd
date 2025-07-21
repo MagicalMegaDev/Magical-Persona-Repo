@@ -19,14 +19,17 @@ func _ready():
 	blink_timer.timeout.connect(blink)
 	#endregion
 
+#Called by the blink_timer's timeout signal to create the blinking effect with a toggle
 func blink():
 	visible = !visible
 
+# Connected to the Player's health node's damage signal
 func _on_start_blink():
 	blinking = true
 	visible = false
 	blink_timer.start()
 	
+# Connected to the Player's Health Node's i_frames_toggled signal
 func _on_stop_blink(i_frames_value:bool):
 	if(!i_frames_value):
 		blinking = false

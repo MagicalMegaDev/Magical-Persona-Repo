@@ -19,11 +19,13 @@ func _ready():
 			attack_states[child.name] = child
 			child.state_machine = self
 		if(starting_movement_state):
-			assert(movement_states.has(starting_movement_state.name), "%s StateMachine somehow has a starting movement state not in it's library!" % get_parent().name)
-			set_movement_state(starting_movement_state.name)
+			if(movement_states.has(starting_movement_state.name)):
+				set_movement_state(starting_movement_state.name)
+			else: push_error("%s StateMachine starting movement state not found in library!" % get_parent().name)
 		if(starting_attack_state):
-			assert(attack_states.has(starting_attack_state.name), "%s StateMachine somehow has a starting attack state not in it's library!" % get_parent().name)
-			set_attack_state(starting_attack_state.name)
+			if(attack_states.has(starting_attack_state.name)):
+				set_attack_state(starting_attack_state.name)
+			else: push_error("%s StateMachine starting attack state not found in library!")
 
 func set_movement_state(name:String):
 	if(active_movement_state):

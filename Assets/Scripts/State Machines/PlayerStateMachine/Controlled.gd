@@ -1,11 +1,12 @@
-#Controlled.gd This state handles input from the player and sends it back out.
+#Handles raw input from the player and converts it into signals that other nodes in the player can react to
+class_name Controlled
 extends State
 
 var movement_direction:= Vector2.ZERO #What direction is the player moving in.
-signal movement_direction_set(direction:Vector2)
+signal movement_direction_set(direction:Vector2) 
 
 var shooting_direction:= Vector2.ZERO #What direction is the player shooting in.
-signal shooting_direction_set(direction:Vector2)
+signal shooting_direction_set(direction:Vector2) 
 
 var secondary_skill := false #Is the player currently using their secondary skill?
 signal secondary_skill_used
@@ -32,6 +33,7 @@ var input_mappings := {
 	
 }
 func update(delta):
+	#Broadcast the most recent input values
 	movement_direction_set.emit(movement_direction)
 	shooting_direction_set.emit(shooting_direction)
 	for input_name in input_mappings:
