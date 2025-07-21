@@ -1,6 +1,8 @@
 #TODO: ADD GUN STATS RESOURCE
 
-class_name Gun extends Node2D
+#Class for anything that fires projectiles
+class_name Gun 
+extends Node2D
 
 @export var my_bullet:PackedScene
 @export var hit_groups:Array[String] = []
@@ -58,7 +60,7 @@ func _ready():
 #	else:
 #		add_hit_group("Environment")
 
-func _on_shoot(direction):
+func _on_shoot(direction: Vector2):
 	if(direction == Vector2.ZERO):
 		return
 	if(shot_timer.is_stopped() || !rate_limited):

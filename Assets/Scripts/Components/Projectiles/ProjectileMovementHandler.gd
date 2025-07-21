@@ -1,7 +1,6 @@
 class_name ProjectileMovementHandler extends Node
 
 var my_bullet:BaseBullet
-signal move(delta)
 
 func _ready():
 	assert(get_parent() is BaseBullet, "%s is not a Bullet!" % [get_parent().name])
