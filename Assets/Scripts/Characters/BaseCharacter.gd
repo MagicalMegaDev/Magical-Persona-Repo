@@ -13,6 +13,7 @@ var stats:CharacterStats
 signal stats_ready(stats : CharacterStats)
 
 func _enter_tree():
+	assert(imported_stats, "%s has no CharacterStats attached!" % name)
 	stats = imported_stats.duplicate()
 	#Gather up Handlers and assign them
 	movement_handler = apply_handler(MovementHandler)
@@ -38,12 +39,13 @@ func _ready():
 	#DEBUG
 	_debug()
 
-func apply_handler(handler_type) -> Object:
-	var found: Object = null
+#Searches all children for the first node matching 'handler_type'
+func apply_handler(handler_type) -> Node:
+	var found: Node = null
 	for child in GameManager.get_all_children(self):
 		if is_instance_of(child, handler_type):
 			if found:
-				print("Multiple " + str(handler_type) + " found at: " + self.name)
+				print("Multiple " + str(handler_type) + " found at: " + name)
 			else:
 				found = child
 	

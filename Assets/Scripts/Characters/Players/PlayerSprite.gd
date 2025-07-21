@@ -1,11 +1,13 @@
 #A helper script to control player sprite behavior. Costumes, small effects like blinking, etc.
 
+class_name PlayerSprite
 extends Sprite2D
 
 #region blinking effect
 var blinking := false #is the player currently blinking
-var blink_timer:Timer
+var blink_timer: Timer
 var blink_frequency := 0.05 #How long between blinks
+#endregion
 
 func _ready():
 	#region blink_timer init
@@ -16,11 +18,6 @@ func _ready():
 	add_child(blink_timer)
 	blink_timer.timeout.connect(blink)
 	#endregion
-
-#for instant blink
-#func _process(delta):
-#	if blinking:
-#		blink()
 
 func blink():
 	visible = !visible

@@ -11,24 +11,24 @@ var shot_timer:Timer
 #region stats
 #All default values are placeholders
 @export var stats:GunStats
-var shot_speed:float: #How fast the bullets out of this gun move
+var shot_speed:float: #Speed multiplier for bullets coming out of this gun
 	get():
 		return stats.shot_speed
 	set(value):
 		stats.shot_speed = value
-var damage:float: #How much damage this gun does
+var damage:float: #Damage multiplier for bullets coming out of this gun
 	get():
 		return stats.damage
 	set(value):
 		stats.damage = value
 
-var rate_limited:bool: #Does the gun have a rate limit? False for enemies whose fire rate is behaviour controlled
+var rate_limited:bool: #If true, this gun's fire rate is capped by the fire_rate stat. ONLY Set false if shot frequency is AI behavior controlled
 	get():
 		return stats.rate_limited
 	set(value):
 		stats.rate_limited = value
 
-var fire_rate:float: #How many bullets a second to fire
+var fire_rate:float: #Number of bullets this gun can fire a second.
 	get():
 		return stats.fire_rate
 	set(value):
@@ -51,6 +51,9 @@ var fire_rate:float: #How many bullets a second to fire
 #endregion
 
 func _ready():
+	assert(stats, "%s Gun has no stats resource!" % get_parent().name)
+	assert(my_bullet, "%s Gun has no bullet PackedScene assigned!" % get_parent().name)
+	assert (has_node("shot_cooldown"), "%s has no shot_cooldown Timer!" % get_parent().name)
 	stats = stats.duplicate()
 	_debug()
 	shot_timer = $shot_cooldown
@@ -60,6 +63,7 @@ func _ready():
 #	else:
 #		add_hit_group("Environment")
 
+# Fires a bullet in the provided direction if able.
 func _on_shoot(direction: Vector2):
 	if(direction == Vector2.ZERO):
 		return
@@ -75,10 +79,12 @@ func _on_shoot(direction: Vector2):
 		shot_timer.wait_time = 1/stats.fire_rate
 		shot_timer.start()
 
+# Adds a new collision group this gun's bullets can hit.
 func add_hit_group(group:String):
 	if !(hit_groups.has(group)):
 		hit_groups.append(group)
 	
+# Removes a collision group from the gun if present.
 func remove_hit_group(group:String):
 	if(hit_groups.has(group)):
 		hit_groups.erase(group)
