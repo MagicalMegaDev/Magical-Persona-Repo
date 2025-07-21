@@ -7,6 +7,9 @@ extends Node
 # Emitted whenever any enemy dies so UI and other systems can react.
 signal enemy_killed
 
+func _ready():
+	randomize()
+
 # Returns an array containing the given node and all of its descendants.
 # node: The root node to search
 # arr: Accumulator array to populate with descendants
