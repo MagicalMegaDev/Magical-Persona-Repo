@@ -5,14 +5,14 @@ var states := {} #All states belonging to this machine
 var current_state:State #The currently active state
 var my_owner:Node
 
-@export var starting_state:State
+@export var starting_state:State = null
 
 func _ready():
 	my_owner = get_parent()
 	for child in get_children():
 		if child is State:
 			add_state(child)
-	if(states.has(starting_state.name)):
+	if(starting_state and states.has(starting_state.name)):
 		current_state = starting_state
 	else: 
 		if(states.size() != 0):
