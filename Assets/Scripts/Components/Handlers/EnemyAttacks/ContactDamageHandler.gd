@@ -1,4 +1,5 @@
-class_name ContactDamageHandler extends Node2D
+class_name ContactDamageHandler 
+extends Node2D
 
 @export var attack_stats:AttackStats
 @export var hit_box:HitBox 
