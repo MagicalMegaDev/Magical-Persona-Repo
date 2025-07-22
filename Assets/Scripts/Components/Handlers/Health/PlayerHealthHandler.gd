@@ -55,6 +55,7 @@ func _on_i_frames_finish():
 	i_frames_toggled.emit(false)
 
 #DEBUG
+
 const RESET_HEAL_AMOUNT = 1
 #Called when the room manager signals a reset
 func _on_room_reset():

@@ -3,19 +3,21 @@ class_name HealthBar extends GridContainer
 const HEART_VALUE := 2 #The amount a single heart is worth. Hearts have two states: Full and Half, so they are worth two hitpoints.
 var max_containers = 10 #The max number of heart containers the player can have. Each Container is representitive of two health.
 
-var hearts: Array[Node] = []
+var hearts: Array[Node] = [] #Array of heart containers in the UI
 
 func _ready():
 	hearts = get_children()
 	SignalBus.player_health_changed.connect(_on_player_health_changed)
 
-#_on_player_health_changed
+
 #signal reciever for when the player's health has been changed in any way.
 #Value: The current value of the players health.
 #max_health: The players max_health, to tell how many heart containers to draw.
 func _on_player_health_changed(value:int, max_health:int):
 	#First, get the amount of containers to be drawn, and draw them all in an empty state
 	var container_count := int(ceil(max_health/HEART_VALUE))
+	# Ensure the index does not exceed the number of actual containers
+	container_count = min(container_count, hearts.size())
 	
 	for i in range(hearts.size()):
 		var heart = hearts[i]
