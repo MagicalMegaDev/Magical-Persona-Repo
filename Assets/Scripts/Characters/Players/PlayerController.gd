@@ -21,7 +21,7 @@ func connect_signals():
 	
 func _on_item_pickup(pickup:Pickup):
 	var picked_up := false #Was the Pickup picked up?
-	match typeof(pickup):
+	match pickup:
 		HealthPickup:
 			if(health_handler.current_health < health_handler.max_health):
 				health_picked_up.emit(pickup.heal_value)
