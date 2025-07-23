@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdii5unjsuy1l"]
+[gd_scene load_steps=8 format=3 uid="uid://dgstw848qsc78"]
 
-[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_a6hwp"]
-[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_5w1ox"]
-[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="2_onc88"]
-[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_onc88"]
+[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_lylng"]
+[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_wkep7"]
+[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="3_xi8ux"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_fyfmy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -17,15 +17,15 @@ radius = 45.3982
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 19
-script = ExtResource("1_a6hwp")
+script = ExtResource("1_lylng")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="HealthController" type="Node" parent="."]
-script = ExtResource("2_5w1ox")
+script = ExtResource("2_wkep7")
 metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_onc88")
+texture = ExtResource("3_xi8ux")
 hframes = 6
 vframes = 4
 frame = 1
@@ -57,6 +57,6 @@ shape = SubResource("CircleShape2D_5w1ox")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
-script = ExtResource("4_onc88")
+script = ExtResource("4_fyfmy")
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
