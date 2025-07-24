@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://756yjyrhanlp"]
 
-[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="1_gavyl"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/HitBoxComponents/EnemyAttacks/ContactDamageHandler.gd" id="1_gavyl"]
 
 [node name="ContactDamageHandler" type="Node"]
 script = ExtResource("1_gavyl")

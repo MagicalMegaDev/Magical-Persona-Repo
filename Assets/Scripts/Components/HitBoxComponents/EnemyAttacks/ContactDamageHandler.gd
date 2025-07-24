@@ -3,7 +3,7 @@ class_name ContactDamageHandler
 extends Node2D
 
 @export var attack_stats:AttackStats #The incoming attack's stats
-@export var hit_box: HitBox #HitBox of the attack
+@onready var hit_box:HitBox = get_parent()
 @export var hit_groups:Array[String] = ["Players"] #Groups this handler can damage
 var _friendly_fire:bool = false
 @export var friendly_fire:bool = false: #Variable to enable and disable contact damage to other enemies
@@ -15,7 +15,6 @@ var _friendly_fire:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(attack_stats, "%s has no AttackStats attached to it's ContactDamageHandler!" % get_parent().name)
-	assert(hit_box, "%s has no HitBox attached to it's ContactDamageHandler!" % get_parent().name) #make sure the hurt box has been hooked up
 	if not hit_box.collections_in_area.is_connected(_on_check_hit):
 		hit_box.collections_in_area.connect(_on_check_hit)
 		

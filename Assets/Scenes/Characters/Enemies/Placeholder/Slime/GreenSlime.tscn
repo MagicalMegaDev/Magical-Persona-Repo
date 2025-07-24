@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://dabmad52n3uq7" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAIStateMachine.gd" id="6_n6qca"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="6_w5g4f"]
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
-[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/Handlers/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/HitBoxComponents/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
 [ext_resource type="Resource" uid="uid://fwnwbqvtrpr0" path="res://Assets/Resources/AttackStats/Placeholder/SlimeContact.tres" id="12_iami7"]
 [ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="14_bepmt"]
@@ -134,17 +134,16 @@ metadata/_custom_type_script = "uid://dvaa51eysnpop"
 script = ExtResource("5_l060k")
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
 
-[node name="ContactDamageHandler" type="Node2D" parent="." node_paths=PackedStringArray("hit_box")]
-script = ExtResource("9_0yyb5")
-attack_stats = ExtResource("12_iami7")
-hit_box = NodePath("HitBox")
+[node name="HitBox" parent="." instance=ExtResource("11_vn55q")]
 
-[node name="HitBox" parent="ContactDamageHandler" instance=ExtResource("11_vn55q")]
-
-[node name="HitBoxShape" type="CollisionShape2D" parent="ContactDamageHandler/HitBox"]
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_onc88")
 debug_color = Color(0.905882, 0.447059, 1, 0.623529)
+
+[node name="ContactDamageHandler" type="Node2D" parent="HitBox"]
+script = ExtResource("9_0yyb5")
+attack_stats = ExtResource("12_iami7")
 
 [node name="KnockbackController" type="Node2D" parent="."]
 script = ExtResource("14_bepmt")
