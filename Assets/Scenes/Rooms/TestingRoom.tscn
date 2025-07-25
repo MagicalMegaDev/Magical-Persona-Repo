@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2xnhrhem0c2r"]
+[gd_scene load_steps=5 format=3 uid="uid://c2xnhrhem0c2r"]
 
 [ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_uper2"]
 [ext_resource type="PackedScene" uid="uid://dtqmwnh60jaon" path="res://Assets/Scenes/UI/DungeonUI.tscn" id="3_r0bfr"]
 [ext_resource type="PackedScene" uid="uid://bnrc4kf3cl8sm" path="res://Assets/Scenes/Characters/Enemies/Placeholder/Slime/GreenSlime.tscn" id="3_xh5he"]
-[ext_resource type="PackedScene" uid="uid://bvjm3b75txjrg" path="res://Assets/Scenes/Pickups/heart_pickup.tscn" id="5_23rdi"]
 [ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="5_swk3f"]
 
 [node name="TestingRoom" type="Node2D"]
@@ -27,14 +26,3 @@ position = Vector2(662, 262)
 [node name="DebugEnemyPool" type="Node" parent="."]
 script = ExtResource("5_swk3f")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
-
-[node name="HeartPickup" parent="." instance=ExtResource("5_23rdi")]
-position = Vector2(907, 560)
-
-[node name="HeartPickup2" parent="." instance=ExtResource("5_23rdi")]
-position = Vector2(73, 562)
-
-[node name="HealthPickup" parent="HeartPickup2" index="0"]
-heal_value = 2
-
-[editable path="HeartPickup2"]

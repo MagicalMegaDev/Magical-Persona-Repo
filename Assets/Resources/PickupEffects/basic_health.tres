@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HealthPickup" load_steps=2 format=3 uid="uid://csxihs0fviqj"]
+
+[ext_resource type="Script" uid="uid://kb4qur6bsao0" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/HealthPickup.gd" id="1_aktas"]
+
+[resource]
+script = ExtResource("1_aktas")
+heal_value = 1
+metadata/_custom_type_script = "uid://kb4qur6bsao0"

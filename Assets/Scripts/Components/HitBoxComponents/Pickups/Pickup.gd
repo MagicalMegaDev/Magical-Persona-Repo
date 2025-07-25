@@ -1,19 +1,23 @@
 #Generic container for all pickups
 class_name Pickup
-extends Node
+extends HitBox
 
-@onready var hit_box:HitBox = get_parent()
-@onready var my_sprite :Sprite2D = get_parent().get_node("Sprite2D")
+@onready var my_sprite :Sprite2D = $Sprite2D
+@export var pickup_effects:Array[PickupEffect] #Add resources in inspector
 
 signal try_pickup(me:Pickup)
 
 func _ready():
-	hit_box.collision_layer = 0
-	hit_box.set_collision_layer_value(12, true)
-	hit_box.collision_mask = 0
-	hit_box.set_collision_mask_value(4, true)
-	hit_box.body_entered.connect(_on_body_entered)
+	collision_layer = 0
+	set_collision_layer_value(12, true)
+	collision_mask = 0
+	set_collision_mask_value(4, true)
+	body_entered.connect(_on_body_entered)
 	try_pickup.connect(SignalBus._on_item_pickup)
+	for effect in pickup_effects:
+		if(effect.get("my_sprite")):
+			effect.my_sprite = my_sprite
+		effect._setup()
 
 func _on_body_entered(body:Node):
 	if(body.is_in_group("Players")):

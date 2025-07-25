@@ -21,11 +21,8 @@ func connect_signals():
 	
 func _on_item_pickup(pickup:Pickup):
 	var picked_up := false #Was the Pickup picked up?
-	match pickup:
-		HealthPickup:
-			if(health_handler.current_health < health_handler.max_health):
-				health_picked_up.emit(pickup.heal_value)
-				picked_up = true
-		_:
-			push_error("Player picked up Pickup of unknown type!")
+	for effect in pickup.pickup_effects:
+		if(effect.qualifier.call(self)):
+			effect.action.call(self)
+			picked_up = true
 	pickup._on_pickup_attemped(picked_up)
