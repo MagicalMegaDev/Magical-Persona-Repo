@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
 [ext_resource type="Resource" uid="uid://fwnwbqvtrpr0" path="res://Assets/Resources/AttackStats/Placeholder/SlimeContact.tres" id="12_iami7"]
 [ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="14_bepmt"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/Pickups/heart_pickup.tscn" id="15_hp"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/Components/PickupDropHandler.tscn" id="16_pdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -148,5 +150,9 @@ attack_stats = ExtResource("12_iami7")
 [node name="KnockbackController" type="Node2D" parent="."]
 script = ExtResource("14_bepmt")
 metadata/_custom_type_script = "uid://d0qy2s10exi6r"
+
+[node name="PickupDropHandler" parent="." instance=ExtResource("16_pdh")]
+drop_chance = 0.5
+drop_table = {ExtResource("15_hp"): 1.0}
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
