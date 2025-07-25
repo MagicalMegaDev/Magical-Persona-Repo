@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvjm3b75txjrg"]
+[gd_scene load_steps=6 format=3 uid="uid://bvjm3b75txjrg"]
 
 [ext_resource type="Script" uid="uid://bhh87qhasrkuj" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/Pickup.gd" id="1_figpj"]
 [ext_resource type="Script" uid="uid://dhgva6rfc166t" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/PickupEffect.gd" id="2_n4dem"]
-[ext_resource type="Script" uid="uid://kb4qur6bsao0" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/HealthPickup.gd" id="2_yosi4"]
 [ext_resource type="Resource" uid="uid://csxihs0fviqj" path="res://Assets/Resources/PickupEffects/basic_health.tres" id="3_0d1e5"]
 [ext_resource type="Texture2D" uid="uid://y8iglf5dldwt" path="res://Assets/Art/Placeholder/Prototype Pickups.png" id="3_figpj"]
 
@@ -15,10 +14,6 @@ collision_mask = 0
 script = ExtResource("1_figpj")
 pickup_effects = Array[ExtResource("2_n4dem")]([ExtResource("3_0d1e5")])
 metadata/_custom_type_script = "uid://bhh87qhasrkuj"
-
-[node name="HealthPickup" type="Node" parent="."]
-script = ExtResource("2_yosi4")
-metadata/_custom_type_script = "uid://kb4qur6bsao0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_figpj")
