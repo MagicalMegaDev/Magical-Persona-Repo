@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvjm3b75txjrg"]
+
+[ext_resource type="Script" uid="uid://ckdtujb34pu0k" path="res://Assets/Scripts/Components/HitBox.gd" id="1_h0hg0"]
+[ext_resource type="Script" uid="uid://kb4qur6bsao0" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/HealthPickup.gd" id="2_yosi4"]
+[ext_resource type="Texture2D" uid="uid://y8iglf5dldwt" path="res://Assets/Art/Placeholder/Prototype Pickups.png" id="3_figpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_figpj"]
+size = Vector2(63, 58)
+
+[node name="HeartPickup" type="Area2D"]
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource("1_h0hg0")
+metadata/_custom_type_script = "uid://ckdtujb34pu0k"
+
+[node name="HealthPickup" type="Node" parent="."]
+script = ExtResource("2_yosi4")
+metadata/_custom_type_script = "uid://kb4qur6bsao0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_figpj")
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_figpj")

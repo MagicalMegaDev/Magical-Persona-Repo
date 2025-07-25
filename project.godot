@@ -123,6 +123,7 @@ debug_menu={
 2d_physics/layer_9="EnemyMeleeHitbox"
 2d_physics/layer_10="Bullets"
 2d_physics/layer_11="Explosions"
+2d_physics/layer_12="Pickups"
 
 [rendering]
 
