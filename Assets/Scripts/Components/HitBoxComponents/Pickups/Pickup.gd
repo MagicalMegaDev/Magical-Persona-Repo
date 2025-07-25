@@ -16,7 +16,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	try_pickup.connect(SignalBus._on_item_pickup)
 	for effect in base_pickup_effects:
-		pickup_effects.append(effect.duplicate)
+		pickup_effects.append(effect.duplicate())
 	for effect in pickup_effects:
 		for property in effect.get_property_list():
 			if property.name == "my_sprite":

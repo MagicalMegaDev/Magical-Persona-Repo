@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b72unqeuvbrk2"]
+
+[ext_resource type="Script" uid="uid://bhh87qhasrkuj" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/Pickup.gd" id="1_doton"]
+[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="3_08h4y"]
+[ext_resource type="Texture2D" uid="uid://y8iglf5dldwt" path="res://Assets/Art/Placeholder/Prototype Pickups.png" id="4_1mr2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_figpj"]
+size = Vector2(63, 58)
+
+[node name="HeartPickup" type="Area2D"]
+scale = Vector2(0.4, 0.4)
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource("1_doton")
+metadata/_custom_type_script = "uid://bhh87qhasrkuj"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_1mr2m")
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_figpj")
+
+[node name="MovementHandler" type="Node" parent="."]
+script = ExtResource("3_08h4y")
+metadata/_custom_type_script = "uid://ddul17tjgk3eg"
