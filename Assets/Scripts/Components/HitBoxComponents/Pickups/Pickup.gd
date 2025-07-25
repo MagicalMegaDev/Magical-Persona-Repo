@@ -17,7 +17,6 @@ func _ready():
 
 func _on_body_entered(body:Node):
 	if(body.is_in_group("Players")):
-		print("Player Entered!")
 		try_pickup.emit(self)
 		
 func _on_pickup_attemped(picked_up:bool):
