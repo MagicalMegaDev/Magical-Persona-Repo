@@ -3,7 +3,8 @@ class_name Pickup
 extends HitBox
 
 @onready var my_sprite :Sprite2D = $Sprite2D
-@export var pickup_effects:Array[PickupEffect] #Add resources in inspector
+@export var base_pickup_effects:Array[PickupEffect] #Add resources in inspector
+var pickup_effects:Array[PickupEffect]
 
 signal try_pickup(me:Pickup)
 
@@ -14,9 +15,13 @@ func _ready():
 	set_collision_mask_value(4, true)
 	body_entered.connect(_on_body_entered)
 	try_pickup.connect(SignalBus._on_item_pickup)
+	for effect in base_pickup_effects:
+		pickup_effects.append(effect.duplicate)
 	for effect in pickup_effects:
-		if(effect.get("my_sprite")):
-			effect.my_sprite = my_sprite
+		for property in effect.get_property_list():
+			if property.name == "my_sprite":
+				effect.my_sprite = my_sprite
+				break
 		effect._setup()
 
 func _on_body_entered(body:Node):

@@ -22,7 +22,7 @@ func connect_signals():
 func _on_item_pickup(pickup:Pickup):
 	var picked_up := false #Was the Pickup picked up?
 	for effect in pickup.pickup_effects:
-		if(effect.qualifier.call(self)):
-			effect.action.call(self)
+		if(effect.qualifier.call(health_handler)):
+			effect.action.call(health_handler)
 			picked_up = true
 	pickup._on_pickup_attemped(picked_up)

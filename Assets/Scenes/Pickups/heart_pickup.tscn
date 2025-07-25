@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhh87qhasrkuj" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/Pickup.gd" id="1_figpj"]
 [ext_resource type="Script" uid="uid://dhgva6rfc166t" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/PickupEffect.gd" id="2_n4dem"]
-[ext_resource type="Resource" uid="uid://csxihs0fviqj" path="res://Assets/Resources/PickupEffects/basic_health.tres" id="3_0d1e5"]
+[ext_resource type="Resource" uid="uid://csxihs0fviqj" path="res://Assets/Resources/PickupEffects/half_heal.tres" id="3_0d1e5"]
 [ext_resource type="Texture2D" uid="uid://y8iglf5dldwt" path="res://Assets/Art/Placeholder/Prototype Pickups.png" id="3_figpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_figpj"]
@@ -12,7 +12,7 @@ size = Vector2(63, 58)
 collision_layer = 2048
 collision_mask = 0
 script = ExtResource("1_figpj")
-pickup_effects = Array[ExtResource("2_n4dem")]([ExtResource("3_0d1e5")])
+base_pickup_effects = Array[ExtResource("2_n4dem")]([ExtResource("3_0d1e5")])
 metadata/_custom_type_script = "uid://bhh87qhasrkuj"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

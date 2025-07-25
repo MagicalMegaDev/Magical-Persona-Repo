@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2xnhrhem0c2r"]
+[gd_scene load_steps=8 format=3 uid="uid://c2xnhrhem0c2r"]
 
 [ext_resource type="PackedScene" uid="uid://bg85fe3yjuhyw" path="res://Assets/Scenes/Characters/Players/TestCharacter.tscn" id="1_uper2"]
 [ext_resource type="PackedScene" uid="uid://dtqmwnh60jaon" path="res://Assets/Scenes/UI/DungeonUI.tscn" id="3_r0bfr"]
 [ext_resource type="PackedScene" uid="uid://bnrc4kf3cl8sm" path="res://Assets/Scenes/Characters/Enemies/Placeholder/Slime/GreenSlime.tscn" id="3_xh5he"]
+[ext_resource type="PackedScene" uid="uid://bvjm3b75txjrg" path="res://Assets/Scenes/Pickups/heart_pickup.tscn" id="5_23rdi"]
 [ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="5_swk3f"]
+[ext_resource type="Script" uid="uid://dhgva6rfc166t" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/PickupEffect.gd" id="6_54l42"]
+[ext_resource type="Resource" uid="uid://e17wkvmmyua6" path="res://Assets/Resources/PickupEffects/full_heal.tres" id="7_17t5q"]
 
 [node name="TestingRoom" type="Node2D"]
 y_sort_enabled = true
@@ -26,3 +29,10 @@ position = Vector2(662, 262)
 [node name="DebugEnemyPool" type="Node" parent="."]
 script = ExtResource("5_swk3f")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
+
+[node name="HeartPickup" parent="." instance=ExtResource("5_23rdi")]
+position = Vector2(60, 567)
+
+[node name="HeartPickup2" parent="." instance=ExtResource("5_23rdi")]
+position = Vector2(955, 574)
+base_pickup_effects = Array[ExtResource("6_54l42")]([ExtResource("7_17t5q")])

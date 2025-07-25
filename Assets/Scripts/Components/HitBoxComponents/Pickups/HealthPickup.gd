@@ -16,4 +16,4 @@ func _setup():
 		2:
 			my_sprite.frame = FULL_HEART_FRAME
 	qualifier = func(obj): return obj.current_health < obj.max_health
-	action = func(obj): obj.heal_damate(heal_value)
+	action = func(obj): obj.heal_damage(heal_value)
