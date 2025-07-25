@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_wkep7"]
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="3_xi8ux"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_fyfmy"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/Pickups/heart_pickup.tscn" id="5_hp"]
+[ext_resource type="PackedScene" path="res://Assets/Scenes/Components/PickupDropHandler.tscn" id="6_pdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -58,5 +60,9 @@ shape = SubResource("CircleShape2D_5w1ox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 script = ExtResource("4_fyfmy")
+
+[node name="PickupDropHandler" parent="." instance=ExtResource("6_pdh")]
+drop_chance = 0.5
+drop_table = {ExtResource("5_hp"): 1.0}
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
