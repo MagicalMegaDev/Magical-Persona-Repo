@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://n6a7f0v1c36d"]
+
+[ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_ngk7h"]
+[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_k1fir"]
+[ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_wxaxt"]
+[ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="3_tux02"]
+[ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_w628o"]
+[ext_resource type="Script" uid="uid://bkhavkraf15wh" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyMovementStateMachine.gd" id="6_tupvp"]
+[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_kqshc"]
+[ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="8_tupvp"]
+
+[sub_resource type="Resource" id="Resource_0bkxy"]
+script = ExtResource("2_k1fir")
+max_health = 3
+base_max_speed = 350.0
+base_acceleration = 200.0
+base_friction = 100.0
+weight = 20.0
+metadata/_custom_type_script = "uid://crvv5pv2spbfx"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
+size = Vector2(85.3333, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onc88"]
+size = Vector2(64, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5w1ox"]
+radius = 45.3982
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 19
+script = ExtResource("1_ngk7h")
+imported_stats = SubResource("Resource_0bkxy")
+metadata/_custom_type_script = "uid://x2mfrinou0ev"
+
+[node name="HealthController" type="Node" parent="."]
+script = ExtResource("2_wxaxt")
+metadata/_custom_type_script = "uid://bxsgjqvvic3x0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_tux02")
+hframes = 6
+vframes = 4
+region_enabled = true
+region_rect = Rect2(0, 264, 384, 248)
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(-1.43051e-06, -6)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_5w1ox")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_onc88")
+
+[node name="EnemyDetection" type="Area2D" parent="."]
+position = Vector2(0, -17)
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_5w1ox")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+script = ExtResource("4_w628o")
+
+[node name="EnemyMovementStateMachine" type="Node" parent="."]
+script = ExtResource("6_tupvp")
+metadata/_custom_type_script = "uid://bkhavkraf15wh"
+
+[node name="Roaming" type="Node" parent="EnemyMovementStateMachine" node_paths=PackedStringArray("movement_ai")]
+script = ExtResource("7_kqshc")
+movement_ai = NodePath("RandomMovementAI")
+metadata/_custom_type_script = "uid://dvaa51eysnpop"
+
+[node name="RandomMovementAI" type="Node" parent="EnemyMovementStateMachine/Roaming"]
+script = ExtResource("8_tupvp")
+direction_change_frequency_min = 0.25
+direction_change_frequency_max = 1.0
+metadata/_custom_type_script = "uid://c4r57oepjkm3b"
+
+[connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]
