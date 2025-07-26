@@ -28,5 +28,5 @@ position = Vector2(60, 567)
 position = Vector2(955, 574)
 base_pickup_effects = Array[ExtResource("6_54l42")]([ExtResource("7_17t5q")])
 
-[node name="Enemy" parent="." instance=ExtResource("7_54l42")]
-position = Vector2(498, 248)
+[node name="Bat" parent="." instance=ExtResource("7_54l42")]
+position = Vector2(494, 296)
