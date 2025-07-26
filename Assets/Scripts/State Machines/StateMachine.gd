@@ -7,7 +7,7 @@ var my_owner:Node
 
 @export var starting_state:State = null
 
-func _ready():
+func _enter_tree():
 	my_owner = get_parent()
 	assert(my_owner is BaseCharacter, "%s is not at root, parent is: %s" % [name, get_parent().name])
 	for child in get_children():

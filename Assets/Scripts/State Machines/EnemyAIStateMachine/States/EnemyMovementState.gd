@@ -6,8 +6,10 @@ signal send_direction(direction:Vector2)
 @export var movement_ai:EnemyMovementAI
 
 func _ready():
+	super()
 	if(movement_ai):
 		# Connect to pause/resume the AI when the state enters or exits
+		movement_ai.my_character = my_character
 		state_entered.connect(movement_ai.resume)
 		state_exited.connect(movement_ai.pause)
 

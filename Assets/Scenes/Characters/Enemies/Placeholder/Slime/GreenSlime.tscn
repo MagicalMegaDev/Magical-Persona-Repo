@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_0yyb5"]
 [ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/HitBoxComponents/EnemyAttacks/ContactDamageHandler.gd" id="9_0yyb5"]
 [ext_resource type="PackedScene" uid="uid://ddhl25xwvn0tp" path="res://Assets/Scenes/Components/hit_box.tscn" id="11_vn55q"]
-[ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="12_bepmt"]
+[ext_resource type="Script" uid="uid://bkhavkraf15wh" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyMovementStateMachine.gd" id="12_bepmt"]
 [ext_resource type="Resource" uid="uid://fwnwbqvtrpr0" path="res://Assets/Resources/AttackStats/Placeholder/SlimeContact.tres" id="12_iami7"]
 [ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="14_bepmt"]
 
@@ -138,7 +138,7 @@ metadata/_custom_type_script = "uid://d0qy2s10exi6r"
 [node name="MovementStates" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("12_bepmt")
 starting_state = NodePath("Roaming")
-metadata/_custom_type_script = "uid://b0pbi685gj7kg"
+metadata/_custom_type_script = "uid://bkhavkraf15wh"
 
 [node name="Roaming" type="Node" parent="MovementStates" node_paths=PackedStringArray("movement_ai")]
 script = ExtResource("7_0yyb5")
