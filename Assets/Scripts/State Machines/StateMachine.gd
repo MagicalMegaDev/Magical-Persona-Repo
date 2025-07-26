@@ -14,6 +14,8 @@ func _enter_tree():
 		if child is State:
 			add_state(child)
 			child.state_machine = self
+
+func _ready():
 	if(starting_state and states.has(starting_state.name)):
 		current_state = starting_state
 		change_state(current_state.name)
