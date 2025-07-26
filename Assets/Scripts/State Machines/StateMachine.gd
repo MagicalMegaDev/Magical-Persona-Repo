@@ -9,9 +9,11 @@ var my_owner:Node
 
 func _ready():
 	my_owner = get_parent()
+	assert(my_owner is BaseCharacter, "%s is not at root, parent is: %s" % [name, get_parent().name])
 	for child in get_children():
 		if child is State:
 			add_state(child)
+			child.state_machine = self
 	if(starting_state and states.has(starting_state.name)):
 		current_state = starting_state
 	else: 
