@@ -5,7 +5,7 @@ extends StateMachine
 # Called when the node enters the scene tree for the first time.
 func _enter_tree():
 	super()
-	for child in states:
+	for child in states.values():
 		if(child is EnemyMovementState):
 			child.state_machine = self
 			child.movement_ai.my_character = my_owner
