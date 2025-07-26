@@ -16,6 +16,7 @@ func _enter_tree():
 			child.state_machine = self
 	if(starting_state and states.has(starting_state.name)):
 		current_state = starting_state
+		change_state(current_state.name)
 	else: 
 		if(states.size() != 0):
 			current_state = states.values()[0]
