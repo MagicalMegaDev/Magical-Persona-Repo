@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://n6a7f0v1c36d"]
+[gd_scene load_steps=18 format=3 uid="uid://n6a7f0v1c36d"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_ngk7h"]
 [ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_k1fir"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://bkhavkraf15wh" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyMovementStateMachine.gd" id="6_tupvp"]
 [ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_kqshc"]
 [ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="8_tupvp"]
+[ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="9_kqshc"]
+[ext_resource type="Script" uid="uid://ckdtujb34pu0k" path="res://Assets/Scripts/Components/HitBox.gd" id="10_2udxi"]
+[ext_resource type="Script" uid="uid://ct1bxoorfuiu0" path="res://Assets/Scripts/Components/HitBoxComponents/EnemyAttacks/ContactDamageHandler.gd" id="11_1hdl3"]
+[ext_resource type="Resource" uid="uid://bs08cmnvd3c6s" path="res://Assets/Resources/AttackStats/Placeholder/BatContact.tres" id="12_5b80a"]
 
 [sub_resource type="Resource" id="Resource_0bkxy"]
 script = ExtResource("2_k1fir")
@@ -27,7 +31,10 @@ size = Vector2(64, 40)
 [sub_resource type="CircleShape2D" id="CircleShape2D_5w1ox"]
 radius = 45.3982
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0uat"]
+size = Vector2(50, 27)
+
+[node name="Bat" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 19
 script = ExtResource("1_ngk7h")
@@ -51,8 +58,8 @@ scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 26
+collision_layer = 64
+collision_mask = 22
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)
@@ -87,5 +94,22 @@ script = ExtResource("8_tupvp")
 direction_change_frequency_min = 0.25
 direction_change_frequency_max = 1.0
 metadata/_custom_type_script = "uid://c4r57oepjkm3b"
+
+[node name="MovementHandler" type="Node" parent="."]
+script = ExtResource("9_kqshc")
+metadata/_custom_type_script = "uid://ddul17tjgk3eg"
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("10_2udxi")
+metadata/_custom_type_script = "uid://ckdtujb34pu0k"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-1, -7.5)
+shape = SubResource("RectangleShape2D_o0uat")
+
+[node name="ContactDamageHandler" type="Node2D" parent="HitBox"]
+script = ExtResource("11_1hdl3")
+attack_stats = ExtResource("12_5b80a")
+metadata/_custom_type_script = "uid://ct1bxoorfuiu0"
 
 [connection signal="damaged" from="HealthController" to="AnimationTree/AnimationPlayer" method="_on_take_damage"]

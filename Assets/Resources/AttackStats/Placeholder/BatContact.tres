@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AttackStats" load_steps=2 format=3 uid="uid://bs08cmnvd3c6s"]
+
+[ext_resource type="Script" uid="uid://bbigxh0wxl8cw" path="res://Assets/Resources/AttackStats.gd" id="1_mihea"]
+
+[resource]
+script = ExtResource("1_mihea")
+damage = 1
+knockback_enabled = true
+knockback_force = 25
+effects = Dictionary[String, bool]({})
+metadata/_custom_type_script = "uid://bbigxh0wxl8cw"

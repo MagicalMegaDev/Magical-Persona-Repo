@@ -15,9 +15,18 @@ var _friendly_fire:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(attack_stats, "%s has no AttackStats attached to it's ContactDamageHandler!" % get_parent().name)
+	hit_box_setup()
 	if not hit_box.collections_in_area.is_connected(_on_check_hit):
 		hit_box.collections_in_area.connect(_on_check_hit)
 		
+#setup the hit_box appropiately for contact detection
+func hit_box_setup():
+	hit_box.collision_mask = 0 # Clear all
+	hit_box.set_collision_mask_value(6, true) #Player Hurt Box
+	hit_box.set_collision_mask_value(7, true) #Enemy Hurt Box
+	hit_box.collision_layer = 0 # Clear all
+	hit_box.set_collision_layer_value(9, true) #EnemyMeleeHitBox
+
 #Check all colliders inside the hitbox for any in hit_groups
 func _on_check_hit(bodies:Array, areas:Array, position:Vector2):
 	for area in areas:
