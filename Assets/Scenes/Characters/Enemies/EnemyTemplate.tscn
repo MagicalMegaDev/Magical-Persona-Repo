@@ -1,9 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdii5unjsuy1l"]
+[gd_scene load_steps=11 format=3 uid="uid://bdii5unjsuy1l"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_a6hwp"]
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_5w1ox"]
+[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_hvr66"]
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="2_onc88"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_onc88"]
+[ext_resource type="Script" uid="uid://b3q245ar8pqlr" path="res://Assets/Scripts/Components/EnemyHurtbox.gd" id="5_hvr66"]
+
+[sub_resource type="Resource" id="Resource_ubg66"]
+script = ExtResource("2_hvr66")
+max_health = 5
+base_max_speed = 200.0
+base_acceleration = 50.0
+base_friction = 50.0
+weight = 50.0
+metadata/_custom_type_script = "uid://crvv5pv2spbfx"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5w1ox"]
 size = Vector2(64, 32)
@@ -15,9 +26,10 @@ size = Vector2(64, 32)
 radius = 45.3982
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 8
-collision_mask = 19
+collision_layer = 16
+collision_mask = 11
 script = ExtResource("1_a6hwp")
+imported_stats = SubResource("Resource_ubg66")
 metadata/_custom_type_script = "uid://x2mfrinou0ev"
 
 [node name="HealthController" type="Node" parent="."]
@@ -37,9 +49,11 @@ position = Vector2(0, 16)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_5w1ox")
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("my_owner") groups=["Enemies"]]
 collision_layer = 64
 collision_mask = 26
+script = ExtResource("5_hvr66")
+my_owner = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 modulate = Color(1, 0, 0, 1)

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cj6appwlvrvxk" path="res://Assets/Scripts/Components/Handlers/DebugEnemyPool.gd" id="5_swk3f"]
 [ext_resource type="Script" uid="uid://dhgva6rfc166t" path="res://Assets/Scripts/Components/HitBoxComponents/Pickups/PickupEffect.gd" id="6_54l42"]
 [ext_resource type="Resource" uid="uid://e17wkvmmyua6" path="res://Assets/Resources/PickupEffects/full_heal.tres" id="7_17t5q"]
-[ext_resource type="PackedScene" uid="uid://n6a7f0v1c36d" path="res://Assets/Scenes/Characters/Enemies/Placeholder/Bat.tscn" id="7_54l42"]
+[ext_resource type="PackedScene" uid="uid://bdii5unjsuy1l" path="res://Assets/Scenes/Characters/Enemies/EnemyTemplate.tscn" id="7_54l42"]
 
 [node name="TestingRoom" type="Node2D"]
 y_sort_enabled = true
@@ -28,5 +28,5 @@ position = Vector2(60, 567)
 position = Vector2(955, 574)
 base_pickup_effects = Array[ExtResource("6_54l42")]([ExtResource("7_17t5q")])
 
-[node name="Bat" parent="." instance=ExtResource("7_54l42")]
-position = Vector2(494, 296)
+[node name="Enemy" parent="." groups=["Enemies"] instance=ExtResource("7_54l42")]
+position = Vector2(503, 282)

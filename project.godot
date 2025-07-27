@@ -23,6 +23,7 @@ SignalBus="*res://Assets/Scripts/Globals/signal_bus.gd"
 Constants="*res://Assets/Scripts/Globals/constants.gd"
 GameManager="*res://Assets/Scripts/Globals/game_manager.gd"
 TestDebugMenu="*res://Assets/Scenes/UI/Debug/DebugMenu.tscn"
+Utilities="*res://Assets/Scripts/Globals/Utilities.gd"
 
 [display]
 
