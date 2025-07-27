@@ -29,6 +29,7 @@ func _ready():
 func _on_take_damage(stats:AttackStats, attacker_position:Vector2):
 	var damage_value = stats.damage
 	current_health = max( current_health - damage_value, 0)
+	print(str(current_health) + "/" + str(max_health))
 	damaged.emit()
 
 # Adds incoming heal to current_health
