@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=29 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Resource" uid="uid://bbu8rfd5i3617" path="res://Assets/Resources/player_stats.tres" id="2_obxmd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cs7oml2aclx6j" path="res://Assets/Scripts/Components/HurtBox.gd" id="9_fkrlc"]
 [ext_resource type="Script" uid="uid://bu04sxx2gy11f" path="res://Assets/Scripts/Components/Projectiles/PathingBehaviors/StraightShot.gd" id="10_5o5tf"]
 [ext_resource type="Script" uid="uid://b0pbi685gj7kg" path="res://Assets/Scripts/State Machines/StateMachine.gd" id="10_86ov6"]
+[ext_resource type="Script" uid="uid://buay1jymhrlp2" path="res://Assets/Scenes/Muzzle.gd" id="11_3wxp8"]
 [ext_resource type="Script" uid="uid://dhwq46247k7ik" path="res://Assets/Scripts/State Machines/PlayerStateMachine/Controlled.gd" id="11_ff7km"]
 [ext_resource type="Script" uid="uid://d0qy2s10exi6r" path="res://Assets/Scripts/Components/Controllers/KnockbackController.gd" id="12_3iqnk"]
 [ext_resource type="Script" uid="uid://egp1vup4mu4w" path="res://Assets/Scripts/State Machines/State.gd" id="12_obxmd"]
@@ -154,6 +155,12 @@ hit_groups = Array[String](["Enemies", "Environment"])
 stats = ExtResource("9_8nl45")
 
 [node name="Muzzle" parent="Gun" index="1"]
+default_behavior = SubResource("Resource_3wxp8")
+
+[node name="Muzzle2" type="RayCast2D" parent="Gun"]
+rotation = 0.785398
+target_position = Vector2(0, -20)
+script = ExtResource("11_3wxp8")
 default_behavior = SubResource("Resource_3wxp8")
 
 [node name="Health" type="Node" parent="."]
