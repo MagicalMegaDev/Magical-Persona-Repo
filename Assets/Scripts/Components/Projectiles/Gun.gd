@@ -85,8 +85,8 @@ func _on_shoot(direction: Vector2):
 				new_bullet.movement_behavior = muzzle.default_behavior
 			get_tree().current_scene.add_child(new_bullet)
 			new_bullet.global_position = muzzle.global_position
-	shot_timer.wait_time = 1/stats.fire_rate
-	shot_timer.start()
+		shot_timer.wait_time = 1/stats.fire_rate
+		shot_timer.start()
 
 # Adds a new collision group this gun's bullets can hit.
 func add_hit_group(group:String):
