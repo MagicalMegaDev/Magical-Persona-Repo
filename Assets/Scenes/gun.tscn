@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ldygjrayxacg"]
+[gd_scene load_steps=3 format=3 uid="uid://ldygjrayxacg"]
 
 [ext_resource type="Script" uid="uid://cl0aqqi226do6" path="res://Assets/Scripts/Components/Projectiles/Gun.gd" id="1_31nqj"]
+[ext_resource type="Script" uid="uid://buay1jymhrlp2" path="res://Assets/Scenes/Muzzle.gd" id="2_ytuk4"]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_31nqj")
@@ -10,3 +11,4 @@ metadata/_custom_type_script = "uid://cl0aqqi226do6"
 one_shot = true
 
 [node name="Muzzle" type="RayCast2D" parent="."]
+script = ExtResource("2_ytuk4")

@@ -6,8 +6,8 @@ extends Node2D
 
 @export var my_bullet:PackedScene
 @export var hit_groups:Array[String] = []
-@export var default_behavior:BulletMovementBehavior
 var shot_timer:Timer
+var muzzles:Array[Muzzle] = []
 
 #region stats
 #All default values are placeholders
@@ -54,12 +54,14 @@ var fire_rate:float: #Number of bullets this gun can fire a second.
 func _ready():
 	assert(stats, "%s Gun has no stats resource!" % get_parent().name)
 	assert(my_bullet, "%s Gun has no bullet PackedScene assigned!" % get_parent().name)
-	assert(default_behavior, "%s Gun has no default behavior!" % get_parent().name)
 	assert (has_node("shot_cooldown"), "%s has no shot_cooldown Timer!" % get_parent().name)
 	stats = stats.duplicate()
 	_debug()
 	shot_timer = $shot_cooldown
 	shot_timer.wait_time = 1/fire_rate
+	for child in get_children():
+		if child is Muzzle:
+			muzzles.append(child)
 #	if(spectral):
 #		remove_hit_group("Environment")
 #	else:
@@ -67,21 +69,21 @@ func _ready():
 
 # Fires a bullet in the provided direction if able.
 func _on_shoot(direction: Vector2):
-	if(direction == Vector2.ZERO):
-		return
-	if(shot_timer.is_stopped() || !rate_limited):
+	for muzzle in muzzles:
+		assert(muzzle.default_behavior, "Muzzle in %s Gun has no default behavior!" % get_parent().name)
+		muzzle.set_direction(direction)
 		var new_bullet := my_bullet.instantiate() as BaseBullet
-		assert(new_bullet, "%s 's gun is trying to spawn non-bullets!" % get_parent().name)
+		assert(new_bullet, "%s's gun is trying to spawn non-bullets!" % get_parent().name)
 		new_bullet.speed_mods["Gun Shot Speed"] = shot_speed
 		new_bullet.damage_mods["Gun Damage"] = damage
-		new_bullet.direction = direction
+		new_bullet.direction = muzzle.direction
 		new_bullet.hit_groups = hit_groups
 		if(new_bullet.movement_behavior == null):
-			new_bullet.movement_behavior = default_behavior
+			new_bullet.movement_behavior = muzzle.default_behavior
 		get_tree().current_scene.add_child(new_bullet)
-		new_bullet.global_position = global_position
-		shot_timer.wait_time = 1/stats.fire_rate
-		shot_timer.start()
+		new_bullet.global_position = muzzle.global_position
+	shot_timer.wait_time = 1/stats.fire_rate
+	shot_timer.start()
 
 # Adds a new collision group this gun's bullets can hit.
 func add_hit_group(group:String):
