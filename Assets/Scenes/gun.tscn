@@ -11,4 +11,5 @@ metadata/_custom_type_script = "uid://cl0aqqi226do6"
 one_shot = true
 
 [node name="Muzzle" type="RayCast2D" parent="."]
+target_position = Vector2(0, -20)
 script = ExtResource("2_ytuk4")
