@@ -69,19 +69,22 @@ func _ready():
 
 # Fires a bullet in the provided direction if able.
 func _on_shoot(direction: Vector2):
-	for muzzle in muzzles:
-		assert(muzzle.default_behavior, "Muzzle in %s Gun has no default behavior!" % get_parent().name)
-		muzzle.set_direction(direction)
-		var new_bullet := my_bullet.instantiate() as BaseBullet
-		assert(new_bullet, "%s's gun is trying to spawn non-bullets!" % get_parent().name)
-		new_bullet.speed_mods["Gun Shot Speed"] = shot_speed
-		new_bullet.damage_mods["Gun Damage"] = damage
-		new_bullet.direction = muzzle.direction
-		new_bullet.hit_groups = hit_groups
-		if(new_bullet.movement_behavior == null):
-			new_bullet.movement_behavior = muzzle.default_behavior
-		get_tree().current_scene.add_child(new_bullet)
-		new_bullet.global_position = muzzle.global_position
+	if direction == Vector2.ZERO:
+		return
+	if(shot_timer.is_stopped() || !rate_limited):
+		for muzzle in muzzles:
+			assert(muzzle.default_behavior, "Muzzle in %s Gun has no default behavior!" % get_parent().name)
+			muzzle.set_direction(direction)
+			var new_bullet := my_bullet.instantiate() as BaseBullet
+			assert(new_bullet, "%s's gun is trying to spawn non-bullets!" % get_parent().name)
+			new_bullet.speed_mods["Gun Shot Speed"] = shot_speed
+			new_bullet.damage_mods["Gun Damage"] = damage
+			new_bullet.direction = muzzle.direction
+			new_bullet.hit_groups = hit_groups
+			if(new_bullet.movement_behavior == null):
+				new_bullet.movement_behavior = muzzle.default_behavior
+			get_tree().current_scene.add_child(new_bullet)
+			new_bullet.global_position = muzzle.global_position
 	shot_timer.wait_time = 1/stats.fire_rate
 	shot_timer.start()
 
