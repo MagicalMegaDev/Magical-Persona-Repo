@@ -8,3 +8,5 @@ metadata/_custom_type_script = "uid://cl0aqqi226do6"
 
 [node name="shot_cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="Muzzle" type="RayCast2D" parent="."]

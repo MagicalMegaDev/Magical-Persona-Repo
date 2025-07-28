@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3lidtonsfmpa"]
+[gd_scene load_steps=16 format=3 uid="uid://b3lidtonsfmpa"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_tux02"]
 [ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_w628o"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="4_w2bst"]
 [ext_resource type="Script" uid="uid://b3q245ar8pqlr" path="res://Assets/Scripts/Components/EnemyHurtbox.gd" id="5_xtknt"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="6_wjpi3"]
+[ext_resource type="Script" uid="uid://bkdxenpeu8blc" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAttackStateMachine.gd" id="7_b6gve"]
+[ext_resource type="Script" uid="uid://ci5k2ryv715mw" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/Attacks/Shooting.gd" id="8_4dfn1"]
 
 [sub_resource type="Resource" id="Resource_ubg66"]
 script = ExtResource("2_w628o")
@@ -115,3 +117,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_4moko")
 }
 script = ExtResource("6_wjpi3")
+
+[node name="EnemyAttackStateMachine" type="Node" parent="."]
+script = ExtResource("7_b6gve")
+metadata/_custom_type_script = "uid://bkdxenpeu8blc"
+
+[node name="BasicShot" type="Node" parent="EnemyAttackStateMachine"]
+script = ExtResource("8_4dfn1")
+metadata/_custom_type_script = "uid://ci5k2ryv715mw"

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cooi0tvqwexo"]
+
+[ext_resource type="Script" uid="uid://c2vhvwxcd4bm3" path="res://Assets/Scripts/Components/Controllers/EnemyAttackAI/EnemyAttackAI.gd" id="1_odogk"]
+
+[node name="StraightShot" type="Node"]
+script = ExtResource("1_odogk")
+metadata/_custom_type_script = "uid://c2vhvwxcd4bm3"

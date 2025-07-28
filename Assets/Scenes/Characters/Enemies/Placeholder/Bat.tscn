@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_w628o"]
 [ext_resource type="Script" uid="uid://b3q245ar8pqlr" path="res://Assets/Scripts/Components/EnemyHurtbox.gd" id="5_5b80a"]
 [ext_resource type="Script" uid="uid://bkhavkraf15wh" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyMovementStateMachine.gd" id="6_tupvp"]
-[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/EnemyMovementState.gd" id="7_kqshc"]
+[ext_resource type="Script" uid="uid://dvaa51eysnpop" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/Movement/EnemyMovementState.gd" id="7_kqshc"]
 [ext_resource type="Script" uid="uid://c4r57oepjkm3b" path="res://Assets/Scripts/Components/Controllers/EnemyMovementAI/RandomMovementAI.gd" id="8_tupvp"]
 [ext_resource type="Script" uid="uid://ddul17tjgk3eg" path="res://Assets/Scripts/Components/MovementHandler.gd" id="9_kqshc"]
 [ext_resource type="Script" uid="uid://ckdtujb34pu0k" path="res://Assets/Scripts/Components/HitBox.gd" id="10_2udxi"]

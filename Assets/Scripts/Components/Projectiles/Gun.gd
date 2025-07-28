@@ -6,6 +6,7 @@ extends Node2D
 
 @export var my_bullet:PackedScene
 @export var hit_groups:Array[String] = []
+@export var default_behavior:BulletMovementBehavior
 var shot_timer:Timer
 
 #region stats
@@ -53,6 +54,7 @@ var fire_rate:float: #Number of bullets this gun can fire a second.
 func _ready():
 	assert(stats, "%s Gun has no stats resource!" % get_parent().name)
 	assert(my_bullet, "%s Gun has no bullet PackedScene assigned!" % get_parent().name)
+	assert(default_behavior, "%s Gun has no default behavior!" % get_parent().name)
 	assert (has_node("shot_cooldown"), "%s has no shot_cooldown Timer!" % get_parent().name)
 	stats = stats.duplicate()
 	_debug()
@@ -74,6 +76,8 @@ func _on_shoot(direction: Vector2):
 		new_bullet.damage_mods["Gun Damage"] = damage
 		new_bullet.direction = direction
 		new_bullet.hit_groups = hit_groups
+		if(new_bullet.movement_behavior == null):
+			new_bullet.movement_behavior = default_behavior
 		get_tree().current_scene.add_child(new_bullet)
 		new_bullet.global_position = global_position
 		shot_timer.wait_time = 1/stats.fire_rate
