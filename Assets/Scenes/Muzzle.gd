@@ -12,7 +12,7 @@ func _ready():
 	direction = base_direction
 
 func get_direction() -> Vector2:
-	return Vector2.ZERO
+	return (to_global(target_position) - global_position).normalized()
 	
 
 func _on_controlled_shooting_direction_set(direction):

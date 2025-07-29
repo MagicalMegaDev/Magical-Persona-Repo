@@ -163,6 +163,12 @@ target_position = Vector2(0, -20)
 script = ExtResource("11_3wxp8")
 default_behavior = SubResource("Resource_3wxp8")
 
+[node name="Muzzle3" type="RayCast2D" parent="Gun"]
+rotation = -0.785398
+target_position = Vector2(0, -20)
+script = ExtResource("11_3wxp8")
+default_behavior = SubResource("Resource_3wxp8")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
 
