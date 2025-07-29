@@ -10,12 +10,10 @@ func _ready():
 	ray_length = target_position.length()
 	base_direction = target_position.normalized()
 	direction = base_direction
-	
-func set_direction(new_dir:Vector2) -> void:
-	var ang = Vector2.UP.angle_to(new_dir.normalized())
-	direction = base_direction.rotated(ang)
-	target_position = direction * ray_length
 
+func get_direction() -> Vector2:
+	return Vector2.ZERO
+	
 
 func _on_controlled_shooting_direction_set(direction):
 	pass # Replace with function body.

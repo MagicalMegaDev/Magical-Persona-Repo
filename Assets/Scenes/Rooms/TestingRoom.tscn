@@ -17,6 +17,9 @@ y_sort_enabled = true
 position = Vector2(500, 422)
 scale = Vector2(1.0042, 1.00341)
 
+[node name="Muzzle" parent="Player/Gun" index="1"]
+modulate = Color(1, 0, 0.243137, 1)
+
 [node name="DebugEnemyPool" type="Node" parent="."]
 script = ExtResource("5_swk3f")
 metadata/_custom_type_script = "uid://cj6appwlvrvxk"
