@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c77b5g33e4bb4"]
+[gd_scene load_steps=6 format=3 uid="uid://c77b5g33e4bb4"]
 
 [ext_resource type="Script" uid="uid://bwpvfrbdivssx" path="res://Assets/Scripts/Components/Projectiles/BaseBullet.gd" id="1_kiwiv"]
 [ext_resource type="Texture2D" uid="uid://4m54u3g5ewjl" path="res://Assets/Art/Placeholder/playerbullet.png" id="1_mgv1u"]
 [ext_resource type="Resource" uid="uid://c4ivjx2431fr7" path="res://Assets/Resources/ProjectileStats/PlayerBullet.tres" id="2_58g8j"]
-[ext_resource type="Resource" uid="uid://bwyd1dmu5mhmn" path="res://Assets/Scripts/Components/Projectiles/PathingBehaviors/StraightShot.tres" id="2_a6iwo"]
 [ext_resource type="Script" uid="uid://dsfewmgvi7xo2" path="res://Assets/Scripts/Components/Projectiles/ProjectileMovementHandler.gd" id="3_a6iwo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgv1u"]
@@ -15,7 +14,6 @@ collision_layer = 512
 collision_mask = 99
 script = ExtResource("1_kiwiv")
 base_stats = ExtResource("2_58g8j")
-movement_behavior = ExtResource("2_a6iwo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mgv1u")

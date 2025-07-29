@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bg85fe3yjuhyw"]
+[gd_scene load_steps=31 format=3 uid="uid://bg85fe3yjuhyw"]
 
 [ext_resource type="Script" uid="uid://nfa50gborhfe" path="res://Assets/Scripts/Characters/Players/TestCharacterController.gd" id="1_tadin"]
 [ext_resource type="Resource" uid="uid://bbu8rfd5i3617" path="res://Assets/Resources/player_stats.tres" id="2_obxmd"]
@@ -65,6 +65,14 @@ radius = 9.06606
 size = Vector2(16, 40)
 
 [sub_resource type="Resource" id="Resource_3wxp8"]
+script = ExtResource("10_5o5tf")
+metadata/_custom_type_script = "uid://bu04sxx2gy11f"
+
+[sub_resource type="Resource" id="Resource_f4n47"]
+script = ExtResource("10_5o5tf")
+metadata/_custom_type_script = "uid://bu04sxx2gy11f"
+
+[sub_resource type="Resource" id="Resource_dkg41"]
 script = ExtResource("10_5o5tf")
 metadata/_custom_type_script = "uid://bu04sxx2gy11f"
 
@@ -161,13 +169,13 @@ default_behavior = SubResource("Resource_3wxp8")
 rotation = 0.785398
 target_position = Vector2(0, -20)
 script = ExtResource("11_3wxp8")
-default_behavior = SubResource("Resource_3wxp8")
+default_behavior = SubResource("Resource_f4n47")
 
 [node name="Muzzle3" type="RayCast2D" parent="Gun"]
 rotation = -0.785398
 target_position = Vector2(0, -20)
 script = ExtResource("11_3wxp8")
-default_behavior = SubResource("Resource_3wxp8")
+default_behavior = SubResource("Resource_dkg41")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_u4s88")
