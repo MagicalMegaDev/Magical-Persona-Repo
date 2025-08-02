@@ -2,7 +2,7 @@
 class_name PlayerInputController 
 extends Node
 
-@export var my_character:BaseCharacter
+@export var my_character:PlayerController
 
 #region DEBUG
 const DEBUG_SPEED := 2
@@ -95,5 +95,5 @@ func check_shoot():
 
 func check_skill():
 	if(Input.is_action_just_pressed("secondary_skill")):
-		secondary_skill_pressed.emit()
+		secondary_skill_pressed.emit(my_character.secondary_skill)
 		

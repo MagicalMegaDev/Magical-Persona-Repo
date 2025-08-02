@@ -47,8 +47,9 @@ func _on_movement_input(new_direction:Vector2):
 func _on_shooting_input(new_direction:Vector2):
 	shooting_direction = new_direction
 
-func _on_secondary_skill():
+func _on_secondary_skill(skill:Skill, targets := [], context := {}):
 	secondary_skill = true
+	skill.execute(self, targets, context)
 	
 func _on_utility_skill():
 	utility_skill = true
