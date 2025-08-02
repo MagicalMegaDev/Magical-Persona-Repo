@@ -14,7 +14,12 @@ func _ready():
 
 #helper function to initialize all skills(Mostly to set up cooldown timers
 func initialize_skills():
-	#Function here should collect all skills attached to player and initialize them.
+	for prop in get_property_list():
+		var skill = get(prop.name)
+		if skill is Skill:
+			skill.init(self)
+			if(skill.cooldown_timer):
+				add_child(skill.cooldown_timer)
 	
 	
 #helper function to connect needed signals and keep _ready clean
