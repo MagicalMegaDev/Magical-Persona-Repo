@@ -17,6 +17,7 @@ signal direction_calculated(direction:Vector2)
 
 # Emitted when the player fires. Parameter is shot direction
 signal shoot(direction:Vector2)
+signal secondary_skill_pressed
 
 func _ready():
 	assert(my_character, "PlayerInputController has no character assigned!")
@@ -34,6 +35,7 @@ func _process(delta):
 	elif(last_input_device == "joystick"):
 		check_js_shoot_input()
 	check_shoot()
+	check_skill()
 	#DEBUG
 	#Pressing the speed action adds or removes a movement speed modifier, representing the player when speed capped
 	if(Input.is_action_just_pressed("speed") and my_character.movement_handler):
@@ -90,3 +92,8 @@ func check_shoot():
 			_:
 				push_error("SOMETHING WEIRD IN PLAYER SHOOTING_QUEUE[0]! " + str(shooting_queue[0]) + " found!")
 		shoot.emit(shot_direction)
+
+func check_skill():
+	if(Input.is_action_just_pressed("secondary_skill")):
+		secondary_skill_pressed.emit()
+		
