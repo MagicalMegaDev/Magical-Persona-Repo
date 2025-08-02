@@ -4,6 +4,8 @@ class_name PlayerController extends BaseCharacter
 
 signal health_picked_up(heal_value:int) #Signal emitted when health is picked up
 
+@export var secondary_skill:Skill
+
 func _ready():
 	super()
 	self.add_to_group("Players")
