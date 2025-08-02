@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwpvfrbdivssx" path="res://Assets/Scripts/Components/Projectiles/BaseBullet.gd" id="1_kiwiv"]
 [ext_resource type="Texture2D" uid="uid://4m54u3g5ewjl" path="res://Assets/Art/Placeholder/playerbullet.png" id="1_mgv1u"]
-[ext_resource type="Resource" uid="uid://c4ivjx2431fr7" path="res://Assets/Resources/ProjectileStats/PlayerBullet.tres" id="2_58g8j"]
+[ext_resource type="Resource" uid="uid://c4ivjx2431fr7" path="res://Assets/Resources/AttackStats/ProjectileStats/PlayerBullet.tres" id="2_58g8j"]
 [ext_resource type="Script" uid="uid://dsfewmgvi7xo2" path="res://Assets/Scripts/Components/Projectiles/ProjectileMovementHandler.gd" id="3_a6iwo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mgv1u"]

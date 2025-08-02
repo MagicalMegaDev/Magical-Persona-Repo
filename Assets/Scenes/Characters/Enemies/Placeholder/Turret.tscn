@@ -1,13 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3lidtonsfmpa"]
+[gd_scene load_steps=19 format=3 uid="uid://b3lidtonsfmpa"]
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_tux02"]
-[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_w628o"]
+[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats/CharacterStats.gd" id="2_w628o"]
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="3_llpwh"]
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="4_w2bst"]
 [ext_resource type="Script" uid="uid://b3q245ar8pqlr" path="res://Assets/Scripts/Components/EnemyHurtbox.gd" id="5_xtknt"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="6_wjpi3"]
 [ext_resource type="Script" uid="uid://bkdxenpeu8blc" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/EnemyAttackStateMachine.gd" id="7_b6gve"]
 [ext_resource type="Script" uid="uid://ci5k2ryv715mw" path="res://Assets/Scripts/State Machines/EnemyAIStateMachine/States/Attacks/Shooting.gd" id="8_4dfn1"]
+[ext_resource type="PackedScene" uid="uid://ldygjrayxacg" path="res://Assets/Scenes/Components/gun.tscn" id="9_4dfn1"]
+[ext_resource type="Script" uid="uid://bu04sxx2gy11f" path="res://Assets/Scripts/Components/Projectiles/PathingBehaviors/StraightShot.gd" id="10_b7ysy"]
 
 [sub_resource type="Resource" id="Resource_ubg66"]
 script = ExtResource("2_w628o")
@@ -64,6 +66,10 @@ _data = {
 &"RESET": SubResource("Animation_4moko"),
 &"hurt": SubResource("Animation_fhjy0")
 }
+
+[sub_resource type="Resource" id="Resource_rajj8"]
+script = ExtResource("10_b7ysy")
+metadata/_custom_type_script = "uid://bu04sxx2gy11f"
 
 [node name="Turret" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 16
@@ -125,3 +131,13 @@ metadata/_custom_type_script = "uid://bkdxenpeu8blc"
 [node name="BasicShot" type="Node" parent="EnemyAttackStateMachine"]
 script = ExtResource("8_4dfn1")
 metadata/_custom_type_script = "uid://ci5k2ryv715mw"
+
+[node name="Gun" parent="." instance=ExtResource("9_4dfn1")]
+
+[node name="shot_cooldown" parent="Gun" index="0"]
+wait_time = 0.5
+
+[node name="Muzzle" parent="Gun" index="1"]
+default_behavior = SubResource("Resource_rajj8")
+
+[editable path="Gun"]

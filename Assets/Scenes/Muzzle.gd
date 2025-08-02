@@ -1,6 +1,5 @@
 class_name Muzzle
 extends RayCast2D
-
 #constant to make new muzzles point up by default
 const DEFAULT_MUZZLE_TARGET = -25.0
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x2mfrinou0ev" path="res://Assets/Scripts/Characters/Enemies/BaseEnemy.gd" id="1_a6hwp"]
 [ext_resource type="Script" uid="uid://bxsgjqvvic3x0" path="res://Assets/Scripts/Components/Handlers/Health/EnemyHealthHandler.gd" id="2_5w1ox"]
-[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats.gd" id="2_hvr66"]
+[ext_resource type="Script" uid="uid://crvv5pv2spbfx" path="res://Assets/Resources/CharacterStats/CharacterStats.gd" id="2_hvr66"]
 [ext_resource type="Texture2D" uid="uid://dwg44hyw5ca03" path="res://Assets/Art/Placeholder/prototypeEnemySprite.png" id="2_onc88"]
 [ext_resource type="Script" uid="uid://ctdfwf3huvtsi" path="res://Assets/Scripts/Components/Controllers/EnemyAnimationController.gd" id="4_onc88"]
 [ext_resource type="Script" uid="uid://b3q245ar8pqlr" path="res://Assets/Scripts/Components/EnemyHurtbox.gd" id="5_hvr66"]
