@@ -10,8 +10,13 @@ func _ready():
 	super()
 	self.add_to_group("Players")
 	connect_signals()
+	initialize_skills()
 
-
+#helper function to initialize all skills(Mostly to set up cooldown timers
+func initialize_skills():
+	#Function here should collect all skills attached to player and initialize them.
+	
+	
 #helper function to connect needed signals and keep _ready clean
 func connect_signals():
 	# Set up Recievers

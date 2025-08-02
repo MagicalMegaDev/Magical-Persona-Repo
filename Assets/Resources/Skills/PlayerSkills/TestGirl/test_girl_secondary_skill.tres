@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://boiapxd4au6dj"]
+
+[ext_resource type="Script" uid="uid://b64h6tgsnra10" path="res://Assets/Resources/Skills/Skill.gd" id="1_8n1fv"]
+[ext_resource type="Script" uid="uid://cn34fvnwba0f2" path="res://Assets/Resources/Skills/Verbs/SkillVerb.gd" id="2_3o7j7"]
+
+[resource]
+script = ExtResource("1_8n1fv")
+verbs = Array[ExtResource("2_3o7j7")]([])
+cooldown_time = 10.0
+requires_target = false
+target_groups = Array[String]([])
+metadata/_custom_type_script = "uid://b64h6tgsnra10"
