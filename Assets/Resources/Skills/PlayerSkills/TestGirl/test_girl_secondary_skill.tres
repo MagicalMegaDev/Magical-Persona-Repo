@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://boiapxd4au6dj"]
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://boiapxd4au6dj"]
 
 [ext_resource type="Script" uid="uid://b64h6tgsnra10" path="res://Assets/Resources/Skills/Skill.gd" id="1_8n1fv"]
 [ext_resource type="Script" uid="uid://cn34fvnwba0f2" path="res://Assets/Resources/Skills/Verbs/SkillVerb.gd" id="2_3o7j7"]
+[ext_resource type="Script" uid="uid://chjfyo6sjs3xi" path="res://Assets/Resources/Skills/Verbs/HealVerb.gd" id="3_3o7j7"]
+
+[sub_resource type="Resource" id="Resource_c2ssy"]
+script = ExtResource("3_3o7j7")
+heal_value = 1
+metadata/_custom_type_script = "uid://chjfyo6sjs3xi"
 
 [resource]
 script = ExtResource("1_8n1fv")
-verbs = Array[ExtResource("2_3o7j7")]([])
+verbs = Array[ExtResource("2_3o7j7")]([SubResource("Resource_c2ssy")])
 cooldown_time = 10.0
 requires_target = false
 target_groups = Array[String]([])

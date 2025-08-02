@@ -20,8 +20,7 @@ func initialize_skills():
 			skill.init(self)
 			if(skill.cooldown_timer):
 				add_child(skill.cooldown_timer)
-	
-	
+
 #helper function to connect needed signals and keep _ready clean
 func connect_signals():
 	# Set up Recievers
